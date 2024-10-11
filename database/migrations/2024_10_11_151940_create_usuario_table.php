@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('usuario', function (Blueprint $table) {
             $table->integer('id_usuario', true);
-            $table->integer('registro')->index('registro');
+            $table->integer('id_persona')->unique('id_persona');
             $table->integer('id_carrera')->nullable()->index('id_carrera');
             $table->string('rol', 20)->nullable();
+            $table->string('usuario');
+            $table->string('password');
+            $table->timestamps();
         });
     }
 

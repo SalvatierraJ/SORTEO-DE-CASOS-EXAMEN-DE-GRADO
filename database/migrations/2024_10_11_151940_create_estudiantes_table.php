@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->integer('id_estudiante', true);
-            $table->integer('registro')->index('registro');
+            $table->integer('id_persona')->unique('id_persona');
         });
     }
 
