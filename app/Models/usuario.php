@@ -5,17 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class Usuario extends Authenticatable
 {
-    use HasApiTokens;
-    use HasFactory;
-    use HasProfilePhoto;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * Nombre de la tabla asociada con el modelo.
@@ -41,7 +35,7 @@ class User extends Authenticatable
         'id_carrera',
         'rol',
         'usuario',  // El campo de nombre de usuario
-        'contrasena', // El campo de contraseña
+        'password', // El campo de contraseña
     ];
 
     /**
@@ -50,10 +44,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'contrasena',
+        'password',
         'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
     ];
 
     /**
@@ -62,24 +54,11 @@ class User extends Authenticatable
      */
     public function getAuthPassword()
     {
-        return $this->contrasena;  // Indica que la columna es 'contrasena'
+        return $this->password;  // Indica que la columna es 'contrasena'
     }
 
     /**
-     * Los atributos que deben ser convertidos a tipos nativos.
-     *
-     * @var array<string, string>
+     * Indicar si la tabla tiene timestamps.
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-    /**
-     * Los accesores a añadir al array del modelo.
-     *
-     * @var array<int, string>
-     */
-    protected $appends = [
-        'profile_photo_url',
-    ];
+    public $timestamps = false;
 }
