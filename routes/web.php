@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
-    return view('layouts.menuPrincipal');
+    return view('layouts.vistaJurados');
 });
+
 
 Route::middleware([
     'auth:sanctum',
