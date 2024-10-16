@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('id_casoEstudio')->nullable()->index('id_casoestudio');
             $table->integer('id_usuario')->nullable()->index('id_usuario');
             $table->integer('id_jurado')->nullable()->index('id_jurado');
+            $table->integer('id_estudiante')->nullable()->unique('id_estudiante');
             $table->dateTime('fecha_defensa')->nullable();
         });
     }

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->foreign(['id_casoEstudio'], 'defensa_ibfk_1')->references(['id_casoEstudio'])->on('casoestudio')->onUpdate('restrict')->onDelete('restrict');
             $table->foreign(['id_usuario'], 'defensa_ibfk_2')->references(['id_usuario'])->on('usuario')->onUpdate('restrict')->onDelete('restrict');
             $table->foreign(['id_jurado'], 'defensa_ibfk_3')->references(['id_jurado'])->on('jurado')->onUpdate('restrict')->onDelete('restrict');
+            $table->foreign(['id_estudiante'], 'defensa_ibfk_4')->references(['id_estudiante'])->on('estudiantes')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -27,6 +28,7 @@ return new class extends Migration
             $table->dropForeign('defensa_ibfk_1');
             $table->dropForeign('defensa_ibfk_2');
             $table->dropForeign('defensa_ibfk_3');
+            $table->dropForeign('defensa_ibfk_4');
         });
     }
 };

@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #a30318, #352a47);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+.caja-login{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.login{
+    padding: 30px;
+    border: solid 1px;
+    height: 480px;
+    width: 500px;
+}
+.circulo{
+    width: 130px;
+    height: 130px;
+    border-radius: 100%;
+    border: solid white 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.linea{
+    width: 1px;
+    background-color: white;
+    transform: translateX(-65px) rotate(90deg);
+}

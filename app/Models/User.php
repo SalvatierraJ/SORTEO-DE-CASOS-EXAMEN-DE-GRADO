@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,47 +18,68 @@ class User extends Authenticatable
     use TwoFactorAuthenticatable;
 
     /**
-     * The attributes that are mass assignable.
+     * Nombre de la tabla asociada con el modelo.
+     *
+     * @var string
+     */
+    protected $table = 'usuario';
+
+    /**
+     * La clave primaria asociada con la tabla.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id_usuario';
+
+    /**
+     * Los atributos que se pueden asignar en masa.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'id_persona',
+        'id_carrera',
+        'rol',
+        'usuario',  // El campo de nombre de usuario
+        'contrasena', // El campo de contraseña
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * Los atributos que deben estar ocultos para los arrays.
      *
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        'contrasena',
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
     ];
 
     /**
-     * The accessors to append to the model's array form.
+     * El nombre del campo que contiene la contraseña.
+     * Laravel por defecto busca `password`, pero tu campo es `contrasena`.
+     */
+    public function getAuthPassword()
+    {
+        return $this->contrasena;  // Indica que la columna es 'contrasena'
+    }
+
+    /**
+     * Los atributos que deben ser convertidos a tipos nativos.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    /**
+     * Los accesores a añadir al array del modelo.
      *
      * @var array<int, string>
      */
     protected $appends = [
         'profile_photo_url',
     ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
 }
