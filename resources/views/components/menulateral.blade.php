@@ -65,7 +65,7 @@
                     </a>
                 </li>
                 <li >
-                    <a href="#">
+                    <a href="{{route('logOut')}}">
                         <i class="icon ph-bold ph-sign-out"></i>
                         <span class="text">Salir</span>
                     </a>

@@ -1,21 +1,25 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\casos;
 
-Route::get('/', function () {
-    return view('layouts.menuPrincipal');
+
+
+Route::prefix('/')->group(function(){
+    Route::get('/',[AuthController::class,'login'])->name('login');
+    Route::post('/verificar',[AuthController::class,'loginVerificar'])->name('login.verificar');
+    Route::get('/logout',[AuthController::class,'cerrarSesion'])->name('logOut');
 });
 
 Route::get('/', function () {
     return view('layouts.gestionDeCasos');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
+Route::middleware('auth')->group(function(){
+    Route::get('dashboard',function(){
+        return view('layouts.menuPrincipal');
     })->name('dashboard');
-});
+}); 
+
+Route::get('sorteo_de_casos',[casos::class,"index"]);
