@@ -1,5 +1,6 @@
 <?php
-
+use App\Http\Controllers\GestionEstudiantes;
+use App\Http\Controllers\Vista;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\casos;
@@ -10,8 +11,10 @@ Route::prefix('/')->group(function(){
     Route::get('/logout',[AuthController::class,'cerrarSesion'])->name('logOut');
 });
 
+
+
 Route::get('/', function () {
-    return view('layouts.gestionDeCasos');
+    return view('layouts.vistaJurados');
 });
 
 Route::middleware('auth')->group(function(){
@@ -20,6 +23,8 @@ Route::middleware('auth')->group(function(){
     })->name('dashboard');
 }); 
 
+Route::get('sorteo_de_casos',[casos::class,"index"]);
+Route::get('/Gestiones', [GestionEstudiantes::class, 'index']);
 
 Route::get('sorteo', function () {
     return view('layouts.sorteo'); 

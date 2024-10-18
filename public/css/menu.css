@@ -2,20 +2,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Inter",sans-serif;
-
+    font-family: "Inter", sans-serif;
 }
-body{
+
+body {
     display: flex;
     flex-direction: row;
     background-color: rgb(3, 15, 26);
 }
 
-.container{
+.container {
     min-height: 100vh;
 }
 
@@ -28,56 +28,62 @@ body{
     background-color: #f4f4f4;
 }
 
-.slidebar{
+.slidebar {
     position: relative;
     width: 256px;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    gap:20px ;
+    gap: 20px;
     background-color: rgb(219, 219, 230);
     padding: 24px ;
-    /* border-radius: 0 30px 30px 0;   */
     transition: all 0.3s;
 }
+
 .slidebar .head {
     display: flex;
     gap: 20px;
     padding-bottom: 20px;
     border-bottom: 1px solid #f6f6f6;
 }
-.user-img{
+
+.user-img {
     width: 44px;
     height: 44px;
     border-radius: 50%;
     overflow: hidden;
 }
-.user-img img{
+
+.user-img img {
     width: 100%;
     object-fit: cover;
-
 }
+
 .detalles-usuario .titulo,
-.menu .titulo{
+.menu .titulo {
     font-size: 10px;
     font-weight: 500;
     color: darkgray;
     text-transform: uppercase;
     margin-bottom: 10px;
 }
-.detalles-usuario .nombre{
+
+.detalles-usuario .nombre {
     font-size: 14px;
     font-weight: 500;
 }
+
 .nav {
     flex: 1;
 }
-.menu ul li{
+
+.menu ul li {
     position: relative;
-   list-style: none;
-   margin-bottom: 5px; 
+    list-style: none;
+    margin-bottom: 5px;
 }
-.menu ul li a{
+
+.menu ul li a {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -89,43 +95,50 @@ body{
     border-radius: 8px;
     transition: all 0.3s;
 }
-.menu ul li > a:hover,
-.menu ul li.active > a{
+
+.menu ul li>a:hover,
+.menu ul li.active>a {
     color: black;
     background-color: #f6f6f6;
-
 }
 
 .menu ul li .icon {
     font-size: 20px;
 }
-.menu ul li text{
+
+.menu ul li text {
     flex: 1;
 }
-.menu ul li  .arrow{
+
+.menu ul li .arrow {
     font-size: 14px;
     transition: all 0.3s;
 }
-.menu ul li.active  .arrow{
+
+.menu ul li.active .arrow {
     transform: rotate(180deg);
 }
-.menu .sub-menu{
+
+.menu .sub-menu {
     display: none;
     margin-left: 20px;
     padding-left: 20px;
     padding-top: 5px;
     border-left: 1px solid #f6f6f6;
 }
-.menu .sub-menu li a{
+
+.menu .sub-menu li a {
     padding: 10px 8px;
     font-size: 12px;
 }
-.menu:not(:last-child){
+
+.menu:not(:last-child) {
     padding-bottom: 10px;
     margin-bottom: 20px;
     border-bottom: 2px solid #f6f6f6;
 }
-.menu-btn{
+
+.menu-btn {
     position: absolute;
     right: -14px;
     top: 3.5%;
@@ -138,38 +151,44 @@ body{
     color: gray;
     border: 2px solid #f6f6f6;
     background-color: #fff;
-
 }
-.menu-btn:hover i{
+
+.menu-btn:hover i {
     color: black;
 }
-.menu-btn i{
+
+.menu-btn i {
     transition: all 0.3s;
 }
-.slidebar.active{
+
+.slidebar.active {
     width: 92px;
 }
-.slidebar.active .menu-btn i{
+
+.slidebar.active .menu-btn i {
     transform: rotate(180deg);
 }
 
-.slidebar.active .detalles-usuario{
+.slidebar.active .detalles-usuario {
     display: none;
-
 }
-.slidebar.active .menu .titulo{
+
+.slidebar.active .menu .titulo {
     text-align: center;
 }
-.slidebar.active .menu ul li .arrow{
+
+.slidebar.active .menu ul li .arrow {
     display: none;
 }
-.slidebar.active .menu >ul >li >a {
+
+.slidebar.active .menu>ul>li>a {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.slidebar.active .menu >ul >li >a .text{
+
+.slidebar.active .menu>ul>li>a .text {
     position: absolute;
     left: 70px;
     top: 50px;
@@ -182,7 +201,8 @@ body{
     visibility: hidden;
     transition: all 0.3s;
 }
-.slidebar.active .menu >ul >li >a .text::after{
+
+.slidebar.active .menu>ul>li>a .text::after {
     content: "";
     position: absolute;
     left: -5px;
@@ -193,12 +213,14 @@ body{
     transform: rotate(45deg);
     z-index: -1;
 }
-.slidebar.active .menu >ul >li >a:hover .text{
+
+.slidebar.active .menu>ul>li>a:hover .text {
     left: 50px;
     opacity: 1;
     visibility: visible;
 }
-.slidebar.active .menu .sub-menu{
+
+.slidebar.active .menu .sub-menu {
     position: absolute;
     top: 0;
     left: 20px;

@@ -5,7 +5,7 @@
         </div>
         <div class="head">
             <div class="user-img">
-                <img src="{{asset('img/usuario.png')}}" alt="">
+                <img src="{{ asset('img/usuario.png') }}" alt="">
             </div>
             <div class="detalles-usuario">
                 <p class="titulo">ingeniero</p>
@@ -16,7 +16,7 @@
             <div class="menu">
                 <p class="titulo">Menu Principal</p>
                 <ul>
-                    <li >
+                    <li>
                         <a href="#">
                             <i class="icon ph-bold ph-house-simple"></i>
                             <span class="text">Menu</span>
@@ -53,12 +53,12 @@
                     </li>
                 </ul>
             </div>
-           
+
         </div>
         <div class="menu">
             <p class="titulo">Cuenta</p>
             <ul>
-                <li >
+                <li>
                     <a href="#">
                         <i class="icon ph-bold ph-info"></i>
                         <span class="text">Ajustes</span>

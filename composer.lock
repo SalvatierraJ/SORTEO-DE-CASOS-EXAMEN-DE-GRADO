@@ -1155,6 +1155,17 @@
             "time": "2023-12-03T19:50:20+00:00"
         },
         {
+<<<<<<< HEAD
+            "name": "laravel/fortify",
+            "version": "v1.24.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/fortify.git",
+                "reference": "42695c45087e5abb3e173725b4f1ef4956a7b47d"
+            },
+            "dist": {
+                "type": "zip",
+=======
             "name": "inertiajs/inertia-laravel",
             "version": "v1.3.0",
             "source": {
@@ -1240,6 +1251,7 @@
             },
             "dist": {
                 "type": "zip",
+>>>>>>> refs/remotes/origin/develop
                 "url": "https://api.github.com/repos/laravel/fortify/zipball/42695c45087e5abb3e173725b4f1ef4956a7b47d",
                 "reference": "42695c45087e5abb3e173725b4f1ef4956a7b47d",
                 "shasum": ""
@@ -1820,6 +1832,8 @@
                 "source": "https://github.com/laravel/tinker/tree/v2.10.0"
             },
             "time": "2024-09-23T13:32:56+00:00"
+<<<<<<< HEAD
+=======
         },
         {
             "name": "laravel/ui",
@@ -1883,6 +1897,7 @@
                 "source": "https://github.com/laravel/ui/tree/v4.5.2"
             },
             "time": "2024-05-08T18:07:10+00:00"
+>>>>>>> refs/remotes/origin/develop
         },
         {
             "name": "league/commonmark",
@@ -9472,6 +9487,11 @@
     "platform": {
         "php": "^8.2"
     },
+<<<<<<< HEAD
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+=======
     "platform-dev": {},
     "plugin-api-version": "2.6.0"
+>>>>>>> refs/remotes/origin/develop
 }
