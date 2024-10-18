@@ -1,0 +1,39 @@
+.search-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f0f4f8;
+    width: 300px; /* Ajusta el ancho según sea necesario */
+}
+
+#searchBar {
+    border: none;
+    padding: 10px;
+    outline: none;
+    width: 100%; /* Ocupará todo el espacio disponible */
+    font-size: 14px;
+    background-color: #f0f4f8;
+}
+
+#searchButton {
+    background-color: #007bff; /* Azul para el botón */
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 8px 8px 0; /* Para que el borde derecho sea redondeado */
+}
+
+#searchButton span {
+    margin-left: 5px; /* Espacio entre el texto "Ir" y la flecha */
+}
+
+#searchButton:hover {
+    background-color: #0056b3; /* Efecto hover para el botón */
+}

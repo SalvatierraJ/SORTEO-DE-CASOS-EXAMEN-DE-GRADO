@@ -13,8 +13,9 @@ Route::prefix('/')->group(function(){
 });
 
 
+
 Route::get('/', function () {
-    return view('layouts.gestionDeCasos');
+    return view('layouts.vistaJurados');
 });
 
 Route::middleware('auth')->group(function(){

@@ -66,23 +66,62 @@ ul li a:hover {
     padding: 20px;
     background-color: #f4f4f4;
 }
-
 .header {
+    display: flex;
+    justify-content: space-between; /* Distribuir elementos uniformemente */
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%; /* Aseguramos que ocupe todo el ancho disponible */
+    max-width: 1200px; /* Limitar el ancho máximo del header */
+    margin-left: auto;
+    margin-right: auto; /* Centramos el contenedor del header */
+}
+
+.header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    width: 100%;
     flex-direction: row-reverse;
 }
-
 .header h2 {
     margin: 0;
+    flex-grow: 1; /* El título crecerá para ocupar todo el espacio posible */
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.search-container {
+    margin-left: 20px; /* Espaciamos el campo de búsqueda y lo ubicamos a la izquierda */
+}
+
+.add-icon {
+    margin-right: 20px; /* Espaciamos el ícono de agregar y lo colocamos a la derecha */
 }
 
 .add-icon img {
     width: 40px;
     height: 40px;
+    cursor: pointer; /* Agregamos un cursor pointer para simular un botón */
 }
+
+.header h2 {
+    margin: 0;
+    text-align: center;
+    flex-grow: 1; /* Permite que el título ocupe todo el espacio posible */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.search-container {
+    margin-right: 20px; /* Añadimos espacio entre la barra de búsqueda y el título */
+}
+
+.add-icon {
+    margin-left: 20px; /* Añadimos espacio entre el ícono de agregar y el título */
+}
+
 
 table {
     width: 100%;
