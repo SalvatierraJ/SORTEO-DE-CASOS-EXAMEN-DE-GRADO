@@ -1,5 +1,6 @@
 <?php
-
+use App\Http\Controllers\GestionEstudiantes;
+use App\Http\Controllers\Vista;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\casos;
@@ -25,3 +26,4 @@ Route::middleware('auth')->group(function(){
 }); 
 
 Route::get('sorteo_de_casos',[casos::class,"index"]);
+Route::get('/Gestiones', [GestionEstudiantes::class, 'index']);
