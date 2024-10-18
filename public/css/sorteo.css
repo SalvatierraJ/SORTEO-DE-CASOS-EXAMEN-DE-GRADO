@@ -1,0 +1,202 @@
+
+/* Estilo general para el wrapper */
+.wrapper {
+    background-color: #f4f4f4; /* Cambia el color del fondo aquí */
+    width: 100%; /* Ancho máximo del contenedor */
+    /* border-radius: 10px; /* Opcional: agrega bordes redondeados */  
+    margin: 0 auto; /* Centrar el contenedor */
+    padding: 20px; /* Espaciado interno */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Opcional: sombra para destacar el wrapper */
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Define la fuente de Bootstrap */
+}
+
+/* Contenedor principal */
+#sorteo-contenedor {
+    display: flex; /* Utilizar flexbox para disposición en columnas */
+    justify-content: space-between; /* Espacio entre columnas */
+    
+}
+
+/* Estilos para las secciones de estudiantes y temas */
+#sorteo-izquierda, #sorteo-derecha {
+    background-color: white;
+    flex: 1; /* Hacer que cada columna tome el mismo espacio */
+    margin: 10px; /* Espaciado entre las columnas */
+    padding: 20px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Bordes para diferenciar secciones */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Estilo para el título principal */
+#sorteo-titulo {
+    text-align: center; /* Centrar título principal */
+}
+
+/* Estilo para los títulos de las secciones */
+h2 {
+    text-align: center;
+    margin-top: 0; /* Quitar margen superior de los títulos */
+}
+
+/* Estilos para los buscadores */
+input[type="text"] {
+    width: calc(100% - 110px); /* Ajustar ancho del input */
+    padding: 8px; /* Espaciado interno */
+    margin-right: 5px; /* Espacio entre el input y el botón */
+    border: 1px solid #ccc; /* Borde del input */
+    border-radius: 4px; /* Bordes redondeados del input */
+}
+
+button {
+    padding: 8px 12px; /* Espaciado interno del botón */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados del botón */
+    background-color: #007BFF; /* Color de fondo */
+    color: white; /* Color del texto */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+button:hover {
+    background-color: #0056b3; /* Color de fondo en hover */
+}
+
+/* Estilos para las tablas */
+table {
+    width: 100%; /* Ancho completo */
+    border-collapse: collapse; /* Colapsar bordes */
+    border-radius: 100px; /* Bordes redondeados para la tabla */
+}
+
+/* Estilos para las filas alternas de la tabla de estudiantes */
+#sorteo-tabla-estudiantes tbody tr:nth-child(odd) {
+    background-color: white; /* Fondo blanco para las filas impares */
+}
+
+#sorteo-tabla-estudiantes tbody tr:nth-child(even) {
+    background-color: #f4f4f4; /* Fondo gris claro para las filas pares */
+}
+
+
+th, td {
+    padding: 10px; /* Espaciado interno en celdas */
+    text-align: center; /* Alinear texto a la izquierda */
+    border-bottom: none; /* Línea inferior en celdas */
+    
+}
+
+/* Indicador de estado (círculo amarillo) */
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    background-color: yellow;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    border: 1px solid rgb(173, 173, 173); /* Borde gris claro */
+}
+
+#sorteo-tabla-estudiantes thead tr {
+    background-color: #007bff; /* Color celeste de fondo de encabezados */
+    color: white; /* Color del texto */
+    padding: 10px; /* Espaciado interno */
+    text-align: center; /* Alinear el texto en el centro */
+    vertical-align: middle; /* Alinear verticalmente en el medio */
+}
+
+/* Bordes superiores redondeados */
+#sorteo-tabla-estudiantes thead th:first-child {
+    border-top-left-radius: 15px; /* Esquina superior izquierda redondeada */
+}
+
+#sorteo-tabla-estudiantes thead th:last-child {
+    border-top-right-radius: 15px; /* Esquina superior derecha redondeada */
+}
+
+
+.sorteo-categoria {
+    margin-bottom: 20px; /* Espacio entre categorías */
+}
+
+ul {
+    list-style-type: none; /* Elimina las viñetas */
+    padding-left: 0; /* Elimina el padding izquierdo */
+}
+
+/* Estilos para la tabla del buscador */
+#sorteo-buscador-table {
+    background-color: lightgray; /* Fondo gris para la tabla */
+    width: 100%; /* Ancho completo */
+    border: none; /* Sin borde */
+    border-radius: 10px; /* Bordes redondeados, ajusta según tu diseño */
+    margin-bottom: 20px; /* Espacio inferior, opcional */
+}
+
+/* Estilo para el contenido de la celda */
+#sorteo-buscador-table td {
+    padding: 10px; /* Espaciado interno en la celda */
+}
+
+/* Ocultar los temas por defecto */
+.sorteo-temas {
+    display: none;
+}
+
+/* Estilo al pasar el mouse por el h3 */
+.sorteo-categoria h3 {
+    cursor: pointer;
+    padding: 5px;
+    transition: background-color 0.3s;
+    
+}
+
+.sorteo-categoria h3:hover {
+    background-color: #f0f0f0; /* Cambia el color al pasar el mouse */
+}
+
+.flecha {
+    color: #49a9cf; /* Color celeste suave */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+
+/* Estilo para los elementos <li> en la lista */
+.sorteo-temas li {
+    cursor: pointer; /* Cambia el cursor a una mano */
+    margin-bottom: 10px; /* Aumenta el espacio entre los <li> */
+}
+
+/* Efecto al pasar el ratón por encima del <li> */
+.sorteo-temas li:hover {
+    background-color: #d3d3d3; /* Color gris claro */
+}
+
+
+
+/* Estilos para la lista de temas */
+.sorteo-temas {
+    list-style-type: none; /* Quita el estilo de viñetas */
+    padding: 0; /* Quita el padding */
+}
+
+.sorteo-temas li {
+    display: flex; /* Usamos flexbox para alinear los elementos */
+    justify-content: space-between; /* Espacia el contenido a ambos lados */
+    align-items: center; /* Alinea verticalmente los íconos y el texto */
+    padding: 10px 0; /* Espaciado superior e inferior en los elementos de la lista */
+    border-bottom: 1px solid #ccc; /* Línea divisoria entre temas */
+}
+
+/* Estilos para el ícono de ojo */
+.icono-ojito {
+    cursor: pointer; /* Cambia el cursor a mano al pasar sobre el ícono */
+    color: gray; /* Color del ícono */
+    font-size: 16px; /* Tamaño del ícono */
+    transition: color 0.3s; /* Efecto de transición al cambiar color */
+}
+
+/* Cambio de color al pasar el ratón por encima del ícono */
+.icono-ojito:hover {
+    color: black; /* Cambia el color al negro al pasar el ratón */
+}
+

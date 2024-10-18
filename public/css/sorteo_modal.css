@@ -1,0 +1,108 @@
+/* Estilos generales del modal */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.4s;
+}
+
+/* Contenido del modal */
+.modal-content {
+    position: absolute; /* Posiciona el contenido del modal */
+    top: 50%; /* 50% desde la parte superior */
+    left: 50%; /* 50% desde la izquierda */
+    transform: translate(-50%, -50%); /* Centra el contenido */
+    background-color:  #f0f0f0; /* Color de fondo blanco */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+    width: 400px; /* Ancho del modal (ajusta según sea necesario) */
+}
+
+/* Cierre del modal */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    float: right; /* Alinear a la derecha */
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilos para las entradas de texto */
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Animaciones */
+@keyframes slideIn {
+    from { top: -300px; opacity: 0; }
+    to { top: 0; opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Estilos para los botones de acción */
+.modal-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end; /* Alinear los botones a la derecha */
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px; /* Espacio entre botones */
+}
+
+/* Botón Enviar */
+.btn-primary {
+    background-color: #007bff; /* Azul */
+    color: white;
+   
+}
+
+/* Botón Cancelar */
+.boton-cancelar {
+    background-color: white; /* Fondo blanco */
+    color: #007bff; /* Texto azul */
+    border: 1px solid #007bff; /* Borde azul */
+}
+    
+    
+
+/* Efecto al pasar el ratón por encima de los botones */
+.btn:hover {
+    opacity: 0.9; /* Efecto de desvanecimiento al pasar el ratón */
+}
+
+
+
+.modal-botones {
+    display: flex; /* Habilita flexbox */
+    justify-content: flex-end; /* Alinea los elementos hijos a la derecha */
+    margin-top: 20px; /* Espaciado superior opcional */
+}

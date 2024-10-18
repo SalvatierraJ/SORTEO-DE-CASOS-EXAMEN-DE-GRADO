@@ -10,23 +10,14 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Estilo para la tabla superior de búsqueda */
-        .search-container {
-            background-color: #e9ecef; /* Color gris suave */
-            border: 2px solid rgba(0, 0, 0, 0.1); /* Bordes suaves */
-            border-radius: 10px; /* Bordes redondeados */
-            padding: 10px; /* Espaciado interno */
-            margin-bottom: 20px; /* Margen inferior */
-        }
+        
     </style>
 </head>
 <body>
 
-<!--
 <x-menulateral>
-
+    
 </x-menulateral>
--->
 
     <div class="container">
         <h1>Sorteo de Casos</h1>

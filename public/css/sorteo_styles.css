@@ -54,6 +54,7 @@ table th, table td {
     vertical-align: middle;
 }
 
+
 /* Bordes exteriores redondeados */
 .table thead th:first-child {
     border-top-left-radius: 15px;
