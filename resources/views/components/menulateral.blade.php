@@ -64,8 +64,8 @@
                         <span class="text">Ajustes</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li >
+                    <a href="{{route('logOut')}}">
                         <i class="icon ph-bold ph-sign-out"></i>
                         <span class="text">Salir</span>
                     </a>

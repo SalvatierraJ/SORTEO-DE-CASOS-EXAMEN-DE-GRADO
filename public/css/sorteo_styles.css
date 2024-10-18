@@ -1,0 +1,140 @@
+/* Estilos generales */
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+/* Ajuste de la barra lateral */
+.tu-contenedor .sidebar {
+    position: relative; /* Ajusta la posición según sea necesario */
+    z-index: 1; /* Asegúrate de que la barra lateral esté detrás del contenido principal */
+}
+
+/* Estilos del título */
+h1 {
+    color: #343a40;
+    text-align: center;
+}
+
+/* Indicador de estado (círculo amarillo) */
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    background-color: yellow;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    border: 1px solid rgb(173, 173, 173); /* Borde gris claro */
+}
+
+/* Estilos de la tabla */
+.table {
+    border-collapse: separate; /* Para bordes individuales */
+    border-spacing: 0; /* Sin espacio entre celdas */
+    border: 2px solid rgba(0, 0, 0, 0.1); /* Borde suave exterior */
+    border-radius: 15px; /* Bordes redondeados */
+    overflow: hidden; /* Para que no sobresalga el contenido */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    margin: 20px 0; /* Margen para separar la tabla del acordeón */
+}
+
+/* Celdas de la tabla sin bordes */
+table th, table td {
+    border: none !important; /* Aseguramos que no haya bordes en las celdas */
+    padding: 10px;
+    text-align: center;
+}
+
+/* Encabezados de la primera fila */
+.table thead th {
+    background-color: #007bff; /* Color de fondo de encabezados */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Bordes exteriores redondeados */
+.table thead th:first-child {
+    border-top-left-radius: 15px;
+}
+
+.table thead th:last-child {
+    border-top-right-radius: 15px;
+}
+
+.table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 15px;
+}
+
+.table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 15px;
+}
+
+/* Estilo personalizado del botón "Sortear" */
+button.btn-primary {
+    background-color: #007bff; /* Color de fondo del botón */
+    border-color: #007bff; /* Borde del botón */
+    color: white; /* Color del texto */
+    padding: 5px 10px; /* Espaciado interno del botón */
+    border-radius: 10px; /* Bordes redondeados */
+    cursor: pointer; /* Esto añadirá la manito */
+    font-size: 14px; /* Tamaño de la fuente */
+    transition: background-color 0.3s ease; /* Transición para efecto hover */
+}
+
+/* Efecto hover */
+button.btn-primary:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el cursor */
+    border-color: #ffffff;
+}
+
+/* Estilo para el acordeón */
+.list-group-item {
+    cursor: pointer; /* Cambia el cursor al pasar sobre el elemento */
+    background-color: #ffffff; /* Fondo blanco por defecto */
+}
+
+/* Estilo para el ícono */
+.list-group-item i {
+    transition: transform 0.3s; /* Transición suave para la rotación */
+}
+
+/* Efecto hover sobre las categorías */
+.list-group-item:hover {
+    background-color: #e9ecef; /* Color de fondo al pasar el cursor */
+}
+
+/* Ajuste de margen y padding para los elementos secundarios */
+.list-group-item .content {
+    display: none; /* Oculta las subcategorías por defecto */
+    padding-left: 20px; /* Espaciado a la izquierda para las subcategorías */
+    color: #343a40; /* Asegura que el texto sea visible (gris oscuro) */
+}
+
+/* Activa las subcategorías cuando está seleccionado */
+.list-group-item.active .content {
+    display: block; /* Muestra las subcategorías */
+}
+
+/* Cambiar el fondo del acordeón a blanco cuando está activo */
+.list-group-item.active {
+    background-color: white; /* Cambia este valor por el color que desees */
+}
+
+/* Rotación del ícono cuando el acordeón está expandido */
+.list-group-item.active i {
+    transform: rotate(180deg); /* Rota el ícono hacia arriba */
+}
+
+/* Estilo para el texto de los elementos secundarios */
+.list-group-item .content .list-group-item {
+    background-color: #ffffff; /* Fondo blanco */
+    color: #343a40; /* Color del texto gris oscuro */
+}
+
+/* Estilo adicional para la tabla dentro del acordeón */
+.list-group-item .table {
+    margin: 0; /* Sin margen para una mejor integración */
+    box-shadow: none; /* Eliminar la sombra para que se mezcle mejor */
+}
