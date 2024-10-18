@@ -1,0 +1,172 @@
+    .Elecciones {
+        display: flex;
+        justify-content: flex-end;
+        /* Alinea el contenido a la derecha */
+        align-items: center;
+        padding: 20px;
+        /* Centra verticalmente si es necesario */
+    }
+    
+    * {
+        font-family: "Raleway", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+    }
+    
+    .Elecciones-div {
+        background-color: rgba(96, 96, 96, 0.3);
+        width: 40vw;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    
+    select {
+        height: 30px;
+        font-size: 10px;
+        background-color: rgb(36, 94, 255);
+        border: none;
+        color: white;
+        border-radius: 3px;
+    }
+    
+    .agregar {
+        display: flex;
+        /* Mantiene la imagen y el texto en una línea */
+        align-items: center;
+        /* Alinea verticalmente la imagen y el texto */
+        justify-content: center;
+        /* Centra el contenido horizontalmente */
+        width: 100%;
+        /* Asegúrate de que ocupa todo el ancho del contenedor */
+    }
+    
+    .image-agregar {
+        display: block;
+        /* Asegura que la imagen se trate como un bloque */
+        margin: 0;
+        width: 35px;
+        border-radius: 30px;
+        /* Elimina márgenes por defecto */
+        margin: 10px;
+    }
+    
+    .Gestion-h3 {
+        flex-grow: 1;
+        /* Permite que el texto ocupe el espacio restante */
+        text-align: center;
+        /* Asegura que el texto está centrado */
+    }
+    
+    th {
+        width: 30vw;
+        font-size: 10px;
+    }
+    
+    table {
+        /* border: 1px solid rgb(92, 91, 91); */
+        border-radius: 20px !important;
+        overflow: hidden;
+        text-align: center;
+        margin-right: 10px;
+        border-collapse: collapse;
+    }
+    
+    .tr-cabezera {
+        background-color: rgb(36, 94, 255);
+    }
+    
+    .contenedor-padre {
+        display: flex;
+    }
+    
+    .container {
+        width: 20%;
+    }
+    
+    .contenido-estudiantes {
+        width: 120%;
+        display: flex;
+    }
+    
+    .div-agregar {
+        margin-right: 10px;
+        /* Espacio entre la imagen y el texto */
+    }
+    
+    .impresora {
+        width: 40px;
+    }
+    
+    .gestion-h3 {
+        margin: 0;
+        font-size: 15px;
+        /* Elimina el margen por defecto del h3 */
+    }
+    
+    .editar-imagen {
+        width: 15px;
+    }
+    
+    .nuevo-estudiante {
+        display: none;
+    }
+    
+    .window-notice {
+        background: rgba(33, 41, 52, .85);
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        display: flex;
+        position: fixed;
+        z-index: 999;
+    }
+    
+    .window-notice .content {
+        background: #fff;
+        border-radius: 2px;
+        box-shadow: 0 1px 3px rgba(33, 41, 52, .75);
+        box-sizing: content-box;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        max-width: 600px;
+        min-width: 320px !important;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        padding: 2rem;
+        font-size: 1.3rem;
+    }
+    
+    .nuevo-estudiante {
+        display: none;
+    }
+    
+    .label-agregar-estudiantes {
+        font-size: 15px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    
+    .botones-agregar-estudiantes {
+        border-radius: 2px;
+        border: none;
+        width: 100px;
+        margin: 20px;
+    }
+    
+    .cancelar {
+        background-color: white;
+        color: black;
+        border: 1px solid rgb(199, 198, 198);
+    }
+    
+    .enviar {
+        background-color: rgb(36, 94, 255);
+        color: white;
+    }
