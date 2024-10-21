@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="{{ asset('css/sorteo.css') }}">
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sorteo_modal.css') }}">
+    
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
 </head>
 <body>
     
@@ -25,9 +27,9 @@
                 <table id="sorteo-buscador-table">
                     <tr>
                         <td>
-                            <div id="sorteo-buscador-estudiantes">
-                                <input type="text" placeholder="Buscar estudiantes">
-                                <button>Buscar</button>
+                            <div id="sorteo-buscador-bot">
+                                <input type="text" id="txt_buscar" placeholder="Buscar estudiantes">
+                                <button id="sorteo-buscador-boton">➜</button>
                             </div>
                         </td>
                     </tr>
@@ -97,15 +99,13 @@
                 <table id="sorteo-buscador-table">
                     <tr>
                         <td>
-                            <div id="sorteo-buscador-temas">
-                                <input type="text" placeholder="Filtrar temas">
-                                <button>Filtrar</button>
+                            <div id="sorteo-buscador-bot">
+                                <input type="text" id="txt_buscar" placeholder="Filtrar temas">
+                                <button id="sorteo-buscador-boton">➜</button>
                             </div>
                         </td>
                     </tr>
                 </table>
-
-
 
 
                 <div id="sorteo-tabla-temas">
@@ -118,6 +118,7 @@
                             <li>
                                 Implementación de un sistema de detección de intrusos en redes corporativas.
                                 <span class="icono-ojito">👁️</span>
+                                
                             </li>
                             <li>
                                 Aplicación de técnicas de IA para casos de cibercrimen.
@@ -178,32 +179,32 @@
                 <!-- Modal -->
                 <div id="miModal" class="modal">
                     <div class="modal-content">
-                        <span class="cerrar" id="cerrar-modal">&times;</span>
-                        <h2>Información del Estudiante</h2>
+                        <span class="close" id="cerrar-modal">&times;</span>
+                        <h3 class="titulo-seccion">Información del Estudiante</h3>
                         <form id="formulario-modal">
                             <div class="form-group">
                                 <label for="nombre">Nombre:</label>
-                                <input type="text" id="nombre" name="nombre" required>
+                                <input type="text" id="nombre" name="nombre" required disabled>
                             </div>
                             <div class="form-group">
                                 <label for="carrera">Carrera:</label>
-                                <input type="text" id="carrera" name="carrera" required>
+                                <input type="text" id="carrera" name="carrera" required disabled>
                             </div>
                             <div class="form-group">
                                 <label for="categoria">Categoría:</label>
-                                <input type="text" id="categoria" name="categoria" required>
+                                <input type="text" id="categoria" name="categoria" required disabled>
                             </div>
                             <div class="form-group">
                                 <label for="caso">Caso:</label>
-                                <input type="text" id="caso" name="caso" required>
+                                <input type="text" id="caso" name="caso" required disabled>
                             </div>
                             <div class="form-group">
                                 <label for="fecha-defensa">Fecha de Defensa:</label>
-                                <input type="text" id="fecha-defensa" name="fecha-defensa" required>
+                                <input type="text" id="fecha-defensa" name="fecha-defensa" required disabled>
                             </div>
                             <div class="modal-botones">
                                 <div>
-                                <button type="submit" class="boton-enviar">Enviar</button>
+                                <button type="submit" class="boton-guardar">Guardar</button>
                                 <button type="button" class="boton-cancelar" id="boton-cancelar">Cancelar</button>
 
                                 </div>
@@ -271,9 +272,25 @@ botonCancelar.onclick = function() {
     modal.style.display = "none";
 }
 
+
+// Script para manejar el cierre del modal con la tecla ESC
+window.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') { // Si la tecla presionada es ESC
+        modal.style.display = "none";
+    }
+});
+
+// Script para manejar el clic en el botón "Guardar" con la tecla Enter
+window.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') { // Si la tecla presionada es Enter
+        const isModalVisible = modal.style.display === "block";
+        if (isModalVisible) {
+            document.querySelector(".boton-guardar").click(); // Simula un clic en el botón "Guardar"
+        }
+    }
+});
+
 </script>
-
-
 
 
 

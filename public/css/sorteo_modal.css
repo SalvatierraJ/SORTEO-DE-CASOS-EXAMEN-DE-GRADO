@@ -14,7 +14,7 @@
 
 /* Contenido del modal */
 .modal-content {
-    position: absolute; /* Posiciona el contenido del modal */
+    position: relative; /* Posiciona el contenido del modal */  
     top: 50%; /* 50% desde la parte superior */
     left: 50%; /* 50% desde la izquierda */
     transform: translate(-50%, -50%); /* Centra el contenido */
@@ -25,14 +25,21 @@
     width: 400px; /* Ancho del modal (ajusta según sea necesario) */
 }
 
-/* Cierre del modal */
+/* Botón de cierre del modal en la parte superior */
 .close {
     color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 20px; /* Tamaño de la X */
+    font-weight: normal;
     cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
     float: right; /* Alinear a la derecha */
+    border: 2px solid #aaa; /* Borde gris */
+    border-radius: 50%; /* Hace el botón circular */
+    width: 21px; /* Aumentar el ancho del botón */
+    height: 21px; /* Aumentar la altura del botón */
+    display: flex; /* Para centrar el contenido */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    margin-bottom: 0px; /* Espacio debajo del botón */
 }
 
 .close:hover,
@@ -40,16 +47,29 @@
     color: black;
     text-decoration: none;
     cursor: pointer;
+    border-color: black; /* Cambia el color del borde al pasar el mouse */
 }
+
+.titulo-seccion {
+    text-align: center; /* Centra el texto */
+    margin-top: 30px; /* Espaciado superior del título */
+    margin-bottom: 20px; /* Ajusta el espaciado inferior */
+}
+
 
 /* Estilos para las entradas de texto */
 input[type="text"] {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin: 10px 0;
+    width: 100%; /* Hacer que el input ocupe todo el ancho */
+    padding: 10px; /* Mantener el espaciado interno */
+    margin: 10px 0; /* Mantener el espaciado externo */
     display: block;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+/* Estilo para inputs deshabilitados */
+input[disabled] {
+    background-color: #f8f8f8; /* Color de fondo para inputs deshabilitados */
 }
 
 /* Animaciones */
@@ -106,3 +126,23 @@ input[type="text"] {
     justify-content: flex-end; /* Alinea los elementos hijos a la derecha */
     margin-top: 20px; /* Espaciado superior opcional */
 }
+
+.form-group {
+    margin-bottom: 10px; /* Mantén el margen entre cada grupo */
+}
+
+/* Ajustar el espaciado entre el label y el input */
+.form-group label {
+    margin-bottom: 5px; /* Espacio menor hacia abajo (menos separación) */
+    display: block; /* Asegura que el label esté en su propia línea */
+}
+
+/* Si quieres mantener el margen hacia arriba, pero no el de abajo */
+.form-group input {
+    margin-top: 5px; /* Ajustar este valor según sea necesario */
+    width: 100%; /* Asegúrate de que el input ocupe el ancho completo */
+    padding: 10px; /* Espaciado interno del input */
+    border: 1px solid #ccc; /* Borde del input */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
