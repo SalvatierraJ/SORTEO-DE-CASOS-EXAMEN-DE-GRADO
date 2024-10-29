@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('defensa', function (Blueprint $table) {
-            $table->integer('id_defensa', true);
+        Schema::create('bitacora_caso', function (Blueprint $table) {
+            $table->integer('id_bitacora')->primary();
+            $table->string('descripcion', 50)->nullable();
+            $table->date('fecha')->nullable();
+            $table->time('hora')->nullable();
             $table->integer('id_casoEstudio')->nullable()->index('id_casoestudio');
-            $table->integer('id_usuario')->nullable()->index('id_usuario');
-            $table->integer('id_jurado')->nullable()->index('id_jurado');
-            $table->integer('id_estudiante')->nullable()->unique('id_estudiante');
-            $table->dateTime('fecha_defensa')->nullable();
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('defensa');
+        Schema::dropIfExists('bitacora_caso');
     }
 };

@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jurado', function (Blueprint $table) {
-            $table->integer('id_jurado', true);
-            $table->integer('id_persona')->nullable()->index('id_persona');
+        Schema::table('area', function (Blueprint $table) {
+            $table->foreign(['id_carrera'], 'area_ibfk_1')->references(['id_carrera'])->on('carrera')->onUpdate('no action')->onDelete('no action');
         });
     }
 
@@ -22,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jurado');
+        Schema::table('area', function (Blueprint $table) {
+            $table->dropForeign('area_ibfk_1');
+        });
     }
 };

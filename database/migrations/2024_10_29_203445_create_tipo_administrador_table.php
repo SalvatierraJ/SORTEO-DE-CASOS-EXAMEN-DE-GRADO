@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('estudiantes', function (Blueprint $table) {
-            $table->foreign(['id_persona'], 'estudiantes_ibfk_1')->references(['id_persona'])->on('persona')->onUpdate('cascade')->onDelete('cascade');
+        Schema::create('tipo_administrador', function (Blueprint $table) {
+            $table->integer('id_tipoAdministrador')->primary();
+            $table->integer('id_administrador')->nullable()->index('id_administrador');
+            $table->integer('id_tipoTitulo')->nullable()->index('id_tipotitulo');
         });
     }
 
@@ -21,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('estudiantes', function (Blueprint $table) {
-            $table->dropForeign('estudiantes_ibfk_1');
-        });
+        Schema::dropIfExists('tipo_administrador');
     }
 };

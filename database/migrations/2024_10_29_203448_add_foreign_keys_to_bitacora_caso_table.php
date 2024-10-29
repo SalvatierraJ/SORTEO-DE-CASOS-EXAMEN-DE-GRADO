@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('carrera', function (Blueprint $table) {
-            $table->foreign(['id_facultad'], 'carrera_ibfk_1')->references(['id_facultad'])->on('facultad')->onUpdate('restrict')->onDelete('restrict');
+        Schema::table('bitacora_caso', function (Blueprint $table) {
+            $table->foreign(['id_casoEstudio'], 'bitacora_caso_ibfk_1')->references(['id_casoEstudio'])->on('casos_de_estudio')->onUpdate('no action')->onDelete('no action');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('carrera', function (Blueprint $table) {
-            $table->dropForeign('carrera_ibfk_1');
+        Schema::table('bitacora_caso', function (Blueprint $table) {
+            $table->dropForeign('bitacora_caso_ibfk_1');
         });
     }
 };

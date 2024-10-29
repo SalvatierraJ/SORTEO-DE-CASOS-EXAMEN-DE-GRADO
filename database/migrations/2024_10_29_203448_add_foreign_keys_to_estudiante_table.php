@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cache', function (Blueprint $table) {
-            $table->string('key')->primary();
-            $table->mediumText('value');
-            $table->integer('expiration');
+        Schema::table('estudiante', function (Blueprint $table) {
+            $table->foreign(['id_carrera'], 'estudiante_ibfk_1')->references(['id_carrera'])->on('carrera')->onUpdate('no action')->onDelete('no action');
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cache');
+        Schema::table('estudiante', function (Blueprint $table) {
+            $table->dropForeign('estudiante_ibfk_1');
+        });
     }
 };

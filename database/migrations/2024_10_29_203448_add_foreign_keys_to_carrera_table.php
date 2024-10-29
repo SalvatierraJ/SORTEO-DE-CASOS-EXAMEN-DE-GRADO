@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carrera', function (Blueprint $table) {
-            $table->integer('id_carrera', true);
-            $table->string('nombre_carrera', 30);
-            $table->integer('id_facultad')->nullable()->index('id_facultad');
+        Schema::table('carrera', function (Blueprint $table) {
+            $table->foreign(['id_facultad'], 'carrera_ibfk_1')->references(['id_facultad'])->on('facultad')->onUpdate('no action')->onDelete('no action');
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carrera');
+        Schema::table('carrera', function (Blueprint $table) {
+            $table->dropForeign('carrera_ibfk_1');
+        });
     }
 };

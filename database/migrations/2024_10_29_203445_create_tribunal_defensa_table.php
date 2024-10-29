@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('jurado', function (Blueprint $table) {
-            $table->foreign(['id_persona'], 'jurado_ibfk_1')->references(['id_persona'])->on('persona')->onUpdate('restrict')->onDelete('restrict');
+        Schema::create('tribunal_defensa', function (Blueprint $table) {
+            $table->integer('id_tribunalDefensa')->primary();
+            $table->integer('id_tribunal')->nullable()->index('id_tribunal');
+            $table->integer('id_defensa')->nullable()->index('id_defensa');
         });
     }
 
@@ -21,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('jurado', function (Blueprint $table) {
-            $table->dropForeign('jurado_ibfk_1');
-        });
+        Schema::dropIfExists('tribunal_defensa');
     }
 };
