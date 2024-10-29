@@ -63,46 +63,7 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Estilos para las tablas */
-table {
-    width: 100%; /* Ancho completo */
-    border-collapse: collapse;
-    border-radius: 10px; /* Bordes redondeados para la tabla */
-}
 
-/* Estilos para las filas alternas de la tabla de estudiantes */
-#sorteo-tabla-estudiantes tbody tr:nth-child(odd) {
-    background-color: white;
-}
-
-#sorteo-tabla-estudiantes tbody tr:nth-child(even) {
-    background-color: #f4f4f4;
-}
-
-th, td {
-    padding: 0.5px;
-    text-align: center;
-    border-bottom: none;
-    height: 10px;
-    line-height: 50px;
-}
-
-#sorteo-tabla-estudiantes thead tr {
-    background-color: #007bff;
-    color: white;
-    padding: 2px;
-    text-align: center;
-    vertical-align: middle;
-}
-
-/* Bordes superiores redondeados */
-#sorteo-tabla-estudiantes thead th:first-child {
-    border-top-left-radius: 15px;
-}
-
-#sorteo-tabla-estudiantes thead th:last-child {
-    border-top-right-radius: 15px;
-}
 
 .sorteo-categoria {
     margin-bottom: 20px;
@@ -248,3 +209,57 @@ ul {
     }
 }
 
+/* -- TABLA -- */
+
+#sorteo-tabla-estudiantes {
+    width: 100%; /* Ancho completo */
+    border-collapse: separate; /* Cambiar a 'separate' para bordes redondeados */
+    border-radius: 17px; /* Bordes redondeados para la tabla */
+    border: 0.5px solid rgb(230, 230, 230); /* Borde delgado gris */
+    background-color: white; /* Fondo blanco para la tabla */
+    overflow: hidden; /* Para asegurarte de que el borde redondeado se vea */
+}
+
+/* Estilos para las tablas */
+table {
+    width: 100%; /* Ancho completo */
+    border-collapse: collapse;
+    border-radius: 10px; /* Bordes redondeados para la tabla */
+    /* border: 0.5px solid rgb(230, 230, 230); /* Borde delgado gris */
+}
+
+/* Estilos para las filas alternas de la tabla de estudiantes */
+#sorteo-tabla-estudiantes tbody tr:nth-child(odd) {
+    background-color: white;
+}
+
+#sorteo-tabla-estudiantes tbody tr:nth-child(even) {
+    background-color: #f4f4f4;
+}
+
+th, td {
+    padding: 0.5px;
+    text-align: center;
+    border-bottom: none;
+    height: 10px;
+    line-height: 50px;
+    border: none; /* Elimina bordes en las celdas */
+}
+
+#sorteo-tabla-estudiantes thead tr {
+    background-color: #007bff;
+    color: white;
+    padding: 2px;
+    text-align: center;
+    vertical-align: middle;
+    
+}
+
+/* Bordes superiores redondeados */
+#sorteo-tabla-estudiantes thead th:first-child {
+    border-top-left-radius: 15px;
+}
+
+#sorteo-tabla-estudiantes thead th:last-child {
+    border-top-right-radius: 15px;
+}

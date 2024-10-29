@@ -12,8 +12,7 @@ Route::prefix('/')->group(function(){
 });
 
 
-
-Route::get('/', function () {
+Route::get('/menu', function () {
     return view('layouts.vistaJurados');
 });
 
@@ -23,17 +22,39 @@ Route::middleware('auth')->group(function(){
     })->name('dashboard');
 }); 
 
+
 Route::get('sorteo_de_casos',[casos::class,"index"]);
 Route::get('/Gestiones', [GestionEstudiantes::class, 'index']);
 
-Route::get('sorteo', function () {
+Route::get('/sorteo', function () {
     return view('layouts.sorteo'); 
 });
 
 
-Route::get('sorteo_de_casos', [casos::class, "index"]);
 
-
-Route::get('sorteo_de_casos', function () {
-    return view('layouts.sorteocasos'); 
+// Archivo: routes/web.php
+Route::get('/inicio', function () {
+    return view('layouts.inicio');
 });
+
+// Archivo: routes/web.php
+Route::get('/evaluaciones', function () {
+    return view('layouts.evaluaciones');
+});
+
+// Archivo: routes/web.php
+Route::get('/jurados', function () {
+    return view('layouts.vistaJurados');
+});
+
+Route::get('/gestion-de-casos', function () {
+    return view('layouts.gestionDeCasos');
+});
+
+Route::get('/gestion-de-estudiantes', function () {
+    return view('gestiondeestudiantes');
+});
+
+
+
+
