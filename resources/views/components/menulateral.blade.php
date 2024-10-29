@@ -8,7 +8,7 @@
                 <img src="{{ asset('img/usuario.png') }}" alt="">
             </div>
             <div class="detalles-usuario">
-                <p class="titulo">ingeniero</p>
+                <p class="titulo">Ingeniero</p>
                 <p class="nombre">HERNESTO</p>
             </div>
         </div>
@@ -18,55 +18,55 @@
                 <ul>
                     <li>
                         <a href="#">
-                            <i class="icon ph-bold ph-house-simple"></i>
+                            <i class="ph-bold ph-house"></i> <!-- Icono de casa para "Menu" -->
                             <span class="text">Menu</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="icon ph-bold ph-house-simple"></i>
-                            <span class="text">otra opcion</span>
-                            <i class="arrow ph-bold ph-caret-down"></i>
+                        <a href="{{ url('/gestion-de-estudiantes') }}">
+                            <i class="ph-bold ph-student"></i> <!-- Icono de estudiante para "Gestión de Estudiantes" -->
+                            <span class="text">Gestión de Estudiantes</span>
                         </a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="#">
-                                    <span class="text">
-                                        opcion 1
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="text">
-                                        opcion 2
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
-                    <li class="active">
-                        <a href="#">
-                            <i class="icon ph-bold ph-file-text"></i>
-                            <span class="text">texto</span>
+                    <li>
+                        <a href="{{ url('/jurados') }}">
+                            <i class="ph-bold ph-gavel"></i> <!-- Icono de mazo para "Jurados" -->
+                            <span class="text">Jurados</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/gestion-de-casos') }}">
+                            <i class="ph-bold ph-briefcase"></i> <!-- Icono de portafolio para "Gestión de Casos" -->
+                            <span class="text">Gestión de Casos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/sorteo') }}">
+                            <i class="ph-bold ph-shuffle"></i> <!-- Icono de sorteo para "Sorteo" -->
+                            <span class="text">Sorteo</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/evaluaciones') }}">
+                            <i class="ph-bold ph-clipboard"></i> <!-- Icono de clipboard para "Evaluaciones" -->
+                            <span class="text">Evaluaciones</span>
                         </a>
                     </li>
                 </ul>
             </div>
-
         </div>
         <div class="menu">
             <p class="titulo">Cuenta</p>
             <ul>
                 <li>
                     <a href="#">
-                        <i class="icon ph-bold ph-info"></i>
+                        <i class="ph-bold ph-gear"></i> <!-- Icono de engranaje para "Ajustes" -->
                         <span class="text">Ajustes</span>
                     </a>
                 </li>
-                <li >
+                <li>
                     <a href="{{route('logOut')}}">
-                        <i class="icon ph-bold ph-sign-out"></i>
+                        <i class="ph-bold ph-sign-out"></i> <!-- Icono de salida para "Salir" -->
                         <span class="text">Salir</span>
                     </a>
                 </li>
