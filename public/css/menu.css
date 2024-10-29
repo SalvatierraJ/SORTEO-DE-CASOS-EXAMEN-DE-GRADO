@@ -6,16 +6,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Inter", sans-serif;
+    font-family: "Inter",sans-serif;
+
+}
+body{
+    background-color: rgb(255, 255, 255);
 }
 
-body {
-    display: flex;
-    flex-direction: row;
-    background-color: rgb(26, 8, 3);
-}
-
-.container {
+.contenedorMenu{
+    /* width: 100%; */
     min-height: 100vh;
 }
 

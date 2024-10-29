@@ -10,3 +10,5 @@ $(".menu > ul >li").click(function(e){
 $(".menu-btn").click(function(){
     $(".slidebar").toggleClass("active");
 })
+
+

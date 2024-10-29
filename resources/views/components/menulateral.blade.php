@@ -1,4 +1,4 @@
-<div class="container">
+<div class="contenedorMenu">
     <div class="slidebar active">
         <div class="menu-btn">
             <i class="ph-bold ph-caret-left"></i>
