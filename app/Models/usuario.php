@@ -9,21 +9,23 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Usuario extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * Nombre de la tabla asociada con el modelo.
      *
      * @var string
      */
-    protected $table = 'usuario';
+    protected $table = 'administrador';
 
     /**
      * La clave primaria asociada con la tabla.
      *
      * @var string
      */
-    protected $primaryKey = 'id_usuario';
+    protected $primaryKey = 'id_administrador';
 
     /**
      * Los atributos que se pueden asignar en masa.
@@ -31,11 +33,13 @@ class Usuario extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'id_persona',
-        'id_carrera',
-        'rol',
-        'usuario',  // El campo de nombre de usuario
-        'password', // El campo de contraseña
+        'nombre',
+        'apellido',
+        'usuario',      // Campo de nombre de usuario
+        'password',     // Campo de contraseña
+        'correo',
+        'telefono',
+        'estado',
     ];
 
     /**
@@ -46,19 +50,35 @@ class Usuario extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
     ];
 
     /**
      * El nombre del campo que contiene la contraseña.
-     * Laravel por defecto busca `password`, pero tu campo es `contrasena`.
+     * Laravel por defecto busca `password`, pero tu campo es `password`.
      */
     public function getAuthPassword()
     {
-        return $this->password;  // Indica que la columna es 'contrasena'
+        return $this->password;  // Indica que la columna es 'password'
     }
 
     /**
-     * Indicar si la tabla tiene timestamps.
+     * Los atributos que deben ser convertidos a tipos nativos.
+     *
+     * @var array<string, string>
      */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    /**
+     * Los accesores a añadir al array del modelo.
+     *
+     * @var array<int, string>
+     */
+    protected $appends = [
+        'profile_photo_url',
+    ];
     public $timestamps = false;
 }

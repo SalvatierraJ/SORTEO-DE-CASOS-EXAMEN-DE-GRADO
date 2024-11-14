@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tribunal', function (Blueprint $table) {
-            $table->integer('id_tribunal')->primary();
-            $table->string('registro', 10)->nullable();
+        Schema::create('administrador', function (Blueprint $table) {
+            $table->integer('id_administrador', true);
             $table->string('nombre', 100)->nullable();
             $table->string('apellido', 100)->nullable();
+            $table->string('usuario', 50)->nullable();
+            $table->string('password', 500)->nullable();
             $table->string('correo', 100)->nullable();
             $table->string('telefono', 15)->nullable();
             $table->string('estado', 50)->nullable();
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tribunal');
+        Schema::dropIfExists('administrador');
     }
 };

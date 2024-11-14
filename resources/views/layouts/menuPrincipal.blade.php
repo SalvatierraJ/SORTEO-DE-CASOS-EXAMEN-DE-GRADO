@@ -15,9 +15,9 @@
     <x-menulateral>
 
     </x-menulateral>
-    <main id="main-content" class="flex-grow p-6 transition-all duration-300 bg-gray-100">
+    
+    <main id="main-content" class="flex-grow  p-6 transition-all duration-300 bg-gray-100">
         <div>
-
             <form class="max-w-md mx-auto">
                 <label for="default-search"
                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -46,7 +46,7 @@
                         <div class="flex items-center justify-between">
                             <!-- Contenedor del h4 y el párrafo -->
                             <div class="flex flex-col">
-                                <h4 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">45</h4>
+                                <h4 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">{{$totalDC}}</h4>
                                 <p class="font-normal text-gray-700 dark:text-gray-400 mr-2">
                                     Defensas Completadas
                                 </p>
@@ -70,7 +70,7 @@
                         <div class="flex items-center justify-between">
                             <!-- Contenedor del h4 y el párrafo -->
                             <div class="flex flex-col">
-                                <h4 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">45</h4>
+                                <h4 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">{{$totalDP}}</h4>
                                 <p class="font-normal text-gray-700 dark:text-gray-400 mr-2">
                                     Defensas Programadas
                                 </p>
@@ -94,7 +94,7 @@
                         <div class="flex items-center justify-between">
                             <!-- Contenedor del h4 y el párrafo -->
                             <div class="flex flex-col">
-                                <h4 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">45</h4>
+                                <h4 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">{{$totalDNP}}</h4>
                                 <p class="font-normal text-gray-700 dark:text-gray-400 mr-2">
                                     Defensas NO Programadas
                                 </p>
@@ -118,7 +118,7 @@
                         <div class="flex items-center justify-between">
                             <!-- Contenedor del h4 y el párrafo -->
                             <div class="flex flex-col">
-                                <h4 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">45</h4>
+                                <h4 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">{{$totalDPH}}</h4>
                                 <p class="font-normal text-gray-700 dark:text-gray-400 mr-2">
                                     Defensas Programadas Para Hoy
                                 </p>

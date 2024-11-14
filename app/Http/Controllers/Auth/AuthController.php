@@ -13,10 +13,7 @@ class AuthController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+
     public function login()
     {
         return  view('index');
@@ -31,8 +28,8 @@ class AuthController extends Controller
             'usuario.required' => 'usuario incorrecto o vacio',
             'contrasena.required' => 'contraseña incorrecta o vacia'
         ]);
-      
-      
+
+
         if (Auth::attempt(['usuario' => $request->usuario, 'password' => $request->password])) {
             return redirect()->route('dashboard');
         }
@@ -42,8 +39,23 @@ class AuthController extends Controller
             'invalid_credentials' => 'Usuario o contraseña no válidos',
         ])->withInput();
     }
-    public function cerrarSesion(){
+    public function cerrarSesion()
+    {
         Auth::logout();
-        return redirect()->route('login')->with('success','sesion cerrada correctamente');
+        return redirect()->route('login')->with('success', 'sesion cerrada correctamente');
+    }
+    public function crearUsuarioAdmin()
+    {
+        Usuario::create([
+            'nombre' => 'Javier',
+            'apellido' => 'Salvatierra',
+            'usuario' => 'javi',
+            'password' => Hash::make('12345678'), // Encripta la contraseña
+            'correo' => 'javi@example.com',
+            'telefono' => '123456789',
+            'estado' => 'activo',  // Puedes ajustar este valor según tu lógica de negocio
+        ]);
+
+        return "Usuario administrador creado correctamente.";
     }
 }

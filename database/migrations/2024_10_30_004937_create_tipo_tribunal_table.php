@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tribunal_defensa', function (Blueprint $table) {
-            $table->integer('id_tribunalDefensa')->primary();
+        Schema::create('tipo_tribunal', function (Blueprint $table) {
+            $table->integer('id_tipoTribunal', true);
+            $table->integer('id_tipoTitulo')->nullable()->index('id_tipotitulo');
             $table->integer('id_tribunal')->nullable()->index('id_tribunal');
-            $table->integer('id_defensa')->nullable()->index('id_defensa');
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tribunal_defensa');
+        Schema::dropIfExists('tipo_tribunal');
     }
 };

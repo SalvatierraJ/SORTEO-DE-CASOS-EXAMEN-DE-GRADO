@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('area', function (Blueprint $table) {
-            $table->integer('id_area')->primary();
-            $table->string('nombre_area', 100);
-            $table->integer('id_carrera')->nullable()->index('id_carrera');
+        Schema::create('casos_de_estudio', function (Blueprint $table) {
+            $table->integer('id_casoEstudio', true);
+            $table->text('descripcion_caso')->nullable();
+            $table->string('estado', 50)->nullable();
+            $table->integer('id_area')->nullable()->index('id_area');
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('area');
+        Schema::dropIfExists('casos_de_estudio');
     }
 };

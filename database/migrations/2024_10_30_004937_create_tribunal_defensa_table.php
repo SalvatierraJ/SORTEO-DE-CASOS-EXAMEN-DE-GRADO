@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('casos_de_estudio', function (Blueprint $table) {
-            $table->integer('id_casoEstudio')->primary();
-            $table->text('descripcion_caso')->nullable();
-            $table->string('estado', 50)->nullable();
-            $table->integer('id_area')->nullable()->index('id_area');
+        Schema::create('tribunal_defensa', function (Blueprint $table) {
+            $table->integer('id_tribunalDefensa', true);
+            $table->integer('id_tribunal')->nullable()->index('id_tribunal');
+            $table->integer('id_defensa')->nullable()->index('id_defensa');
         });
     }
 
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('casos_de_estudio');
+        Schema::dropIfExists('tribunal_defensa');
     }
 };

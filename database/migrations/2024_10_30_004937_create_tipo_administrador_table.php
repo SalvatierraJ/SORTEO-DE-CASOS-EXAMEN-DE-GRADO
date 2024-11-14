@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usuario_carrera', function (Blueprint $table) {
-            $table->integer('id_usuarioCarrera')->primary();
-            $table->integer('id_carrera')->nullable()->index('id_carrera');
+        Schema::create('tipo_administrador', function (Blueprint $table) {
+            $table->integer('id_tipoAdministrador', true);
             $table->integer('id_administrador')->nullable()->index('id_administrador');
-            $table->string('estado', 50)->nullable();
+            $table->integer('id_tipoTitulo')->nullable()->index('id_tipotitulo');
         });
     }
 
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usuario_carrera');
+        Schema::dropIfExists('tipo_administrador');
     }
 };

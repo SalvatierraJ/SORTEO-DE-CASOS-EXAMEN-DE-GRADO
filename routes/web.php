@@ -1,9 +1,11 @@
 <?php
-use App\Http\Controllers\GestionEstudiantes;
+use App\Http\Controllers\GestionEstudianteController;
 use App\Http\Controllers\Vista;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\casos;
+use App\Http\Controllers\MenuPrincipalController;
+
 
 Route::prefix('/')->group(function(){
     Route::get('/',[AuthController::class,'login'])->name('login');
@@ -11,20 +13,18 @@ Route::prefix('/')->group(function(){
     Route::get('/logout',[AuthController::class,'cerrarSesion'])->name('logOut');
 });
 
-
-Route::get('/menu', function () {
-    return view('layouts.vistaJurados');
+Route::prefix('/gestion-de-estudiantes')->group(function() {
+    Route::get('/', [GestionEstudianteController::class, 'vistaEstudiante']);
+    Route::post('/registrarEstudiante',[GestionEstudianteController::class,'cargarEstudiantes'])->name('registrar.Estudiante');
 });
 
+
 Route::middleware('auth')->group(function(){
-    Route::get('dashboard',function(){
-        return view('layouts.menuPrincipal');
-    })->name('dashboard');
+    Route::get('/dashboard',[MenuPrincipalController::class,'index'])->name('dashboard');
 }); 
 
-
+Route::get('/crear-usuario-admin', [AuthController::class, 'crearUsuarioAdmin']);
 Route::get('sorteo_de_casos',[casos::class,"index"]);
-Route::get('/Gestiones', [GestionEstudiantes::class, 'index']);
 
 Route::get('/sorteo', function () {
     return view('layouts.sorteo'); 
@@ -51,9 +51,7 @@ Route::get('/gestion-de-casos', function () {
     return view('layouts.gestionDeCasos');
 });
 
-Route::get('/gestion-de-estudiantes', function () {
-    return view('gestiondeestudiantes');
-});
+
 
 
 

@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipo_administrador', function (Blueprint $table) {
-            $table->integer('id_tipoAdministrador')->primary();
-            $table->integer('id_administrador')->nullable()->index('id_administrador');
-            $table->integer('id_tipoTitulo')->nullable()->index('id_tipotitulo');
+        Schema::create('carrera', function (Blueprint $table) {
+            $table->integer('id_carrera', true);
+            $table->string('nombre_carrera', 100);
+            $table->integer('id_facultad')->nullable()->index('id_facultad');
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipo_administrador');
+        Schema::dropIfExists('carrera');
     }
 };

@@ -5,17 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-5yYP6DFN3ApXqkaPnFMvEqvMZ8rDvj6N23vtsMT5Rj2T4P8/hcfglzFIAXsMWg6L" crossorigin="anonymous">
-
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;900&display=swap" rel="stylesheet">
-    <!-- Carga primero el menú CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/menu.css') }}">
-    <!-- Luego carga el CSS de gestión de estudiantes -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/gestionestudiantes.css') }}">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    @vite(['public/css/menu.css'])
+    @vite(['public/css/gestionestudiantes.css'])
     <title>Gestion de estudiantes</title>
 </head>
 
@@ -25,7 +17,44 @@
         </x-menulateral>
 
         <section class="contenido-estudiantes">
+
+
             <div class="posicion">
+                @if (session('success'))
+                    <div id="alert"
+                        class="fixed top-5 right-5 z-50 flex p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 shadow-lg"
+                        role="alert">
+                        <svg class="flex-shrink-0 inline w-4 h-4 mr-3 mt-[2px]" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 1 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <div>
+                            <span class="font-medium">¡Éxito!</span> {{ session('success') }}
+                        </div>
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div id="alert"
+                        class="fixed top-5 right-5 z-50 flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 shadow-lg"
+                        role="alert">
+                        <svg class="flex-shrink-0 inline w-4 h-4 mr-3 mt-[2px]" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 1 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <div>
+                            <span class="font-medium">¡Error!</span>
+                            <ul class="mt-1.5 list-disc list-inside">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="Elecciones">
                     <div class="Elecciones-div">
                         <p> Filtro </p>
@@ -46,7 +75,7 @@
                     </div>
                 </div>
                 <div class="agregar">
-                    <div class="div-agregar">
+                    <div class="div-agregar" data-modal-target="static-modal" data-modal-toggle="static-modal">
                         <img src="{{ asset('img/agregar_usuario.jpg') }}" class="image-agregar">
                     </div>
                     <div class="Gestion-h3">
@@ -55,95 +84,248 @@
 
                     </div>
                 </div>
-                <table>
-                    <tr class="tr-cabezera">
-                        <th class="th-tr-cabezera">#</th>
-                        <th class="th-tr-cabezera">CODIGO DE REGISTRO</th>
-                        <th class="th-tr-cabezera">NOMBRE COMPLETO</th>
-                        <th class="th-tr-cabezera">CELULAR</th>
-                        <th class="th-tr-cabezera">FACULTAD</th>
-                        <th class="th-tr-cabezera">CARRERA</th>
-                        <th class="th-tr-cabezera">ESTADO</th>
-                        <th class="th-tr-cabezera">EDITAR</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>737908</th>
-                        <th>PABLO BENJAMIN HEREDIA RUIZ</th>
-                        <th>69287283</th>
-                        <th>CIENCIAS Y TECNOLOGIA</th>
-                        <th>ING SISTEMAS</th>
-                        <th> <svg width="11" height="11">
-                                <circle cx="5" cy="5" r="5" fill="green" />
-                            </svg> ASIGNADO</th>
-                        <th><img class="editar-imagen" src="https://img.icons8.com/officel/80/create-new.png"
-                                alt="create-new" /></th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>737908</th>
-                        <th>CARLOS FABRICIO </th>
-                        <th>6928728</th>
-                        <th>CIENCIAS Y TECNOLOGIA</th>
-                        <th>ING ELECTRONICA</th>
-                        <th> <svg width="11" height="11">
-                                <circle cx="5" cy="5" r="5" fill="yellow    " />
-                            </svg> EN ESPERA</th>
-                        <th><img class="editar-imagen" src="https://img.icons8.com/officel/80/create-new.png"
-                                alt="create-new" /></th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>737908</th>
-                        <th>ALEJANDRO FABRICIO </th>
-                        <th>6928728</th>
-                        <th>CIENCIAS Y TECNOLOGIA</th>
-                        <th>ING ELECTRONICA</th>
-                        <th> <svg width="11" height="11">
-                                <circle cx="5" cy="5" r="5" fill="red" />
-                            </svg> Defendido</th>
-                        <th><img class="editar-imagen" src="https://img.icons8.com/officel/80/create-new.png"
-                                alt="create-new" /></th>
-                    </tr>
-                </table>
+                <div class=" shadow-md sm:rounded-lg">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">CODIGO DE REGISTRO</th>
+                                <th scope="col" class="px-6 py-3">NOMBRE COMPLETO</th>
+                                <th scope="col" class="px-6 py-3">CORREO</th>
+                                <th scope="col" class="px-6 py-3">CELULAR</th>
+                                <th scope="col" class="px-6 py-3">FACULTAD</th>
+                                <th scope="col" class="px-6 py-3">CARRERA</th>
+                                <th scope="col" class="px-6 py-3">ESTADO DEFENSA</th>
+                                <th scope="col" class="px-6 py-3">EDITAR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Datos dinámicos -->
+                            @foreach ($estudiantes as $estudiante)
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $estudiante['registro'] }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $estudiante['nombre_completo'] }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $estudiante['correo'] }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $estudiante['telefono'] }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $estudiante['facultad'] }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $estudiante['carrera'] }}
+                                </td>
+                                <td class="px-6 py-4 flex items-center">
+                                    @if($estudiante['estado_defensa_interna'] == 'Asignado')
+                                    <svg width="11" height="11" class="mr-1">
+                                        <circle cx="5" cy="5" r="5" fill="green" />
+                                    </svg>
+                                    @elseif($estudiante['estado_defensa_interna'] == 'Pendiente')
+                                    <svg width="11" height="11" class="mr-1">
+                                        <circle cx="5" cy="5" r="5" fill="yellow" />
+                                    </svg>
+                                    @elseif($estudiante['estado_defensa_interna'] == 'Defensa Interna Aprobada')
+                                    <svg width="11" height="11" class="mr-1">
+                                        <circle cx="5" cy="5" r="5" fill="red" />
+                                    </svg>
+                                    @endif
+                                    {{ $estudiante['estado_defensa_interna'] }}
+                                </td>
+                                <td class="px-6 py-4 flex items-center">
+                                    @if($estudiante['estado_defensa_externa'] == 'Asignado')
+                                    <svg width="11" height="11" class="mr-1">
+                                        <circle cx="5" cy="5" r="5" fill="green" />
+                                    </svg>
+                                    @elseif($estudiante['estado_defensa_externa'] == 'Pendiente')
+                                    <svg width="11" height="11" class="mr-1">
+                                        <circle cx="5" cy="5" r="5" fill="yellow" />
+                                    </svg>
+                                    @elseif($estudiante['estado_defensa_externa'] == 'Defensa Externa Aprobada')
+                                    <svg width="11" height="11" class="mr-1">
+                                        <circle cx="5" cy="5" r="5" fill="red" />
+                                    </svg>
+                                    @endif
+                                    {{ $estudiante['estado_defensa_externa'] }}
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                        <img class="editar-imagen w-6 h-6" src="https://img.icons8.com/officel/80/create-new.png" alt="create-new" />
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+                
+                            <!-- Filas estáticas -->
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">1</td>
+                                <td class="px-6 py-4">737908</td>
+                                <td class="px-6 py-4">PABLO BENJAMIN HEREDIA RUIZ</td>
+                                <td class="px-6 py-4">69287283</td>
+                                <td class="px-6 py-4">CIENCIAS Y TECNOLOGIA</td>
+                                <td class="px-6 py-4">ING SISTEMAS</td>
+                                <td class="px-6 py-4 flex items-center">
+                                    <svg width="11" height="11" class="mr-1">
+                                        <circle cx="5" cy="5" r="5" fill="green" />
+                                    </svg> ASIGNADO
+                                </td>
+                                
+                                <td class="px-6 py-4 text-right">
+                                    <img class="editar-imagen w-6 h-6" src="https://img.icons8.com/officel/80/create-new.png" alt="create-new" />
+                                </td>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">1</td>
+                                <td class="px-6 py-4">737908</td>
+                                <td class="px-6 py-4">CARLOS FABRICIO</td>
+                                <td class="px-6 py-4">6928728</td>
+                                <td class="px-6 py-4">CIENCIAS Y TECNOLOGIA</td>
+                                <td class="px-6 py-4">ING ELECTRONICA</td>
+                                <td class="px-6 py-4 flex items-center">
+                                    <svg width="11" height="11" class="mr-1">
+                                        <circle cx="5" cy="5" r="5" fill="yellow" />
+                                    </svg> EN ESPERA
+                                </td>
+                               
+                                <td class="px-6 py-4 text-right">
+                                    <img class="editar-imagen w-6 h-6" src="https://img.icons8.com/officel/80/create-new.png" alt="create-new" />
+                                </td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">1</td>
+                                <td class="px-6 py-4">737908</td>
+                                <td class="px-6 py-4">ALEJANDRO FABRICIO</td>
+                                <td class="px-6 py-4">6928728</td>
+                                <td class="px-6 py-4">CIENCIAS Y TECNOLOGIA</td>
+                                <td class="px-6 py-4">ING ELECTRONICA</td>
+                                <td class="px-6 py-4 flex items-center">
+                                    <svg width="11" height="11" class="mr-1">
+                                        <circle cx="5" cy="5" r="5" fill="red" />
+                                    </svg> DEFENDIDO
+                                </td>
+                                
+                                <td class="px-6 py-4 text-right">
+                                    <img class="editar-imagen w-6 h-6" src="https://img.icons8.com/officel/80/create-new.png" alt="create-new" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
             </div>
         </section>
     </div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
-        integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
-        crossorigin="anonymous"></script>
-    @vite(['resources/js/menu.js'])
-    <div class="window-notice nuevo-estudiante" id="window-notice">
 
-        <div class="content">
-            <h3 class="barra-nuevo-estudiante">Nuevo estudiante</h3>
-            <div class="content-text">
-                <form class="anadir-nuevo-estudiante">
 
-                    <label for="registro" class="label-agregar-estudiantes"> Registro </label> <input type="text"
-                        name="registro">
-                    <label for="Nombre" class="label-agregar-estudiantes"> Nombre </label> <input type="text"
-                        name="Nombre">
-                    <label for="Apellido" class="label-agregar-estudiantes"> Apellido </label> <input type="text"
-                        name="Apellido">
-                    <label for="Carrera" class="label-agregar-estudiantes"> Carrera </label> <input type="text"
-                        name="Carrera">
-                    <label for="Telefono" class="label-agregar-estudiantes"> Telefono </label> <input type="text"
-                        name="Telefono">
-                    <label for="Correo" class="label-agregar-estudiantes"> Correo </label> <input type="text"
-                        name="Correo">
-
-                    <div class="contenedor-botones">
-                        <button class="botones-agregar-estudiantes cancelar"> Cancelar</button>
-                        <input type="submit" value="Enviar" class="botones-agregar-estudiantes enviar">
+    <!-- Modal Registrar estudiante -->
+    <div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-2xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                        Registrar Estudiante
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="static-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <form method="POST" action="{{route('registrar.Estudiante') }}" class="space-y-4">
+                    @csrf
+                    <div class="p-4 md:p-5 space-y-4">
+                        <div>
+                            <label for="registro"
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-400">Registro</label>
+                            <input type="text" name="registro" id="registro"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        </div>
+                        <div>
+                            <label for="Nombre"
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-400">Nombre</label>
+                            <input type="text" name="Nombre" id="Nombre"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        </div>
+                        <div>
+                            <label for="Apellido"
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-400">Apellido</label>
+                            <input type="text" name="Apellido" id="Apellido"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        </div>
+                        <div>
+                            <label for="Carrera"
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-400">Carrera</label>
+                            <select id="Carrera" name="Carrera" style="height: 50px;"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected>Selecciona una carrera</option>
+                                @foreach ($carreras as $carrera)
+                                    <option value="{{ $carrera->id_carrera }}">{{ $carrera->nombre_carrera }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div>
+                            <label for="Telefono"
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-400">Teléfono</label>
+                            <input type="text" name="Telefono" id="Telefono"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        </div>
+                        <div>
+                            <label for="Correo"
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-400">Correo</label>
+                            <input type="text" name="Correo" id="Correo"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        </div>
+                        <div class="mt-4">
+                            <label for="file-upload"
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-400">Agregar más de un
+                                estudiante (.csv o .xlsx)</label>
+                            <input name="archivoEstudiantes" type="file" id="file-upload" accept=".csv, .xlsx"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                        <button type="submit" data-modal-hide="static-modal" type="button"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Guardar
+                        </button>
+                        <button data-modal-hide="static-modal" type="button"
+                            class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cancelar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <script src={{ asset('js/menu.js') }}></script>
-</body>
 
+
+</body>
+<script>
+    setTimeout(() => {
+        const alert = document.getElementById('alert');
+        if (alert) {
+            alert.style.transition = 'opacity 0.5s ease';
+            alert.style.opacity = '0';
+            setTimeout(() => alert.remove(), 500); // Remover el elemento después de que se desvanezca
+        }
+    }, 10000);
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
+    integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
+    crossorigin="anonymous"></script>
+@vite(['resources/js/menu.js'])
+@vite(['node_modules/flowbite/dist/flowbite.min.js'])
 
 </html>

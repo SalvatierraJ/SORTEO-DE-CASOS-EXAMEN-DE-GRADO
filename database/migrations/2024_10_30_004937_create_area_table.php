@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('facultad', function (Blueprint $table) {
-            $table->integer('id_facultad')->primary();
-            $table->string('nombre_facultad', 100);
+        Schema::create('area', function (Blueprint $table) {
+            $table->integer('id_area', true);
+            $table->string('nombre_area', 100);
+            $table->integer('id_carrera')->nullable()->index('id_carrera');
         });
     }
 
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('facultad');
+        Schema::dropIfExists('area');
     }
 };

@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carrera', function (Blueprint $table) {
-            $table->integer('id_carrera')->primary();
-            $table->string('nombre_carrera', 100);
-            $table->integer('id_facultad')->nullable()->index('id_facultad');
+        Schema::create('tipo_titulo', function (Blueprint $table) {
+            $table->integer('id_tipoTitulo', true);
+            $table->string('titulo', 50)->nullable();
         });
     }
 
@@ -23,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carrera');
+        Schema::dropIfExists('tipo_titulo');
     }
 };
