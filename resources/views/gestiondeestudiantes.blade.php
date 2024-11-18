@@ -21,39 +21,14 @@
 
             <div class="posicion">
                 @if (session('success'))
-                    <div id="alert"
-                        class="fixed top-5 right-5 z-50 flex p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 shadow-lg"
-                        role="alert">
-                        <svg class="flex-shrink-0 inline w-4 h-4 mr-3 mt-[2px]" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 1 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                        </svg>
-                        <div>
-                            <span class="font-medium">¡Éxito!</span> {{ session('success') }}
-                        </div>
-                    </div>
+                    <x-alert type="success" :message="session('success')" />
                 @endif
 
                 @if ($errors->any())
-                    <div id="alert"
-                        class="fixed top-5 right-5 z-50 flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 shadow-lg"
-                        role="alert">
-                        <svg class="flex-shrink-0 inline w-4 h-4 mr-3 mt-[2px]" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 1 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                        </svg>
-                        <div>
-                            <span class="font-medium">¡Error!</span>
-                            <ul class="mt-1.5 list-disc list-inside">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
+                    <x-alert type="error" :message="$errors->all()" />
                 @endif
+
+
 
                 <div class="Elecciones">
                     <div class="Elecciones-div">
@@ -101,68 +76,74 @@
                         <tbody>
                             <!-- Datos dinámicos -->
                             @foreach ($estudiantes as $estudiante)
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $estudiante['registro'] }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $estudiante['nombre_completo'] }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $estudiante['correo'] }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $estudiante['telefono'] }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $estudiante['facultad'] }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $estudiante['carrera'] }}
-                                </td>
-                                <td class="px-6 py-4 flex items-center">
-                                    @if($estudiante['estado_defensa_interna'] == 'Asignado')
-                                    <svg width="11" height="11" class="mr-1">
-                                        <circle cx="5" cy="5" r="5" fill="green" />
-                                    </svg>
-                                    @elseif($estudiante['estado_defensa_interna'] == 'Pendiente')
-                                    <svg width="11" height="11" class="mr-1">
-                                        <circle cx="5" cy="5" r="5" fill="yellow" />
-                                    </svg>
-                                    @elseif($estudiante['estado_defensa_interna'] == 'Defensa Interna Aprobada')
-                                    <svg width="11" height="11" class="mr-1">
-                                        <circle cx="5" cy="5" r="5" fill="red" />
-                                    </svg>
-                                    @endif
-                                    {{ $estudiante['estado_defensa_interna'] }}
-                                </td>
-                                <td class="px-6 py-4 flex items-center">
-                                    @if($estudiante['estado_defensa_externa'] == 'Asignado')
-                                    <svg width="11" height="11" class="mr-1">
-                                        <circle cx="5" cy="5" r="5" fill="green" />
-                                    </svg>
-                                    @elseif($estudiante['estado_defensa_externa'] == 'Pendiente')
-                                    <svg width="11" height="11" class="mr-1">
-                                        <circle cx="5" cy="5" r="5" fill="yellow" />
-                                    </svg>
-                                    @elseif($estudiante['estado_defensa_externa'] == 'Defensa Externa Aprobada')
-                                    <svg width="11" height="11" class="mr-1">
-                                        <circle cx="5" cy="5" r="5" fill="red" />
-                                    </svg>
-                                    @endif
-                                    {{ $estudiante['estado_defensa_externa'] }}
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                        <img class="editar-imagen w-6 h-6" src="https://img.icons8.com/officel/80/create-new.png" alt="create-new" />
-                                    </a>
-                                </td>
-                            </tr>
+                                <tr
+                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{ $estudiante['registro'] }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $estudiante['nombre_completo'] }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $estudiante['correo'] }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $estudiante['telefono'] }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $estudiante['facultad'] }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $estudiante['carrera'] }}
+                                    </td>
+                                    <td class="px-6 py-4 flex items-center">
+                                        @if ($estudiante['estado_defensa_interna'] == 'Asignado')
+                                            <svg width="11" height="11" class="mr-1">
+                                                <circle cx="5" cy="5" r="5" fill="green" />
+                                            </svg>
+                                        @elseif($estudiante['estado_defensa_interna'] == 'Pendiente')
+                                            <svg width="11" height="11" class="mr-1">
+                                                <circle cx="5" cy="5" r="5" fill="yellow" />
+                                            </svg>
+                                        @elseif($estudiante['estado_defensa_interna'] == 'Defensa Interna Aprobada')
+                                            <svg width="11" height="11" class="mr-1">
+                                                <circle cx="5" cy="5" r="5" fill="red" />
+                                            </svg>
+                                        @endif
+                                        {{ $estudiante['estado_defensa_interna'] }}
+                                    </td>
+                                    <td class="px-6 py-4 flex items-center">
+                                        @if ($estudiante['estado_defensa_externa'] == 'Asignado')
+                                            <svg width="11" height="11" class="mr-1">
+                                                <circle cx="5" cy="5" r="5" fill="green" />
+                                            </svg>
+                                        @elseif($estudiante['estado_defensa_externa'] == 'Pendiente')
+                                            <svg width="11" height="11" class="mr-1">
+                                                <circle cx="5" cy="5" r="5" fill="yellow" />
+                                            </svg>
+                                        @elseif($estudiante['estado_defensa_externa'] == 'Defensa Externa Aprobada')
+                                            <svg width="11" height="11" class="mr-1">
+                                                <circle cx="5" cy="5" r="5" fill="red" />
+                                            </svg>
+                                        @endif
+                                        {{ $estudiante['estado_defensa_externa'] }}
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <a href="#"
+                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                            <img class="editar-imagen w-6 h-6"
+                                                src="https://img.icons8.com/officel/80/create-new.png"
+                                                alt="create-new" />
+                                        </a>
+                                    </td>
+                                </tr>
                             @endforeach
-                
+
                             <!-- Filas estáticas -->
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">1</td>
+                            <tr
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">1
+                                </td>
                                 <td class="px-6 py-4">737908</td>
                                 <td class="px-6 py-4">PABLO BENJAMIN HEREDIA RUIZ</td>
                                 <td class="px-6 py-4">69287283</td>
@@ -173,13 +154,16 @@
                                         <circle cx="5" cy="5" r="5" fill="green" />
                                     </svg> ASIGNADO
                                 </td>
-                                
+
                                 <td class="px-6 py-4 text-right">
-                                    <img class="editar-imagen w-6 h-6" src="https://img.icons8.com/officel/80/create-new.png" alt="create-new" />
+                                    <img class="editar-imagen w-6 h-6"
+                                        src="https://img.icons8.com/officel/80/create-new.png" alt="create-new" />
                                 </td>
                             </tr>
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">1</td>
+                            <tr
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">1
+                                </td>
                                 <td class="px-6 py-4">737908</td>
                                 <td class="px-6 py-4">CARLOS FABRICIO</td>
                                 <td class="px-6 py-4">6928728</td>
@@ -190,13 +174,15 @@
                                         <circle cx="5" cy="5" r="5" fill="yellow" />
                                     </svg> EN ESPERA
                                 </td>
-                               
+
                                 <td class="px-6 py-4 text-right">
-                                    <img class="editar-imagen w-6 h-6" src="https://img.icons8.com/officel/80/create-new.png" alt="create-new" />
+                                    <img class="editar-imagen w-6 h-6"
+                                        src="https://img.icons8.com/officel/80/create-new.png" alt="create-new" />
                                 </td>
                             </tr>
                             <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">1</td>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">1
+                                </td>
                                 <td class="px-6 py-4">737908</td>
                                 <td class="px-6 py-4">ALEJANDRO FABRICIO</td>
                                 <td class="px-6 py-4">6928728</td>
@@ -207,15 +193,16 @@
                                         <circle cx="5" cy="5" r="5" fill="red" />
                                     </svg> DEFENDIDO
                                 </td>
-                                
+
                                 <td class="px-6 py-4 text-right">
-                                    <img class="editar-imagen w-6 h-6" src="https://img.icons8.com/officel/80/create-new.png" alt="create-new" />
+                                    <img class="editar-imagen w-6 h-6"
+                                        src="https://img.icons8.com/officel/80/create-new.png" alt="create-new" />
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                
+
             </div>
         </section>
     </div>
@@ -244,7 +231,8 @@
                     </button>
                 </div>
                 <!-- Modal body -->
-                <form method="POST" action="{{route('registrar.Estudiante') }}" class="space-y-4">
+                <form method="POST" action="{{ route('registrar.Estudiante') }}" enctype="multipart/form-data"
+                    class="space-y-4">
                     @csrf
                     <div class="p-4 md:p-5 space-y-4">
                         <div>
@@ -270,9 +258,10 @@
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-400">Carrera</label>
                             <select id="Carrera" name="Carrera" style="height: 50px;"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Selecciona una carrera</option>
+                                <option selected value="0">Selecciona una carrera</option>
                                 @foreach ($carreras as $carrera)
-                                    <option value="{{ $carrera->id_carrera }}">{{ $carrera->nombre_carrera }}</option>
+                                    <option value="{{ $carrera->id_carrera }}">{{ $carrera->nombre_carrera }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -292,7 +281,7 @@
                             <label for="file-upload"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-400">Agregar más de un
                                 estudiante (.csv o .xlsx)</label>
-                            <input name="archivoEstudiantes" type="file" id="file-upload" accept=".csv, .xlsx"
+                            <input name="archivoEstudiantes" type="file" id="file-upload"
                                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                         </div>
                     </div>

@@ -18,6 +18,14 @@
     <x-menulateral></x-menulateral>
 
     <div class="content">
+        {{-- esto de aqui es la alerta --}}
+        @if (session('success'))
+            <x-alert type="success" :message="session('success')" />
+        @endif
+
+        @if ($errors->any())
+            <x-alert type="error" :message="$errors->all()" />
+        @endif
         <div class="header">
             <div class="header-content">
                 <h2>GESTIÓN DE JURADOS</h2>
@@ -95,35 +103,40 @@
                     <td>Ingeniero</td>
                     <td>Lucas Gómez Rocha</td>
                     <td>71234555</td>
-                    <td><a href="#"><img src="{{ asset('img/editar.png') }}" alt="Editar" class="edit-icon"></a></td>
+                    <td><a href="#"><img src="{{ asset('img/editar.png') }}" alt="Editar" class="edit-icon"></a>
+                    </td>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Licenciado</td>
                     <td>Sofía Martínez Pitz</td>
                     <td>71234556</td>
-                    <td><a href="#"><img src="{{ asset('img/editar.png') }}" alt="Editar" class="edit-icon"></a></td>
+                    <td><a href="#"><img src="{{ asset('img/editar.png') }}" alt="Editar" class="edit-icon"></a>
+                    </td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td>Magister</td>
                     <td>Andrés Silva Ulrik</td>
                     <td>71234557</td>
-                    <td><a href="#"><img src="{{ asset('img/editar.png') }}" alt="Editar" class="edit-icon"></a></td>
+                    <td><a href="#"><img src="{{ asset('img/editar.png') }}" alt="Editar" class="edit-icon"></a>
+                    </td>
                 </tr>
                 <tr>
                     <td>4</td>
                     <td>Doctor</td>
                     <td>Diego Fernández Hernandez</td>
                     <td>71234558</td>
-                    <td><a href="#"><img src="{{ asset('img/editar.png') }}" alt="Editar" class="edit-icon"></a></td>
+                    <td><a href="#"><img src="{{ asset('img/editar.png') }}" alt="Editar" class="edit-icon"></a>
+                    </td>
                 </tr>
                 <tr>
                     <td>5</td>
                     <td>Licenciado</td>
                     <td>María López Degadillo</td>
                     <td>71234559</td>
-                    <td><a href="#"><img src="{{ asset('img/editar.png') }}" alt="Editar" class="edit-icon"></a></td>
+                    <td><a href="#"><img src="{{ asset('img/editar.png') }}" alt="Editar" class="edit-icon"></a>
+                    </td>
                 </tr>
             </tbody>
         </table>
