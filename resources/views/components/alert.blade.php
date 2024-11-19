@@ -24,3 +24,14 @@
         </div>
     </div>
 @endif
+
+<script>
+    setTimeout(() => {
+        const alert = document.getElementById('alert');
+        if (alert) {
+            alert.style.transition = 'opacity 0.5s ease';
+            alert.style.opacity = '0';
+            setTimeout(() => alert.remove(), 500); // Remover el elemento después de que se desvanezca
+        }
+    }, 10000);
+</script>

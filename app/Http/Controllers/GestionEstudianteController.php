@@ -88,8 +88,7 @@ class GestionEstudianteController extends Controller
             'archivoEstudiantes.max' => 'El archivo no puede superar los 2MB de tamaño.',
             'Telefono.min' => 'El campo Teléfono debe tener al menos 8 caracteres.',
         ]);
-        if ($request->hasFile('archivoEstudiantes')) {
-        }
+       
 
         if ($request->hasFile('archivoEstudiantes')) {
             try {

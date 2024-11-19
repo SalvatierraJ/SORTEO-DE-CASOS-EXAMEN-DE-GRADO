@@ -5,7 +5,8 @@ use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\casos;
 use App\Http\Controllers\MenuPrincipalController;
-
+use App\Http\Controllers\vistaJuradosController;
+use PhpOffice\PhpSpreadsheet\Worksheet\Row;
 
 Route::prefix('/')->group(function(){
     Route::get('/',[AuthController::class,'login'])->name('login');
@@ -16,6 +17,15 @@ Route::prefix('/')->group(function(){
 Route::prefix('/gestion-de-estudiantes')->group(function() {
     Route::get('/', [GestionEstudianteController::class, 'vistaEstudiante']);
     Route::post('/registrarEstudiante',[GestionEstudianteController::class,'cargarEstudiantes'])->name('registrar.Estudiante');
+});
+
+
+Route::prefix('/jurados')->group( function(){
+    Route::get('/',[vistaJuradosController::class,'vistaJurado'])->name('vistaJurado');
+    Route::post('/registrarJurado',[vistaJuradosController::class,'cargarJurado'])->name('guardarJurado');
+    Route::get('/buscarTribunal/{id}', [vistaJuradosController::class, 'buscarTribunal'])->name('buscar.Tribunal');
+    Route::post('/editarTribunal', [vistaJuradosController::class, 'editarTribunal'])->name('editar.Tribunal');
+
 });
 
 
@@ -42,10 +52,6 @@ Route::get('/evaluaciones', function () {
     return view('layouts.evaluaciones');
 });
 
-// Archivo: routes/web.php
-Route::get('/jurados', function () {
-    return view('layouts.vistaJurados');
-});
 
 Route::get('/gestion-de-casos', function () {
     return view('layouts.gestionDeCasos');

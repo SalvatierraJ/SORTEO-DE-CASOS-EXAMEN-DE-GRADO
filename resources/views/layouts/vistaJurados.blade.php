@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/vistaJurado.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/funcionmodal.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/busqueda.css') }}">
+    @vite(['public/css/menu.css'])
+    @vite(['public/css/vistaJurado.css'])
+    @vite(['public/css/funcionmodal.css'])
+    @vite(['public/css/busqueda.css'])
 
-    <title>Document</title>
+    <title>Gestion Jurado</title>
 </head>
 
 <body>
@@ -34,7 +34,7 @@
                     <button type="button" id="searchButton">Ir <span>&#8594;</span></button>
                 </div>
                 <div class="add-icon">
-                    <button id="myBtn">
+                    <button id="addBtn">
                         <img src="{{ asset('img/agregar-usuario.png') }}" alt="Agregar Jurado">
                     </button>
                 </div>
@@ -42,13 +42,14 @@
         </div>
 
         <!-- Modal para agregar o editar jurado -->
-        <div id="myModal" class="modal">
+        <div id="addModal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <label id="modalTitle" class="nuevoJurado">Nuevo Jurado</label>
                     <span class="close">&times;</span>
                 </div>
-                <form id="juradoForm" class="modal-body">
+                <form id="juradoForm" method="POST" action="{{route('guardarJurado')}}" class="modal-body">
+                    @csrf
                     <!-- Campos del formulario -->
                     <div class="form-group">
                         <label for="registro">Registro:</label>
@@ -62,7 +63,7 @@
                         <label for="apellido">Apellido:</label>
                         <input type="text" id="apellido" name="apellido" required>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="titulo">Título:</label>
                         <select id="titulo" name="titulo" required>
                             <option value="" disabled selected>Seleccione</option>
@@ -70,10 +71,10 @@
                             <option value="Ingeniero">Ingeniero</option>
                             <option value="Doctor">Doctor</option>
                         </select>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label for="telefono">Teléfono:</label>
-                        <input type="tel" id="telefono" name="telefono" pattern="[0-9]{8}" required>
+                        <input type="tel" id="telefono" name="telefono">
                     </div>
                     <div class="form-group">
                         <label for="correo">Correo:</label>
@@ -86,60 +87,81 @@
                 </form>
             </div>
         </div>
+        {{-- Modal Editar --}}
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <label id="modalTitle" class="editarJurado">Editar Jurado</label>
+                    <span class="close">&times;</span>
+                </div>
+                <form id="editJuradoForm" action="{{route('editar.Tribunal')}}" method="POST" class="modal-body">
+                    @csrf
+                    <!-- Campos del formulario -->
+                    <div class="form-group">
+                        <label for="editRegistro">Registro:</label>
+                        <input type="text" id="editRegistro" name="registro" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editNombre">Nombre:</label>
+                        <input type="text" id="editNombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editApellido">Apellido:</label>
+                        <input type="text" id="editApellido" name="apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editTelefono">Teléfono:</label>
+                        <input type="int" id="editTelefono" name="telefono"  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editCorreo">Correo:</label>
+                        <input type="email" id="editCorreo" name="correo" required>
+                    </div>
+                    <input type="int" hidden value="" id="id_tribunal" name="id_tribunal">
+                    <div class="form-group">
+                        <label for="editEstado">Estado:</label>
+                        <select id="editEstado" name="estado" required>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="editCancelBtn" class="btn btn-secondary">Cancelar</button>
+                        <button type="submit" id="editSaveBtn" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
         <table>
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Título</th>
+                    <th>Estado</th>
                     <th>Nombre Completo</th>
                     <th>Celular</th>
                     <th>Editar</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach ($tribunales as $index => $tribunal)
                 <tr>
-                    <td>1</td>
-                    <td>Ingeniero</td>
-                    <td>Lucas Gómez Rocha</td>
-                    <td>71234555</td>
-                    <td><a href="#"><img src="{{ asset('img/editar.png') }}" alt="Editar" class="edit-icon"></a>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $tribunal->estado }}</td>
+                    <td>{{ $tribunal->nombre }} {{ $tribunal->apellido }}</td>
+                    <td>{{ $tribunal->telefono }}</td>
+                    <td>
+                        
+                        <button type="button" class="edit-button" data-url="{{ route('buscar.Tribunal', ['id' => $tribunal->id_tribunal]) }}">
+                            <img src="{{ asset('img/editar.png') }}" alt="Editar" class="edit-icon">
+                        </button>
+                        
                     </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Licenciado</td>
-                    <td>Sofía Martínez Pitz</td>
-                    <td>71234556</td>
-                    <td><a href="#"><img src="{{ asset('img/editar.png') }}" alt="Editar" class="edit-icon"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Magister</td>
-                    <td>Andrés Silva Ulrik</td>
-                    <td>71234557</td>
-                    <td><a href="#"><img src="{{ asset('img/editar.png') }}" alt="Editar" class="edit-icon"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Doctor</td>
-                    <td>Diego Fernández Hernandez</td>
-                    <td>71234558</td>
-                    <td><a href="#"><img src="{{ asset('img/editar.png') }}" alt="Editar" class="edit-icon"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Licenciado</td>
-                    <td>María López Degadillo</td>
-                    <td>71234559</td>
-                    <td><a href="#"><img src="{{ asset('img/editar.png') }}" alt="Editar" class="edit-icon"></a>
-                    </td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
+        
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
@@ -148,5 +170,8 @@
     @vite(['resources/js/menu.js'])
     @vite(['resources/js/modalfuncion.js'])
 </body>
+<script>
+
+</script>
 
 </html>
