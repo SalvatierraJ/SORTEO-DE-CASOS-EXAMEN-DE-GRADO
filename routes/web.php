@@ -4,6 +4,7 @@ use App\Http\Controllers\Vista;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\casos;
+use App\Http\Controllers\gestionDeCasosController;
 use App\Http\Controllers\MenuPrincipalController;
 use App\Http\Controllers\vistaJuradosController;
 use PhpOffice\PhpSpreadsheet\Worksheet\Row;
@@ -27,6 +28,15 @@ Route::prefix('/jurados')->group( function(){
     Route::post('/editarTribunal', [vistaJuradosController::class, 'editarTribunal'])->name('editar.Tribunal');
 
 });
+Route::prefix('/gestion-de-casos')->group(function(){
+    Route::get('/',[gestionDeCasosController::class,'vistaGestionCasos']);
+    Route::post('/agregarCaso',[gestionDeCasosController::class,'agregarCaso'])->name('agregar.caso');
+    Route::delete('/borrarCaso/{id}', [gestionDeCasosController::class, 'borrarArchivo'])->name('borrar.caso');
+ 
+});
+
+
+
 
 
 Route::middleware('auth')->group(function(){
@@ -52,10 +62,6 @@ Route::get('/evaluaciones', function () {
     return view('layouts.evaluaciones');
 });
 
-
-Route::get('/gestion-de-casos', function () {
-    return view('layouts.gestionDeCasos');
-});
 
 
 

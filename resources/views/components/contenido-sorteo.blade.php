@@ -9,7 +9,7 @@
                 <tr>
                     <td>
                         <div id="sorteo-buscador-bot">
-                            <input type="text" id="txt_buscar" placeholder="Buscar estudiantes">
+                            <input type="text" id="buscar_estudiante" placeholder="Buscar estudiantes">
                             <button id="sorteo-buscador-boton">➜</button>
                         </div>
                     </td>
@@ -73,7 +73,7 @@
                 <tr>
                     <td>
                         <div id="sorteo-buscador-bot">
-                            <input type="text" id="txt_buscar" placeholder="Filtrar temas">
+                            <input type="text" id="buscar_categoria" placeholder="Filtrar temas">
                             <button id="sorteo-buscador-boton">➜</button>
                         </div>
                     </td>

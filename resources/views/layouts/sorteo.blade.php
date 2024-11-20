@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="{{ asset('css/sorteo_modal.css') }}">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
-<body>
+<body style="display: flex">
     
 <x-menulateral>
     
 </x-menulateral>
 
 <x-contenido-sorteo>
-    
+
 </x-contenido-sorteo>
 
 </body>
