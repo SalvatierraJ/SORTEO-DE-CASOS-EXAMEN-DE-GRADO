@@ -22,4 +22,9 @@ class CasosDeEstudio extends Model
     public function area(){
         return $this->belongsTo(Area::class,'id_area');
     }
+    
+    public static function getRandomCaseByArea($areaId)
+    {
+        return self::where('id_area', $areaId)->inRandomOrder()->first();
+    }
 }

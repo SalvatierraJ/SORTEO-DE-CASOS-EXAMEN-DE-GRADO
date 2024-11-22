@@ -17,6 +17,7 @@
             </table>
 
             <div id="sorteo-tabla-estudiantes">
+
                 <table>
                     <thead>
                         <tr>
@@ -25,42 +26,9 @@
                             <th>Acción</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>610014</td>
-                            <td>Lucas Gómez Rocha</td>
-                            <td><button class="sortear-button">Sortear</button></td>
-                        </tr>
-                        <tr>
-                            <td>610014</td>
-                            <td>Hans Mendoza Salazar</td>
-                            <td><button class="sortear-button">Sortear</button></td>
-                        </tr>
-                        <tr>
-                            <td>610014</td>
-                            <td>Enrrique Segoviano</td>
-                            <td><button class="sortear-button">Sortear</button></td>
-                        </tr>
-                        <tr>
-                            <td>610014</td>
-                            <td>Juan Asimov Choque</td>
-                            <td><button class="sortear-button">Sortear</button></td>
-                        </tr>
-                        <tr>
-                            <td>610014</td>
-                            <td>Lucia Prado Pardo</td>
-                            <td><button class="sortear-button">Sortear</button></td>
-                        </tr>
-                        <tr>
-                            <td>610014</td>
-                            <td>Juan Josias Jimenez</td>
-                            <td><button class="sortear-button">Sortear</button></td>
-                        </tr>
-                        <tr>
-                            <td>610014</td>
-                            <td>Graciela Jimenez Justiniano</td>
-                            <td><button class="sortear-button">Sortear</button></td>
-                        </tr>
+                    <tbody id="estudiantes">
+                        {{ $estudiantes }}
+
                     </tbody>
                 </table>
             </div>
@@ -83,7 +51,7 @@
             <div id="sorteo-tabla-temas">
                 <div class="sorteo-categoria">
                     <h3>
-                        <span class="flecha"></span> Desarrollo de Software (6) 
+                        <span class="flecha"></span> Desarrollo de Software (6)
                     </h3>
 
                     <ul class="sorteo-temas" style="display: none;">
@@ -146,42 +114,58 @@
                 </div>
             </div>
 
-            <!-- Modal -->
-            <div id="miModal" class="modal">
-                <div class="modal-content">
-                    <span class="close" id="cerrar-modal">&times;</span>
-                    <h3 class="titulo-seccion">Información del Estudiante</h3>
-                    <form id="formulario-modal">
-                        <div class="form-group">
-                            <label for="nombre">Nombre:</label>
-                            <input type="text" id="nombre" name="nombre" required disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="carrera">Carrera:</label>
-                            <input type="text" id="carrera" name="carrera" required disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="categoria">Categoría:</label>
-                            <input type="text" id="categoria" name="categoria" required disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="caso">Caso:</label>
-                            <input type="text" id="caso" name="caso" required disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="fecha-defensa">Fecha de Defensa:</label>
-                            <input type="text" id="fecha-defensa" name="fecha-defensa" required disabled>
-                        </div>
-                        <div class="modal-botones">
-                            <div>
-                                <button type="submit" class="boton-guardar">Guardar</button>
-                                <button type="button" class="boton-cancelar" id="boton-cancelar">Cancelar</button>
-                            </div>
-                        </div>
-                    </form>
+        </div>
+        {{-- Modal de carga --}}
+        <div id="loadingModal" class="fixed top-0 left-0 z-50 w-screen h-screen flex items-center justify-center hidden"
+            style="background: rgba(0, 0, 0, 0.3);">
+            <div class="bg-white border py-2 px-5 rounded-lg flex items-center flex-col">
+                <div class="loader-dots block relative w-20 h-5 mt-2">
+                    <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-orange-500"></div>
+                    <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-orange-500"></div>
+                </div>
+                <div id="mensajeSorteo" class="text-gray-500 text-xs font-medium mt-2 text-center">
+                    SORTEANDO CASO
                 </div>
             </div>
-
         </div>
+        <!-- Modal -->
+        <div id="miModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="cerrar-modal">&times;</span>
+                <h3 class="titulo-seccion">Información de la Defensa</h3>
+                <form id="formulario-modal">
+                    <div class="form-group">
+                        <label for="nombre-estudiante">Nombre del Estudiante:</label>
+                        <input type="text" id="nombre-estudiante" name="nombre-estudiante" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo-defensa">Tipo de Defensa:</label>
+                        <input type="text" id="tipo-defensa" name="tipo-defensa" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha-defensa">Fecha de Defensa:</label>
+                        <input type="text" id="fecha-defensa" name="fecha-defensa" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="area-asignada">Área Asignada:</label>
+                        <input type="text" id="area-asignada" name="area-asignada" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="caso-asignado">Caso Asignado:</label>
+                        <input type="text" id="caso-asignado" name="caso-asignado" disabled>
+                    </div>
+                    <input type="int" value="" hidden id="id_estudiante">
+                    <input type="int" value="" hidden id="id_defensa">
+                    <div class="modal-botones">
+                        <button type="button" class="boton-cancelar" id="boton-cancelar">Notificar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
     </div>
+</div>
 </div>

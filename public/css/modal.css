@@ -5,6 +5,7 @@
     z-index: 1;
     left: 0;
     top: 0;
+    height: 100%;
     width: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
@@ -14,7 +15,7 @@
 /* Contenido del modal */
 .modal-content {
     background-color: #fff;
-    margin: 15% auto;
+    margin: 2% auto;
     padding: 20px;
     border-radius: 10px;
     width: 400px;

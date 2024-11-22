@@ -58,3 +58,14 @@ BEGIN
         YEAR(fecha) = YEAR(CURDATE());
 END$$
 DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ObtenerAreaAleatoria`()
+BEGIN
+    -- Selección aleatoria de un área
+    SELECT id_area, nombre_area
+    FROM area
+    ORDER BY RAND()  -- Selección aleatoria
+    LIMIT 1;
+END$$
+DELIMITER ;

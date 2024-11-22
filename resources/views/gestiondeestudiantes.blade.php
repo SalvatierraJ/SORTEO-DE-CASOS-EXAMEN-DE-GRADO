@@ -139,66 +139,7 @@
                                 </tr>
                             @endforeach
 
-                            <!-- Filas estáticas -->
-                            <tr
-                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">1
-                                </td>
-                                <td class="px-6 py-4">737908</td>
-                                <td class="px-6 py-4">PABLO BENJAMIN HEREDIA RUIZ</td>
-                                <td class="px-6 py-4">69287283</td>
-                                <td class="px-6 py-4">CIENCIAS Y TECNOLOGIA</td>
-                                <td class="px-6 py-4">ING SISTEMAS</td>
-                                <td class="px-6 py-4 flex items-center">
-                                    <svg width="11" height="11" class="mr-1">
-                                        <circle cx="5" cy="5" r="5" fill="green" />
-                                    </svg> ASIGNADO
-                                </td>
-
-                                <td class="px-6 py-4 text-right">
-                                    <img class="editar-imagen w-6 h-6"
-                                        src="https://img.icons8.com/officel/80/create-new.png" alt="create-new" />
-                                </td>
-                            </tr>
-                            <tr
-                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">1
-                                </td>
-                                <td class="px-6 py-4">737908</td>
-                                <td class="px-6 py-4">CARLOS FABRICIO</td>
-                                <td class="px-6 py-4">6928728</td>
-                                <td class="px-6 py-4">CIENCIAS Y TECNOLOGIA</td>
-                                <td class="px-6 py-4">ING ELECTRONICA</td>
-                                <td class="px-6 py-4 flex items-center">
-                                    <svg width="11" height="11" class="mr-1">
-                                        <circle cx="5" cy="5" r="5" fill="yellow" />
-                                    </svg> EN ESPERA
-                                </td>
-
-                                <td class="px-6 py-4 text-right">
-                                    <img class="editar-imagen w-6 h-6"
-                                        src="https://img.icons8.com/officel/80/create-new.png" alt="create-new" />
-                                </td>
-                            </tr>
-                            <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">1
-                                </td>
-                                <td class="px-6 py-4">737908</td>
-                                <td class="px-6 py-4">ALEJANDRO FABRICIO</td>
-                                <td class="px-6 py-4">6928728</td>
-                                <td class="px-6 py-4">CIENCIAS Y TECNOLOGIA</td>
-                                <td class="px-6 py-4">ING ELECTRONICA</td>
-                                <td class="px-6 py-4 flex items-center">
-                                    <svg width="11" height="11" class="mr-1">
-                                        <circle cx="5" cy="5" r="5" fill="red" />
-                                    </svg> DEFENDIDO
-                                </td>
-
-                                <td class="px-6 py-4 text-right">
-                                    <img class="editar-imagen w-6 h-6"
-                                        src="https://img.icons8.com/officel/80/create-new.png" alt="create-new" />
-                                </td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>

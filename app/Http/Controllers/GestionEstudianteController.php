@@ -138,4 +138,5 @@ class GestionEstudianteController extends Controller
             return redirect()->back();
         }
     }
+    
 }

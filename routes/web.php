@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\casos;
 use App\Http\Controllers\gestionDeCasosController;
 use App\Http\Controllers\MenuPrincipalController;
+use App\Http\Controllers\sorteoCasosController;
 use App\Http\Controllers\vistaJuradosController;
 use PhpOffice\PhpSpreadsheet\Worksheet\Row;
 
@@ -35,7 +36,12 @@ Route::prefix('/gestion-de-casos')->group(function(){
  
 });
 
+Route::prefix('/sorteo')->group(function(){
+    Route::get('/',[sorteoCasosController::class,'vistaSorteo'])->name('vista.sorteo');
+    Route::post('/crar-Defensa/{id}/{tipo_defensa}', [SorteoCasosController::class, 'crearDefensa'])->name('crear.Defesna');
+    Route::get('/enviar-caso/{id}/{id_defensa}', [sorteoCasosController::class, 'enviarCaso'])->name('enviar.correo');
 
+});
 
 
 
@@ -46,16 +52,8 @@ Route::middleware('auth')->group(function(){
 Route::get('/crear-usuario-admin', [AuthController::class, 'crearUsuarioAdmin']);
 Route::get('sorteo_de_casos',[casos::class,"index"]);
 
-Route::get('/sorteo', function () {
-    return view('layouts.sorteo'); 
-});
 
 
-
-// Archivo: routes/web.php
-Route::get('/inicio', function () {
-    return view('layouts.inicio');
-});
 
 // Archivo: routes/web.php
 Route::get('/evaluaciones', function () {
