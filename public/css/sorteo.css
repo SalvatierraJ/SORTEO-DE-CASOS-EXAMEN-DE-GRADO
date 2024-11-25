@@ -1,5 +1,7 @@
 /* Estilo general para el wrapper */
+
 .wrapper {
+    overflow: hidden;
     background-color: #f4f4f4;
     width: 100%;
     margin: 0 auto;
@@ -30,6 +32,11 @@
     text-align: center;
 }
 
+#sorteo-tabla-temas{
+    display: block;
+    max-height: 400px;
+    overflow-y: auto;
+}
 /* Estilo para los títulos de las secciones */
 h2 {
     text-align: center;
@@ -51,16 +58,16 @@ input[type="text"] {
 }
 
 button {
-    padding: 8px 12px;
+    padding: 2px 6px;
     border: none;
     border-radius: 4px;
-    background-color: #007BFF;
+    background-color: #b1161e;
     color: white;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #5f060a;
 }
 
 /* Estilos para la tabla del buscador */
@@ -147,7 +154,7 @@ button:hover {
 }
 
 #sorteo-buscador-boton {
-    background-color: #007BFF;
+    background-color: #5f060a;
     color: white;
     border: none;
     padding: 9px 10px;
@@ -159,7 +166,7 @@ button:hover {
 }
 
 #sorteo-buscador-boton:hover {
-    background-color: #0056b3;
+    background-color: #5f060a;
 }
 
 /* Estilo para la caja de texto del buscador */
@@ -177,7 +184,7 @@ button:hover {
     padding: 8px 12px;
     border: none;
     border-radius: 0 5px 5px 0;
-    background-color: #007BFF;
+    background-color: #3F5675;
     color: white;
     cursor: pointer;
 }
@@ -235,7 +242,7 @@ th, td {
 }
 
 #sorteo-tabla-estudiantes thead tr {
-    background-color: #007bff;
+    background-color: #3F5675;
     color: white;
     padding: 2px;
     text-align: center;
@@ -254,9 +261,10 @@ th, td {
 /* Hacer que el tbody tenga scroll cuando sea necesario */
 #sorteo-tabla-estudiantes tbody {
     display: block;
-    max-height: 300px; /* Ajusta el tamaño según tu preferencia */
+    max-height: 400px; /* Ajusta el tamaño según tu preferencia */
     overflow-y: auto; /* Activa el scroll */
 }
+
 
 #sorteo-tabla-estudiantes thead, 
 #sorteo-tabla-estudiantes tbody tr {

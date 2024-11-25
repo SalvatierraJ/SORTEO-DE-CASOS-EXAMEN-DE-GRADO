@@ -11,11 +11,11 @@
     <title>Document</title>
 </head>
 
-<body class="flex min-h-screen">
+<body class="flex min-h-screen" style="overflow: hidden;">
     <x-menulateral>
 
     </x-menulateral>
-    
+
     <main id="main-content" class="flex-grow  p-6 transition-all duration-300 bg-gray-100">
         <div>
             <form class="max-w-md mx-auto">
@@ -42,18 +42,18 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 justify-items-center">
                 <div>
                     <a href="#"
-                        class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                        class="block max-w-sm p-6 bg-green-600 border border-gray-200 rounded-lg shadow hover:bg-green-700">
                         <div class="flex items-center justify-between">
                             <!-- Contenedor del h4 y el párrafo -->
                             <div class="flex flex-col">
-                                <h4 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">{{$totalDC}}</h4>
-                                <p class="font-normal text-gray-700 dark:text-gray-400 mr-2">
+                                <h4 class="mb-2 text-5xl font-bold tracking-tight text-white">{{ $totalDC }}</h4>
+                                <p class="font-normal text-white mr-2">
                                     Defensas Completadas
                                 </p>
                             </div>
 
                             <!-- Contenedor del icono -->
-                            <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            <h4 class="mb-2 text-2xl font-bold tracking-tight text-white">
                                 <svg class="w-[100px] h-[100px] fill-[#ffffff]" viewBox="0 0 448 512"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -64,20 +64,21 @@
                         </div>
                     </a>
                 </div>
+
                 <div>
                     <a href="#"
-                        class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                        class="block max-w-sm p-6 bg-yellow-500 border border-gray-200 rounded-lg shadow hover:bg-yellow-600">
                         <div class="flex items-center justify-between">
                             <!-- Contenedor del h4 y el párrafo -->
                             <div class="flex flex-col">
-                                <h4 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">{{$totalDP}}</h4>
-                                <p class="font-normal text-gray-700 dark:text-gray-400 mr-2">
+                                <h4 class="mb-2 text-5xl font-bold tracking-tight text-white">{{ $totalDP }}</h4>
+                                <p class="font-normal text-white mr-2">
                                     Defensas Programadas
                                 </p>
                             </div>
 
                             <!-- Contenedor del icono -->
-                            <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            <h4 class="mb-2 text-2xl font-bold tracking-tight text-white">
                                 <svg class="w-[100px] h-[100px] fill-[#ffffff]" viewBox="0 0 448 512"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -88,20 +89,21 @@
                         </div>
                     </a>
                 </div>
+
                 <div>
                     <a href="#"
-                        class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                        class="block max-w-sm p-6 bg-red-600 border border-gray-200 rounded-lg shadow hover:bg-red-700">
                         <div class="flex items-center justify-between">
                             <!-- Contenedor del h4 y el párrafo -->
                             <div class="flex flex-col">
-                                <h4 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">{{$totalDNP}}</h4>
-                                <p class="font-normal text-gray-700 dark:text-gray-400 mr-2">
+                                <h4 class="mb-2 text-5xl font-bold tracking-tight text-white">{{ $totalDNP }}</h4>
+                                <p class="font-normal text-white mr-2">
                                     Defensas NO Programadas
                                 </p>
                             </div>
 
                             <!-- Contenedor del icono -->
-                            <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            <h4 class="mb-2 text-2xl font-bold tracking-tight text-white">
                                 <svg class="w-[100px] h-[100px] fill-[#ffffff]" viewBox="0 0 512 512"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -112,20 +114,21 @@
                         </div>
                     </a>
                 </div>
+
                 <div>
                     <a href="#"
-                        class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                        class="block max-w-sm p-6 bg-orange-500 border border-gray-200 rounded-lg shadow hover:bg-orange-600">
                         <div class="flex items-center justify-between">
                             <!-- Contenedor del h4 y el párrafo -->
                             <div class="flex flex-col">
-                                <h4 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">{{$totalDPH}}</h4>
-                                <p class="font-normal text-gray-700 dark:text-gray-400 mr-2">
+                                <h4 class="mb-2 text-5xl font-bold tracking-tight text-white">{{ $totalDPH }}</h4>
+                                <p class="font-normal text-white mr-2">
                                     Defensas Programadas Para Hoy
                                 </p>
                             </div>
 
                             <!-- Contenedor del icono -->
-                            <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            <h4 class="mb-2 text-2xl font-bold tracking-tight text-white">
                                 <svg class="w-[100px] h-[100px] fill-[#ffffff]" viewBox="0 0 448 512"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -136,6 +139,7 @@
                         </div>
                     </a>
                 </div>
+
             </div>
         </div>
         {{-- graficos aqui van --}}
@@ -154,7 +158,7 @@
                                 Programadas
                             </span>
                         </div>
-                        
+
                         <div class="inline-flex items-center">
                             <span class="size-2.5 inline-block bg-cyan-400 rounded-sm me-2"></span>
                             <span class="text-[13px] text-gray-600">
@@ -166,7 +170,7 @@
                 </div>
             </div>
             <div id="hs-single-bar-chart"></div>
-            
+
         </div>
     </main>
 
@@ -174,8 +178,8 @@
 </body>
 
 @php
- $dato1='70,30';   
- $dato2=`'1', '2 search', '3','10'`;   
+    $dato1 = '70,30';
+    $dato2 = `'1', '2 search', '3','10'`;
 @endphp
 
 @vite(['node_modules/lodash/lodash.min.js'])
@@ -194,8 +198,8 @@
                         enabled: false
                     }
                 },
-                series: [{{$dato1}}],
-                labels: [{{$dato2}}],
+                series: [{{ $dato1 }}],
+                labels: [{{ $dato2 }}],
                 title: {
                     show: true
                 },
@@ -258,201 +262,206 @@
 
     //aqui el de barras 
     window.addEventListener('load', () => {
-    // Apex Single Bar Charts
-    (function () {
-      buildChart('#hs-single-bar-chart', (mode) => ({
-        chart: {
-          type: 'bar',
-          height: 300,
-          toolbar: {
-            show: false
-          },
-          zoom: {
-            enabled: false
-          }
-        },
-        series: [
-          {
-            name: 'Sales',
-            data: [23000, 44000, 55000, 57000, 56000, 61000, 58000, 63000, 60000, 66000, 34000, 78000]
-          }
-        ],
-        plotOptions: {
-          bar: {
-            horizontal: false,
-            columnWidth: '16px',
-            borderRadius: 0
-          }
-        },
-        legend: {
-          show: false
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          show: true,
-          width: 8,
-          colors: ['transparent']
-        },
-        xaxis: {
-          categories: [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'October',
-            'November',
-            'December'
-          ],
-          axisBorder: {
-            show: false
-          },
-          axisTicks: {
-            show: false
-          },
-          crosshairs: {
-            show: false
-          },
-          labels: {
-            style: {
-              colors: '#9ca3af',
-              fontSize: '13px',
-              fontFamily: 'Inter, ui-sans-serif',
-              fontWeight: 400
-            },
-            offsetX: -2,
-            formatter: (title) => title.slice(0, 3)
-          }
-        },
-        yaxis: {
-          labels: {
-            align: 'left',
-            minWidth: 0,
-            maxWidth: 140,
-            style: {
-              colors: '#9ca3af',
-              fontSize: '13px',
-              fontFamily: 'Inter, ui-sans-serif',
-              fontWeight: 400
-            },
-            formatter: (value) => value >= 1000 ? `${value / 1000}k` : value
-          }
-        },
-        states: {
-          hover: {
-            filter: {
-              type: 'darken',
-              value: 0.9
-            }
-          }
-        },
-        tooltip: {
-          y: {
-            formatter: (value) => `$${value >= 1000 ? `${value / 1000}k` : value}`
-          },
-          custom: function (props) {
-            const { categories } = props.ctx.opts.xaxis;
-            const { dataPointIndex } = props;
-            const title = categories[dataPointIndex];
-            const newTitle = `${title}`;
-
-            return buildTooltip(props, {
-              title: newTitle,
-              mode,
-              hasTextLabel: true,
-              wrapperExtClasses: 'min-w-28',
-              labelDivider: ':',
-              labelExtClasses: 'ms-2'
-            });
-          }
-        },
-        responsive: [{
-          breakpoint: 568,
-          options: {
-            chart: {
-              height: 300
-            },
-            plotOptions: {
-              bar: {
-                columnWidth: '14px'
-              }
-            },
-            stroke: {
-              width: 8
-            },
-            labels: {
-              style: {
-                colors: '#9ca3af',
-                fontSize: '11px',
-                fontFamily: 'Inter, ui-sans-serif',
-                fontWeight: 400
-              },
-              offsetX: -2,
-              formatter: (title) => title.slice(0, 3)
-            },
-            yaxis: {
-              labels: {
-                align: 'left',
-                minWidth: 0,
-                maxWidth: 140,
-                style: {
-                  colors: '#9ca3af',
-                  fontSize: '11px',
-                  fontFamily: 'Inter, ui-sans-serif',
-                  fontWeight: 400
+        // Apex Single Bar Charts
+        (function() {
+            buildChart('#hs-single-bar-chart', (mode) => ({
+                chart: {
+                    type: 'bar',
+                    height: 300,
+                    toolbar: {
+                        show: false
+                    },
+                    zoom: {
+                        enabled: false
+                    }
                 },
-                formatter: (value) => value >= 1000 ? `${value / 1000}k` : value
-              }
-            },
-          },
-        }]
-      }), {
-        colors: ['#2563eb', '#d1d5db'],
-        xaxis: {
-          labels: {
-            style: {
-              colors: '#9ca3af',
-            }
-          }
-        },
-        yaxis: {
-          labels: {
-            style: {
-              colors: '#9ca3af'
-            }
-          }
-        },
-        grid: {
-          borderColor: '#e5e7eb'
-        }
-      }, {
-        colors: ['#3b82f6', '#2563eb'],
-        xaxis: {
-          labels: {
-            style: {
-              colors: '#a3a3a3',
-            }
-          }
-        },
-        yaxis: {
-          labels: {
-            style: {
-              colors: '#a3a3a3'
-            }
-          }
-        },
-        grid: {
-          borderColor: '#404040'
-        }
-      });
-    })();
-  });
+                series: [{
+                    name: 'Sales',
+                    data: [23000, 44000, 55000, 57000, 56000, 61000, 58000, 63000,
+                        60000, 66000, 34000, 78000
+                    ]
+                }],
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        columnWidth: '16px',
+                        borderRadius: 0
+                    }
+                },
+                legend: {
+                    show: false
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    show: true,
+                    width: 8,
+                    colors: ['transparent']
+                },
+                xaxis: {
+                    categories: [
+                        'January',
+                        'February',
+                        'March',
+                        'April',
+                        'May',
+                        'June',
+                        'July',
+                        'August',
+                        'September',
+                        'October',
+                        'November',
+                        'December'
+                    ],
+                    axisBorder: {
+                        show: false
+                    },
+                    axisTicks: {
+                        show: false
+                    },
+                    crosshairs: {
+                        show: false
+                    },
+                    labels: {
+                        style: {
+                            colors: '#9ca3af',
+                            fontSize: '13px',
+                            fontFamily: 'Inter, ui-sans-serif',
+                            fontWeight: 400
+                        },
+                        offsetX: -2,
+                        formatter: (title) => title.slice(0, 3)
+                    }
+                },
+                yaxis: {
+                    labels: {
+                        align: 'left',
+                        minWidth: 0,
+                        maxWidth: 140,
+                        style: {
+                            colors: '#9ca3af',
+                            fontSize: '13px',
+                            fontFamily: 'Inter, ui-sans-serif',
+                            fontWeight: 400
+                        },
+                        formatter: (value) => value >= 1000 ? `${value / 1000}k` : value
+                    }
+                },
+                states: {
+                    hover: {
+                        filter: {
+                            type: 'darken',
+                            value: 0.9
+                        }
+                    }
+                },
+                tooltip: {
+                    y: {
+                        formatter: (value) => `$${value >= 1000 ? `${value / 1000}k` : value}`
+                    },
+                    custom: function(props) {
+                        const {
+                            categories
+                        } = props.ctx.opts.xaxis;
+                        const {
+                            dataPointIndex
+                        } = props;
+                        const title = categories[dataPointIndex];
+                        const newTitle = `${title}`;
+
+                        return buildTooltip(props, {
+                            title: newTitle,
+                            mode,
+                            hasTextLabel: true,
+                            wrapperExtClasses: 'min-w-28',
+                            labelDivider: ':',
+                            labelExtClasses: 'ms-2'
+                        });
+                    }
+                },
+                responsive: [{
+                    breakpoint: 568,
+                    options: {
+                        chart: {
+                            height: 300
+                        },
+                        plotOptions: {
+                            bar: {
+                                columnWidth: '14px'
+                            }
+                        },
+                        stroke: {
+                            width: 8
+                        },
+                        labels: {
+                            style: {
+                                colors: '#9ca3af',
+                                fontSize: '11px',
+                                fontFamily: 'Inter, ui-sans-serif',
+                                fontWeight: 400
+                            },
+                            offsetX: -2,
+                            formatter: (title) => title.slice(0, 3)
+                        },
+                        yaxis: {
+                            labels: {
+                                align: 'left',
+                                minWidth: 0,
+                                maxWidth: 140,
+                                style: {
+                                    colors: '#9ca3af',
+                                    fontSize: '11px',
+                                    fontFamily: 'Inter, ui-sans-serif',
+                                    fontWeight: 400
+                                },
+                                formatter: (value) => value >= 1000 ?
+                                    `${value / 1000}k` : value
+                            }
+                        },
+                    },
+                }]
+            }), {
+                colors: ['#2563eb', '#d1d5db'],
+                xaxis: {
+                    labels: {
+                        style: {
+                            colors: '#9ca3af',
+                        }
+                    }
+                },
+                yaxis: {
+                    labels: {
+                        style: {
+                            colors: '#9ca3af'
+                        }
+                    }
+                },
+                grid: {
+                    borderColor: '#e5e7eb'
+                }
+            }, {
+                colors: ['#3b82f6', '#2563eb'],
+                xaxis: {
+                    labels: {
+                        style: {
+                            colors: '#a3a3a3',
+                        }
+                    }
+                },
+                yaxis: {
+                    labels: {
+                        style: {
+                            colors: '#a3a3a3'
+                        }
+                    }
+                },
+                grid: {
+                    borderColor: '#404040'
+                }
+            });
+        })();
+    });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
     integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="

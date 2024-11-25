@@ -13,47 +13,58 @@ class gestionDeCasosController extends Controller
     public function vistaGestionCasos()
     {
         $areas = Area::all();
-        $casos = CasosDeEstudio::with('area') 
-            ->select('id_casoEstudio','descripcion_caso', 'estado', 'id_area')
-            ->take(10) 
+        $casos = CasosDeEstudio::with('area')
+            ->select('id_casoEstudio', 'descripcion_caso', 'estado', 'id_area')
             ->get();
 
-       
 
-        return view('layouts.gestionDeCasos', compact('areas','casos'));
+
+        return view('layouts.gestionDeCasos', compact('areas', 'casos'));
     }
-
     public function agregarCaso(Request $request)
     {
-
+       
         $request->validate([
-            'casoEstudioArchivo' => 'required|file|mimes:jpg,png,pdf,docx|max:2048',
+            'casoEstudioArchivo' => 'required|array', 
+            'casoEstudioArchivo.*' => 'file|mimes:pdf,docx|max:10240', 
             'categoria' => 'nullable|integer|not_in:0',
         ], [
-            'casoEstudioArchivo.required' => 'Por favor, sube un archivo para el caso de estudio.',
-            'casoEstudioArchivo.file' => 'El archivo debe ser un archivo válido.',
-            'casoEstudioArchivo.mimes' => 'El archivo debe ser de tipo: jpg, png, pdf o docx.',
-            'casoEstudioArchivo.max' => 'El archivo no debe superar los 2 MB.',
-            'categoria.integer' => 'Seleccione una Categoria',
+            'casoEstudioArchivo.required' => 'Por favor, sube al menos un archivo para el caso de estudio.',
+            'casoEstudioArchivo.array' => 'El campo de archivos debe ser un array.',
+            'casoEstudioArchivo.*.file' => 'Cada archivo debe ser válido.',
+            'casoEstudioArchivo.*.mimes' => 'Cada archivo debe ser de tipo: pdf o docx.',
+            'casoEstudioArchivo.*.max' => 'Cada archivo no debe superar los 2 MB.',
+            'categoria.integer' => 'Seleccione una categoría.',
             'categoria.not_in' => 'Por favor, elige una categoría.',
         ]);
 
+       
+        if ($request->hasFile('casoEstudioArchivo')) {
+            foreach ($request->file('casoEstudioArchivo') as $archivo) {
+                $nombreOriginal = $archivo->getClientOriginalName();
+                $nombreSinExtension = pathinfo($nombreOriginal, PATHINFO_FILENAME);
 
-        $nombreOriginal = $request->file('casoEstudioArchivo')->getClientOriginalName();
-        $nombreSinExtension = pathinfo($nombreOriginal, PATHINFO_FILENAME);
+              
+                $path = $archivo->store('private');
+                $nombreArchivo = basename($path);
 
+                // Crear el registro en la base de datos
+                CasosDeEstudio::create([
+                    'descripcion_caso' => $nombreSinExtension,
+                    'id_area' => $request->categoria,
+                    'nombre_archivo' => $nombreArchivo,
+                ]);
+            }
 
-        $path = $request->file('casoEstudioArchivo')->store('private');
-        $nombreArchivo = basename($path);
+            session()->flash('success', 'Los casos se registraron con éxito');
+        } else {
+            // Si no hay archivos, mostrar mensaje de error
+            session()->flash('error', 'No se subió ningún archivo.');
+        }
 
-        CasosDeEstudio::create([
-            'descripcion_caso' => $nombreSinExtension,
-            'id_area' => $request->categoria,
-            'nombre_archivo' => $nombreArchivo
-        ]);
-        session()->flash('success', 'El caso se registro con Exito');
         return redirect()->back();
     }
+
 
     public function borrarArchivo($id)
     {
@@ -70,7 +81,7 @@ class gestionDeCasosController extends Controller
         }
         $tribunal->delete();
 
-        session()->flash('success','Caso eliminado Exitosamente');
+        session()->flash('success', 'Caso eliminado Exitosamente');
         return redirect()->back();
     }
 }

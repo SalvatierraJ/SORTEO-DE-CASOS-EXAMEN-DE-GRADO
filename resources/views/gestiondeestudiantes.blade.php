@@ -11,7 +11,7 @@
     <title>Gestion de estudiantes</title>
 </head>
 
-<body>
+<body style="overflow: hidden;">
     <div class="contenedor-padre">
         <x-menulateral>
         </x-menulateral>
@@ -59,90 +59,93 @@
 
                     </div>
                 </div>
-                <div class=" shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" class="px-6 py-3">CODIGO DE REGISTRO</th>
-                                <th scope="col" class="px-6 py-3">NOMBRE COMPLETO</th>
-                                <th scope="col" class="px-6 py-3">CORREO</th>
-                                <th scope="col" class="px-6 py-3">CELULAR</th>
-                                <th scope="col" class="px-6 py-3">FACULTAD</th>
-                                <th scope="col" class="px-6 py-3">CARRERA</th>
-                                <th scope="col" class="px-6 py-3">ESTADO DEFENSA</th>
-                                <th scope="col" class="px-6 py-3">EDITAR</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Datos dinámicos -->
-                            @foreach ($estudiantes as $estudiante)
-                                <tr
-                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <div class="shadow-md sm:rounded-lg p-4 overflow-auto max-h-[500px]">
+                    <div class="overflow-auto">
+                        <table class="w-full text-sm text-left text-gray-700">
+                            <thead class="text-xs text-white uppercase bg-[#3F5675]">
+                                <tr>
+                                    <th scope="col" class="px-4 py-2">CODIGO DE REGISTRO</th>
+                                    <th scope="col" class="px-4 py-2">NOMBRE COMPLETO</th>
+                                    <th scope="col" class="px-4 py-2">CORREO</th>
+                                    <th scope="col" class="px-4 py-2">CELULAR</th>
+                                    <th scope="col" class="px-4 py-2">FACULTAD</th>
+                                    <th scope="col" class="px-4 py-2">CARRERA</th>
+                                    <th scope="col" class="px-4 py-2">ESTADO DEFENSA INTERNA</th>
+                                    <th scope="col" class="px-4 py-2">ESTADO DEFENSA EXTERNA</th>
+                                    <th scope="col" class="px-4 py-2">EDITAR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Datos dinámicos -->
+                                @foreach ($estudiantes as $estudiante)
+                                <tr class="@if($loop->even) bg-[#F2F2F2] @else bg-white @endif border-b hover:bg-gray-100">
+                                    <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">
                                         {{ $estudiante['registro'] }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-4 py-2">
                                         {{ $estudiante['nombre_completo'] }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-4 py-2">
                                         {{ $estudiante['correo'] }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-4 py-2">
                                         {{ $estudiante['telefono'] }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-4 py-2">
                                         {{ $estudiante['facultad'] }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-4 py-2">
                                         {{ $estudiante['carrera'] }}
                                     </td>
-                                    <td class="px-6 py-4 flex items-center">
-                                        @if ($estudiante['estado_defensa_interna'] == 'Asignado')
-                                            <svg width="11" height="11" class="mr-1">
-                                                <circle cx="5" cy="5" r="5" fill="green" />
-                                            </svg>
+                                    <!-- Estado Defensa Interna -->
+                                    <td class="px-4 py-2 ">
+                                        @if ($estudiante['estado_defensa_interna'] == 'Defensa Interna Asignada')
+                                        <svg width="11" height="11" class="mr-1">
+                                            <circle cx="5" cy="5" r="5" fill="green" />
+                                        </svg>
                                         @elseif($estudiante['estado_defensa_interna'] == 'Pendiente')
-                                            <svg width="11" height="11" class="mr-1">
-                                                <circle cx="5" cy="5" r="5" fill="yellow" />
-                                            </svg>
+                                        <svg width="11" height="11" class="mr-1">
+                                            <circle cx="5" cy="5" r="5" fill="yellow" />
+                                        </svg>
                                         @elseif($estudiante['estado_defensa_interna'] == 'Defensa Interna Aprobada')
-                                            <svg width="11" height="11" class="mr-1">
-                                                <circle cx="5" cy="5" r="5" fill="red" />
-                                            </svg>
+                                        <svg width="11" height="11" class="mr-1">
+                                            <circle cx="5" cy="5" r="5" fill="red" />
+                                        </svg>
                                         @endif
                                         {{ $estudiante['estado_defensa_interna'] }}
                                     </td>
-                                    <td class="px-6 py-4 flex items-center">
-                                        @if ($estudiante['estado_defensa_externa'] == 'Asignado')
-                                            <svg width="11" height="11" class="mr-1">
-                                                <circle cx="5" cy="5" r="5" fill="green" />
-                                            </svg>
+                                    
+                                    <!-- Estado Defensa Externa -->
+                                    <td class="px-4 py-2 ">
+                                        @if ($estudiante['estado_defensa_externa'] == 'Defensa Externa Asignada')
+                                        <svg width="11" height="11" class="mr-1">
+                                            <circle cx="5" cy="5" r="5" fill="green" />
+                                        </svg>
                                         @elseif($estudiante['estado_defensa_externa'] == 'Pendiente')
-                                            <svg width="11" height="11" class="mr-1">
-                                                <circle cx="5" cy="5" r="5" fill="yellow" />
-                                            </svg>
+                                        <svg width="11" height="11" class="mr-1">
+                                            <circle cx="5" cy="5" r="5" fill="yellow" />
+                                        </svg>
                                         @elseif($estudiante['estado_defensa_externa'] == 'Defensa Externa Aprobada')
-                                            <svg width="11" height="11" class="mr-1">
-                                                <circle cx="5" cy="5" r="5" fill="red" />
-                                            </svg>
+                                        <svg width="11" height="11" class="mr-1">
+                                            <circle cx="5" cy="5" r="5" fill="red" />
+                                        </svg>
                                         @endif
                                         {{ $estudiante['estado_defensa_externa'] }}
                                     </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <a href="#"
-                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                    <!-- Editar -->
+                                    <td class="px-4 py-2 text-right">
+                                        <a href="#" class="font-medium text-blue-600 hover:underline">
                                             <img class="editar-imagen w-6 h-6"
-                                                src="https://img.icons8.com/officel/80/create-new.png"
-                                                alt="create-new" />
+                                                src="https://img.icons8.com/officel/80/create-new.png" alt="create-new" />
                                         </a>
                                     </td>
                                 </tr>
-                            @endforeach
-
-                            
-                        </tbody>
-                    </table>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+                
 
             </div>
         </section>

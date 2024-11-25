@@ -10,3 +10,4 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get('estudiantes/buscar',[sorteoCasosController::class,'buscarEstudiante']);
+Route::get('casos/buscar',[sorteoCasosController::class,'buscarCasosPorArea']);

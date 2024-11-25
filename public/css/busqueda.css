@@ -18,7 +18,7 @@
 }
 
 #searchButton {
-    background-color: #007bff; /* Azul para el botón */
+    background-color: #3F5675; /* Azul para el botón */
     border: none;
     color: white;
     padding: 10px 16px;
@@ -35,5 +35,5 @@
 }
 
 #searchButton:hover {
-    background-color: #0056b3; /* Efecto hover para el botón */
+    background-color: #8f0808; /* Efecto hover para el botón */
 }

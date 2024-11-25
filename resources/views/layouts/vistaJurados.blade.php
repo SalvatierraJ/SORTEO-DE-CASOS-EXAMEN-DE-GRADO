@@ -14,7 +14,7 @@
     <title>Gestion Jurado</title>
 </head>
 
-<body>
+<body style="overflow: hidden;">
     <x-menulateral></x-menulateral>
 
     <div class="content">
@@ -31,7 +31,7 @@
                 <h2>GESTIÓN DE JURADOS</h2>
                 <div class="search-container">
                     <input type="text" id="searchBar" placeholder="Buscar jurado...">
-                    <button type="button" id="searchButton">Ir <span>&#8594;</span></button>
+                    <button type="button" class="bg-[#3F5675]" id="searchButton">Ir <span>&#8594;</span></button>
                 </div>
                 <div class="add-icon">
                     <button id="addBtn">
@@ -134,7 +134,7 @@
         </div>
 
         <table>
-            <thead>
+            <thead class="bg-[#3F5675]">
                 <tr>
                     <th>#</th>
                     <th>Estado</th>

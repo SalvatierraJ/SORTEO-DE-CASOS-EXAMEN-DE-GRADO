@@ -12,7 +12,7 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 
-<body style="display: flex">
+<body style="display: flex;overflow: hidden;">
 
     <x-menulateral>
 
@@ -45,6 +45,34 @@
                     @endif
                 </tr>
             @endforeach
+
+        </x-slot>
+        <x-slot name='casos'>
+
+            @foreach ($casosPorArea as $area => $casos)
+                <div class="sorteo-categoria">
+                    <h3>
+                        <span class="flecha"></span> {{ $area }} ({{ $casos->count() }})
+                    </h3>
+
+                    <ul class="sorteo-temas" style="display: none;">
+                        @foreach ($casos as $caso)
+                            <li>
+                                {{ $caso->descripcion_caso }}
+                                <span class="icono-ojito"
+                                    onclick="cambiarEstadoCaso({{ $caso->id_casoEstudio }}, '{{ $caso->estado }}');">
+                                    @if ($caso->estado === 'Activo')
+                                        👁️ <!-- Ícono de ojo abierto -->
+                                    @else
+                                        👁️‍🗨️ <!-- Ícono de ojo cerrado -->
+                                    @endif
+                                </span>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endforeach
+
 
         </x-slot>
 
@@ -94,38 +122,24 @@
 
 
     // Cerrar el modal al hacer clic en el botón "Cancelar"
-    const botonCancelar = document.getElementById("boton-cancelar");
+    const botonNotificar = document.getElementById("boton-notificar");
 
-    botonCancelar.onclick = function() {
-        // Ocultar el modal
-        const modal = document.getElementById("miModal");
-        modal.style.display = "none";
-
+    botonNotificar.onclick = function() {
         const id = document.getElementById('id_estudiante').value;
         const defensa = document.getElementById('id_defensa').value;
 
-         const url = `http://sistemasorteodecasos.test/sorteo/enviar-caso/${id}/${defensa}`
-        fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
-                        .content
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error en la solicitud');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Respuesta del servidor:', data);
-                // Aquí puedes realizar alguna acción adicional después de recibir la respuesta
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+        const form = document.createElement('form');
+        form.method = 'GET';
+        form.action = `http://sistemasorteodecasos.test/sorteo/enviar-caso/${id}/${defensa}`;
+
+        const csrfInput = document.createElement('input');
+        csrfInput.type = 'hidden';
+        csrfInput.name = '_token';
+        csrfInput.value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        form.appendChild(csrfInput);
+        document.body.appendChild(form);
+
+        form.submit();
     };
 
 
@@ -148,7 +162,7 @@
     });
 </script>
 <script>
-    //  logica para los buscadores
+    //  logica para los buscadores de estudiante
     const inputEstudiante = document.getElementById('buscar_estudiante');
     const buscar = async (text) => {
         try {
@@ -244,7 +258,8 @@
     }
     const crearDefensa = async (id, tipoDefensa) => {
         try {
-            const url = `{{ route('crear.Defesna', ['id' => '__ID__', 'tipo_defensa' => '__TIPO_DEFENSA__']) }}`
+            const url =
+                `{{ route('crear.Defesna', ['id' => '__ID__', 'tipo_defensa' => '__TIPO_DEFENSA__']) }}`
                 .replace('__ID__', id).replace('__TIPO_DEFENSA__', tipoDefensa);
 
             const response = await fetch(url, {
@@ -272,6 +287,107 @@
             }
         } catch (error) {
             console.error('Error en la solicitud:', error);
+        }
+    };
+</script>
+
+<script>
+    // logica para buscar por categoria
+    const inputCategoria = document.getElementById('buscar_categoria');
+    const buscarCasosPorCategoria = async (text) => {
+        try {
+            const resultado = await fetch(`http://sistemasorteodecasos.test/api/casos/buscar?q=${text}`);
+            if (!resultado.ok) {
+                throw new Error(`Error en la solicitud: ${resultado.status}`);
+            }
+            const datos = await resultado.json();
+            return datos;
+
+        } catch (error) {
+            console.error('Hubo un problema con la solicitud fetch:', error);
+            return null;
+        }
+    };
+
+    const onChangeCategoria = (e) => {
+        const tCategorias = document.getElementById('sorteo-tabla-temas');
+        tCategorias.innerHTML = '';
+
+        buscarCasosPorCategoria(e.target.value).then(response => {
+            if (response && response.length > 0) {
+                response.forEach(area => {
+                    const divCategoria = document.createElement('div');
+                    divCategoria.classList.add('sorteo-categoria');
+
+                    const h3 = document.createElement('h3');
+                    h3.innerHTML =
+                        `<span class="flecha"></span> ${area.area} (${area.total_casos})`;
+
+                    const ul = document.createElement('ul');
+                    ul.classList.add('sorteo-temas');
+                    ul.style.display = 'none';
+
+                    area.casos.forEach(caso => {
+                        const li = document.createElement('li');
+                        li.textContent = caso.descripcion;
+
+                        const spanIcono = document.createElement('span');
+                        spanIcono.classList.add('icono-ojito');
+                        spanIcono.textContent = '👁️';
+
+                        li.appendChild(spanIcono);
+                        ul.appendChild(li);
+                    });
+
+                    divCategoria.appendChild(h3);
+                    divCategoria.appendChild(ul);
+                    tCategorias.appendChild(divCategoria);
+                    h3.addEventListener('click', () => {
+                        ul.style.display = ul.style.display === 'none' ? 'block' : 'none';
+                    });
+                });
+            } else {
+                const noResultados = document.createElement('p');
+                noResultados.textContent = 'No se encontraron resultados para esta categoría.';
+                tCategorias.appendChild(noResultados);
+            }
+        });
+    };
+    inputCategoria.addEventListener('keyup', onChangeCategoria);
+
+
+
+    const cambiarEstadoCaso = async (idCaso, estado) => {
+        try {
+            const nuevoEstado = estado === 'Activo' ? 'Inactivo' : 'Activo'; // Alternar el estado
+            const url = `{{ route('editar.caso', ['id' => '__ID__', 'estado' => '__ESTADO__']) }}`
+                .replace('__ID__', idCaso)
+                .replace('__ESTADO__', nuevoEstado);
+
+            const respuesta = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                        'content')
+                },
+            });
+
+            if (!respuesta.ok) {
+                throw new Error(`Error en la solicitud: ${respuesta.status}`);
+            }
+
+            // Cambiar el ícono dinámicamente
+            const ojo = document.querySelector(`span[onclick*="${idCaso}"]`);
+            if (ojo) {
+                ojo.textContent = nuevoEstado === 'Activo' ? '👁️' : '👁️‍🗨️';
+            }
+
+
+        } catch (error) {
+            console.error('Error al cambiar el estado del caso:', error);
+            alert(`No se pudo cambiar el estado del caso ${idCaso}: ${error.message}`);
         }
     };
 </script>

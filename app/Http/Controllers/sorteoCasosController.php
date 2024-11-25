@@ -16,6 +16,12 @@ class sorteoCasosController extends Controller
 {
     public function vistaSorteo()
     {
+        $casos = CasosDeEstudio::with('area')
+            ->select('id_casoEstudio', 'descripcion_caso', 'estado', 'id_area')
+            ->get();
+        $casosPorArea = $casos->groupBy(function ($caso) {
+            return $caso->area->nombre_area ?? 'Sin Área';
+        });
         $estudiantes = Estudiante::with(['carrera.facultad', 'defensa'])
             ->orderBy('id_estudiante', 'desc')
             ->select('id_estudiante', 'nombre', 'apellido', 'telefono', 'correo', 'nroRegistro', 'id_carrera')
@@ -65,7 +71,7 @@ class sorteoCasosController extends Controller
             ->values();
 
         $estudiantes = collect($estudiantes);
-        return view('layouts.sorteo', compact('estudiantes'));
+        return view('layouts.sorteo', compact('estudiantes', 'casosPorArea'));
     }
     public function buscarEstudiante(Request $request)
     {
@@ -197,7 +203,7 @@ class sorteoCasosController extends Controller
         $idUltimaDefensa = $defensa->id_defensa;
         $nombreCompleto = $estudiante->nombre . ' ,' . $estudiante->apellido;
         return response()->json([
-            'id_defensa'=> $idUltimaDefensa,
+            'id_defensa' => $idUltimaDefensa,
             'id_estudiante' => $estudiante->id_estudiante,
             'nombre_completo' => $nombreCompleto,
             'nombre_area' => $area->nombre_area,
@@ -207,27 +213,73 @@ class sorteoCasosController extends Controller
         ], 200);
     }
 
-   
-    public function enviarCaso($estudianteId,$defensaId)
+
+    public function enviarCaso($estudianteId, $defensaId)
     {
-    
+
         $estudiante = Estudiante::find($estudianteId);
-        
+
         if (!$estudiante || !$estudiante->correo) {
-            return response()->json(['message' => 'Estudiante o correo no encontrado.'], 404);
+            return redirect()->back()->with('Error', 'Estudiante O correo no encontrado');
         }
-        $defensa =Defensa::find($defensaId);
+        $defensa = Defensa::find($defensaId);
 
         $caso = CasosDeEstudio::find($defensa->id_casoEstudio);
 
         $rutaArchivo = storage_path('app/private/private/' . $caso->nombre_archivo);
         // Datos para el correo
         $nombreEstudiante = $estudiante->nombre . ' ' . $estudiante->apellido;
-        $mensaje = 'Este es el caso que se te ha asignado para tu defensa'.', la fecha de defensa sera el '.$defensa->fecha;
+        $mensaje = 'Este es el caso que se te ha asignado para tu defensa' . ', la fecha de defensa sera el ' . $defensa->fecha;
 
         // Enviar el correo al estudiante
         Mail::to($estudiante->correo)->send(new EnviarCasoMail($nombreEstudiante, $mensaje, $rutaArchivo));
 
-        return response()->json(['message' => 'Correo enviado con éxito.']);
+        return redirect()->back()->with('success', 'Correo enviado con Exito');
+    }
+
+    public function buscarCasosPorArea(Request $request)
+    {
+        $texto = trim($request->q);
+
+        $resultado = CasosDeEstudio::with(['area'])
+            ->where(function ($query) use ($texto) {
+                $query->where('descripcion_caso', 'like', "%$texto%")
+                    ->orWhereHas('area', function ($q) use ($texto) {
+                        $q->where('nombre_area', 'like', "%$texto%");
+                    });
+            })
+            ->orderBy('id_casoEstudio', 'desc')
+            ->get()
+            ->groupBy(function ($caso) {
+                return $caso->area->nombre_area ?? 'Sin Área';
+            })
+            ->map(function ($casos, $area) {
+                return [
+                    'area' => $area,
+                    'total_casos' => $casos->count(),
+                    'casos' => $casos->map(function ($caso) {
+                        return [
+                            'id_caso' => $caso->id_casoEstudio,
+                            'descripcion' => $caso->descripcion_caso,
+                            'estado' => $caso->estado,
+                        ];
+                    }),
+                ];
+            })
+            ->values();
+
+        return response()->json($resultado);
+    }
+
+    public function editarEstadoCaso($id_caso,$estado){
+        
+        $caso = CasosDeEstudio::find($id_caso);
+
+        
+        $caso->estado = $estado;
+        
+
+        $caso->save();
+        return redirect()->back()->with('success', 'Estado Actualizado');
     }
 }

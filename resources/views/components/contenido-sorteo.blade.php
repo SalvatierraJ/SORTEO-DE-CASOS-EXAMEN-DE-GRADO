@@ -49,69 +49,7 @@
             </table>
 
             <div id="sorteo-tabla-temas">
-                <div class="sorteo-categoria">
-                    <h3>
-                        <span class="flecha"></span> Desarrollo de Software (6)
-                    </h3>
-
-                    <ul class="sorteo-temas" style="display: none;">
-                        <li>
-                            Implementación de un sistema de detección de intrusos en redes corporativas.
-                            <span class="icono-ojito">👁️</span>
-                        </li>
-                        <li>
-                            Aplicación de técnicas de IA para casos de cibercrimen.
-                            <span class="icono-ojito">👁️</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="sorteo-categoria">
-                    <h3>
-                        <span class="flecha"></span> Big Data y Analítica de Datos (10)
-                    </h3>
-                    <ul class="sorteo-temas" style="display: none;">
-                        <li>
-                            Optimización de procesamiento de datos masivos en entornos distribuidos.
-                            <span class="icono-ojito">👁️</span>
-                        </li>
-                        <li>
-                            Desarrollo de modelos predictivos para riesgos financieros.
-                            <span class="icono-ojito">👁️</span>
-                        </li>
-                        <li>
-                            Análisis predictivo en el sector salud usando datos masivos.
-                            <span class="icono-ojito">👁️</span>
-                        </li>
-                        <li>
-                            Aplicación de machine learning para la minería de datos.
-                            <span class="icono-ojito">👁️</span>
-                        </li>
-                        <li>
-                            Visualización en tiempo real de datos masivos.
-                            <span class="icono-ojito">👁️</span>
-                        </li>
-                        <li>
-                            Procesamiento eficiente de grandes volúmenes de datos en Hadoop.
-                            <span class="icono-ojito">👁️</span>
-                        </li>
-                        <li>
-                            Predicción de tendencias en redes sociales mediante datos masivos.
-                            <span class="icono-ojito">👁️</span>
-                        </li>
-                        <li>
-                            Arquitectura de procesamiento de datos para IoT.
-                            <span class="icono-ojito">👁️</span>
-                        </li>
-                        <li>
-                            Modelo predictivo para la detección temprana de fraudes en transacciones bancarias.
-                            <span class="icono-ojito">👁️</span>
-                        </li>
-                        <li>
-                            Implementación de algoritmos de clustering para la segmentación de clientes en e-commerce.
-                            <span class="icono-ojito">👁️</span>
-                        </li>
-                    </ul>
-                </div>
+                {{ $casos }}
             </div>
 
         </div>
@@ -159,7 +97,7 @@
                     <input type="int" value="" hidden id="id_estudiante">
                     <input type="int" value="" hidden id="id_defensa">
                     <div class="modal-botones">
-                        <button type="button" class="boton-cancelar" id="boton-cancelar">Notificar</button>
+                        <button type="button" class="boton-cancelar" id="boton-notificar">Notificar</button>
                     </div>
                 </form>
             </div>
