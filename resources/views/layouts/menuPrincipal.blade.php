@@ -6,17 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    @vite(['public/css/barra.css'])
     @vite(['node_modules/apexcharts/dist/apexcharts.css'])
     @vite(['public/css/menu.css'])
     <title>Document</title>
 </head>
 
-<body class="flex min-h-screen" style="overflow: hidden;">
+<body class="flex min-h-screen" style="overflow: hidden; background-color: aliceblue;">
     <x-menulateral>
 
     </x-menulateral>
 
-    <main id="main-content" class="flex-grow  p-6 transition-all duration-300 bg-gray-100">
+    <main id="main-content" class="flex-grow  p-6 transition-all duration-300 bg-gray-100" style="background-color: aliceblue;">
         <div>
             <form class="max-w-md mx-auto">
                 <label for="default-search"

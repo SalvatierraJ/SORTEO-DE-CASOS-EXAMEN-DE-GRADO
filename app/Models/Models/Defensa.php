@@ -25,5 +25,10 @@ class Defensa extends Model
     {
         return $this->belongsTo(Estudiante::class, 'id_estudiante');
     }
+    public function tribunaldefensa()
+    {
+        return $this->belongsToMany(Tribunal::class, 'tribunal_defensa', 'id_defensa', 'id_tribunal');
+    }
+
     public $timestamps = false;
 }

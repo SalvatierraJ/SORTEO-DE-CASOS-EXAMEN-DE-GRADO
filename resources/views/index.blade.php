@@ -7,15 +7,53 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://kit.fontawesome.com/76c068ebe2.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --background-image: url('{{ asset('img/fondoJaguar.jpg') }}');
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .gap-4 {
+            gap: 1rem;
+            /* Espacio entre la imagen y el texto */
+        }
+
+        .university-text {
+            font-family: 'Arial', sans-serif;
+            font-size: 1.5rem;
+            /* Tamaño de la fuente */
+            font-weight: bold;
+            /* Texto en negrita */
+            color: #f7f3f4;
+            /* Color personalizado */
+            text-transform: uppercase;
+            /* Texto en mayúsculas */
+            letter-spacing: 0.05em;
+            /* Espaciado entre letras */
+        }
+    </style>
     @vite(['public/css/login.css'])
 </head>
 
-<body class="h-screen bg-gradient-to-b from-red-600 to-gray-900 flex items-center justify-center">
+<body class="h-screen  items-center justify-center">
     <div class="w-full max-w-full mx-auto snap-center">
         <!-- Logo and Title -->
         <div class="text-center mb-8">
-            <img src="path-to-your-logo.png" alt="Studix" class="mx-auto w-32 h-32">
-            <div class="bg-gray-300 border-t-2 border-red-800 py-2 ">
+            <div class="flex items-center justify-center gap-4">
+               
+            </div>
+            <div class="bg-gray-300 border-t-2 border-red-800 py-2">
                 <p class="text-center text-gray-700 text-lg font-semibold tracking-wide">
                     PLATAFORMA DE SORTEO Y ASIGNACIÓN INTELIGENTE DE CASOS DE ESTUDIO PARA PROYECTOS DE GRADO
                 </p>
@@ -28,12 +66,7 @@
                 <div class="flex items-center justify-center mb-4 ">
                     <div class="flex-1 h-1 bg-gray-300"></div>
                     <div class="circulo flex items-center justify-center">
-                        <svg class="w-[80px] h-[80px] fill-[#ffffff]" viewBox="0 0 448 512"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M219.3 .5c3.1-.6 6.3-.6 9.4 0l200 40C439.9 42.7 448 52.6 448 64s-8.1 21.3-19.3 23.5L352 102.9V160c0 70.7-57.3 128-128 128s-128-57.3-128-128V102.9L48 93.3v65.1l15.7 78.4c.9 4.7-.3 9.6-3.3 13.3s-7.6 5.9-12.4 5.9H16c-4.8 0-9.3-2.1-12.4-5.9s-4.3-8.6-3.3-13.3L16 158.4V86.6C6.5 83.3 0 74.3 0 64C0 52.6 8.1 42.7 19.3 40.5l200-40zM111.9 327.7c10.5-3.4 21.8 .4 29.4 8.5l71 75.5c6.3 6.7 17 6.7 23.3 0l71-75.5c7.6-8.1 18.9-11.9 29.4-8.5C401 348.6 448 409.4 448 481.3c0 17-13.8 30.7-30.7 30.7H30.7C13.8 512 0 498.2 0 481.3c0-71.9 47-132.7 111.9-153.6z">
-                            </path>
-                        </svg>
+                        <img src="{{ asset('img/30blanco.png') }}" alt="Studix" class="w-32 h-32">
                     </div>
                     <div class="flex-1 h-1 bg-gray-300"></div>
                 </div>
@@ -67,7 +100,7 @@
                     @csrf
                     <div class="mb-4">
                         <label for="website-admin"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">USUARIO</label>
+                            class="block mb-2 text-sm font-medium text-white dark:text-white">USUARIO</label>
                         <div class="flex">
                             <span
                                 class="inline-flex items-center px-3 text-sm  border rounded-e-0 border-gray-300 border-e-0 rounded-s-md">
@@ -85,7 +118,7 @@
                     </div>
                     <div class="mb-6">
                         <label for="website-admin"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CONTRASEÑA</label>
+                            class="block mb-2 text-sm font-medium text-white dark:text-white">CONTRASEÑA</label>
                         <div class="flex">
                             <span
                                 class="inline-flex items-center px-3 text-sm  border rounded-e-0 border-gray-300 border-e-0 rounded-s-md">
@@ -114,7 +147,7 @@
         <!-- Footer -->
         <div class="">
             <!-- Contenedor principal que contiene los dos divs -->
-            <div class="absolute inset-x-0 bottom-0 flex justify-between items-end p-4">
+            <div class="absolute inset-x-0 bottom-0 flex justify-between items-end p-4" style="    z-index: -1;">
                 <!-- Div para el texto "Desarrollado por UTEPSA" -->
                 <div class="text-gray-300">
                     <img src="{{ asset('img/logoDeploy.webp') }}" alt="" style="height: 125px;">

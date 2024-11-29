@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Sorteo de Casos</title>
+    @vite(['public/css/barra.css'])
     @vite(['public/css/menu.css'])
     @vite(['public/css/sorteo.css'])
     @vite(['public/css/sorteo_modal.css'])
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 
-<body style="display: flex;overflow: hidden;">
+<body style="display: flex;overflow: hidden; background-color: aliceblue;">
 
     <x-menulateral>
 

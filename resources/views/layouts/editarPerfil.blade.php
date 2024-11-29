@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Sorteo de Casos</title>
+    @vite(['public/css/barra.css'])
     @vite(['public/css/menu.css'])
     @vite(['resources/css/perfil.css'])
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -36,10 +37,13 @@
                                 <img class="w-32 h-32 rounded-full mx-auto"
                                     src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
                             </div>
-                            <h5 class="text-lg font-semibold text-gray-800">Ing. Gustavo Perez</h5>
-                            <h6 class="text-sm text-gray-600">gustavo@perez.com</h6>
+                            @if (Auth::check())
+                                <h5 class="text-lg font-semibold text-gray-800">Ing.{{ Auth::user()->nombre }} {{ Auth::user()->apellido }}  </h5>
+                                <h6 class="text-sm text-gray-600">{{Auth::user()->correo}}</h6>
+                            @endif
+
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -53,60 +57,70 @@
                         <!-- nombres -->
                         <div class="form-group">
                             <label for="fullName" class="block text-sm font-medium text-gray-700">Nombres</label>
-                            <input type="text" id="fullName" placeholder="Introduzca sus nombres"
+                            <input type="text" id="fullName" placeholder="Introduzca sus nombres" value="{{Auth::user()->nombre}}"
                                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                         </div>
                         <!-- apellidos -->
                         <div class="form-group">
                             <label for="Apellidos" class="block text-sm font-medium text-gray-700">Apellidos</label>
-                            <input type="text" id="Apellidos" placeholder="Introduzca sus Apellidos"
+                            <input type="text" id="Apellidos" placeholder="Introduzca sus Apellidos" value="{{Auth::user()->apellido}}"
                                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                         </div>
                         <!-- Phone -->
                         <div class="form-group">
                             <label for="phone" class="block text-sm font-medium text-gray-700">Telefono</label>
-                            <input type="text" id="Telefono" placeholder="Numero de telefono"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            <input type="text" id="Telefono" placeholder="Numero de telefono" value="{{Auth::user()->telefono}}"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                         </div>
                         <!-- Email -->
                         <div class="form-group">
                             <label for="eMail" class="block text-sm font-medium text-gray-700">Email</label>
-                            <input type="email" id="eMail" placeholder="Introduzca su correo"
+                            <input type="email" id="eMail" placeholder="Introduzca su correo" value="{{Auth::user()->correo}}"
                                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                         </div>
-                        
+
                     </div>
                     <div class="mt-8">
                         <h6 class="text-xl font-semibold text-blue-600">Carreras Administradas</h6>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-                        <!-- Street -->
-                        <div class="form-group">
-                            <label for="Street" class="block text-sm font-medium text-gray-700">Street</label>
-                            <input type="text" id="Street" placeholder="Enter Street"
-                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <div class=" gap-6 mt-4">
+                        <div class="container bg-white mx-auto p-6">
+                            <div class="flex flex-wrap gap-6 border-2 border-gray-300 p-6 rounded-lg shadow-lg"
+                                style="    justify-content: center;">
+                                <!-- Carrera 1 -->
+                                <div
+                                    class="relative bg-white border border-gray-300 p-4 w-32 h-16 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
+                                    <span
+                                        class="absolute top-2 right-2 text-xl text-red-500 cursor-pointer hover:text-red-700">×</span>
+                                    <p class="text-center text-lg font-semibold text-gray-800">Sistemas</p>
+                                </div>
+                                <!-- Carrera 2 -->
+                                <div
+                                    class="relative bg-white border border-gray-300 p-4  w-32 h-16 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
+                                    <span
+                                        class="absolute top-2 right-2 text-xl text-red-500 cursor-pointer hover:text-red-700">×</span>
+                                    <p class="text-center text-lg font-semibold text-gray-800">Redes</p>
+                                </div>
+                                <!-- Carrera 3 -->
+                                <div
+                                    class="relative bg-white border border-gray-300 p-4  w-32 h-16 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
+                                    <span
+                                        class="absolute top-2 right-2 text-xl text-red-500 cursor-pointer hover:text-red-700">×</span>
+                                    <p class="text-center text-lg font-semibold text-gray-800">Medicina</p>
+                                </div>
+                                <!-- Carrera 3 -->
+                                <div
+                                    class="relative bg-white border border-gray-300 p-4  w-32 h-16 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
+                                    <span
+                                        class="absolute top-2 right-2 text-xl text-red-500 cursor-pointer hover:text-red-700">×</span>
+                                    <p class="text-center text-lg font-semibold text-gray-800">Medicina</p>
+                                </div>
+                            </div>
                         </div>
-                        <!-- City -->
-                        <div class="form-group">
-                            <label for="ciTy" class="block text-sm font-medium text-gray-700">City</label>
-                            <input type="text" id="ciTy" placeholder="Enter City"
-                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                        </div>
-                        <!-- State -->
-                        <div class="form-group">
-                            <label for="sTate" class="block text-sm font-medium text-gray-700">State</label>
-                            <input type="text" id="sTate" placeholder="Enter State"
-                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                        </div>
-                        <!-- Zip Code -->
-                        <div class="form-group">
-                            <label for="zIp" class="block text-sm font-medium text-gray-700">Zip Code</label>
-                            <input type="text" id="zIp" placeholder="Zip Code"
-                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                        </div>
+
                     </div>
                     <div class="flex justify-end mt-6">
-                        
+
                         <button type="button"
                             class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Actualizar</button>
                     </div>

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    @vite(['public/css/barra.css'])
     @vite(['public/css/menu.css'])
     @vite(['public/css/vistaJurado.css'])
     @vite(['public/css/funcionmodal.css'])
@@ -14,10 +15,10 @@
     <title>Gestion Jurado</title>
 </head>
 
-<body style="overflow: hidden;">
+<body style="overflow: hidden;background-color: aliceblue;">
     <x-menulateral></x-menulateral>
 
-    <div class="content">
+    <div class="content" style="background-color: aliceblue;">
         {{-- esto de aqui es la alerta --}}
         @if (session('success'))
             <x-alert type="success" :message="session('success')" />
@@ -26,7 +27,7 @@
         @if ($errors->any())
             <x-alert type="error" :message="$errors->all()" />
         @endif
-        <div class="header">
+        <div class="header" style="">
             <div class="header-content">
                 <h2>GESTIÓN DE JURADOS</h2>
                 <div class="search-container">
@@ -163,10 +164,10 @@
         </table>
         
     </div>
-
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
-        integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
-        crossorigin="anonymous"></script>
+    integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
+    crossorigin="anonymous"></script>
     @vite(['resources/js/menu.js'])
     @vite(['resources/js/modalfuncion.js'])
 </body>

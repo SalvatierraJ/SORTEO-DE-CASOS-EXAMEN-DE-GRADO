@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    @vite(['public/css/barra.css'])
     @vite(['public/css/menu.css'])
     @vite(['public/css/gestionestudiantes.css'])
     <title>Gestion de estudiantes</title>
 </head>
 
-<body style="overflow: hidden;">
+<body style="overflow: hidden;background-color: aliceblue;">
     <div class="contenedor-padre">
         <x-menulateral>
         </x-menulateral>

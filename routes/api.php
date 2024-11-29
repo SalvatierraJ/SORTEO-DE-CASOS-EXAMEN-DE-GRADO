@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\evaluacionesController;
 use App\Http\Controllers\sorteoCasosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -11,3 +12,4 @@ Route::get('/user', function (Request $request) {
 
 Route::get('estudiantes/buscar',[sorteoCasosController::class,'buscarEstudiante']);
 Route::get('casos/buscar',[sorteoCasosController::class,'buscarCasosPorArea']);
+Route::get('defensa/buscar',[evaluacionesController::class,'buscarDefensa']);

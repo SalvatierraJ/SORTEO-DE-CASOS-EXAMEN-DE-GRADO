@@ -7,18 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    @vite(['public/css/barra.css'])
     @vite(['public/css/menu.css'])
     @vite(['public/css/styleGestionCasos.css'])
     @vite(['public/css/modal.css'])
+
     <title>Document</title>
 </head>
 
 <body style="overflow: hidden;">
+
     <x-menulateral>
 
     </x-menulateral>
 
-    <div class="content">
+    <div class="content" style="background-color: aliceblue;">
         {{-- esto de aqui es la alerta --}}
         @if (session('success'))
             <x-alert type="success" :message="session('success')" />
@@ -83,8 +86,8 @@
                                                 para seleccionar.</p>
                                         </div>
                                         <!-- Input oculto para seleccionar archivos -->
-                                        <input accept=".doc,.docx,.pdf" type="file" name="casoEstudioArchivo[]"  multiple 
-                                            class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                        <input accept=".doc,.docx,.pdf" type="file" name="casoEstudioArchivo[]"
+                                            multiple class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                                             @change="addFiles($event)" />
                                     </div>
 
@@ -194,8 +197,9 @@
                         <td>{{ $caso->descripcion_caso }}</td>
                         <td>{{ $caso->area ? $caso->area->nombre_area : 'Sin área' }}</td>
                         <td>{{ $caso->estado }}</td>
-                        <td >
-                            <button type="button">
+                        <td>
+                            <button type="button" onclick="buscarCasoPorId({{ $caso->id_casoEstudio }})"
+                                data-modal-target="editarCaso" data-modal-toggle="editarCaso">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" style="height: 20px"
                                     fill="currentColor" className="size-4">
                                     <path
@@ -231,53 +235,96 @@
             </tbody>
         </table>
 
-        
 
-<!-- Modal toggle -->
-<button data-modal-target="static-modal" data-modal-toggle="static-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-    Toggle modal
-  </button>
-  
-  <!-- Main modal -->
-  <div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-      <div class="relative p-4 w-full max-w-2xl max-h-full">
-          <!-- Modal content -->
-          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-              <!-- Modal header -->
-              <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                      Static modal
-                  </h3>
-                  <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="static-modal">
-                      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                      </svg>
-                      <span class="sr-only">Close modal</span>
-                  </button>
-              </div>
-              <!-- Modal body -->
-              <div class="p-4 md:p-5 space-y-4">
-                  <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                      With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-                  </p>
-                  <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                      The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-                  </p>
-              </div>
-              <!-- Modal footer -->
-              <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                  <button data-modal-hide="static-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
-                  <button data-modal-hide="static-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Decline</button>
-              </div>
-          </div>
-      </div>
-  </div>
-  
+        <!-- editar modal -->
+        <div id="editarCaso" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative p-4 w-full max-w-2xl max-h-full">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    <form action="">
+                        <!-- Modal header -->
+                        <div
+                            class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                Editar Caso de Estudio
+                            </h3>
+                            <button type="button"
+                                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                data-modal-hide="editarCaso">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Cerrar</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-4 md:p-5 space-y-4" style="justify-content: center">
+                            <label for="first_name"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre
+                                Caso</label>
+                            <input type="text" id="first_name" name="nombre_caso"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="**********" required />
+
+
+                            <label for="categoria" class="block text-sm font-medium text-gray-700">Categoría</label>
+                            <select id="categoria" name="categoria"
+                                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                <option value="0">Selecciona una categoría</option>
+                                @foreach ($areas as $area)
+                                    <option value="{{ $area->id_area }}">{{ $area->nombre_area }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <label for="estado"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estado</label>
+                            <select id="estado"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+
+                            </select>
+
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                for="file_input">Subir Caso</label>
+                            <input
+                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                id="file_input" type="file" name="nuevo_caso" >
+
+
+                           
+
+
+
+                            <input type="int" value="" hidden name="id_caso">
+
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600"
+                            style=" flex-direction: row-reverse;">
+                            <button data-modal-hide="editarCaso" type="button"
+                                class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cancelar</button>
+                            <button data-modal-hide="editarCaso" type="submit"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Editar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
     integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
     crossorigin="anonymous"></script>
+@vite(['node_modules\flowbite\dist\flowbite.min.js'])
+@vite(['resources/js/menu.js'])
+@vite(['resources/js/funcionModal.js'])
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 <script src="https://unpkg.com/create-file-list"></script>
 <script>
@@ -336,6 +383,7 @@
 
 
 
+
     function borrarCaso(url) {
         // Crear un formulario dinámico
         const form = document.createElement('form');
@@ -360,9 +408,30 @@
         document.body.appendChild(form);
         form.submit();
     }
+
+    async function buscarCasoPorId(id) {
+        try {
+            const url = `http://sistemasorteodecasos.test/gestion-de-casos/buscarCaso/${id}`;
+
+
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error('Error en la solicitud, código de estado: ' + response.status);
+            }
+            const data = await response.json();
+            document.getElementById('first_name').value = data.descripcion_caso;
+            document.getElementById('categoria').value = data.id_area.toString();
+            document.getElementById('estado').value = data.estado;
+
+        } catch (error) {
+            // Maneja cualquier error que ocurra durante la solicitud
+            console.error('Error al buscar el caso:', error);
+            throw error;
+        }
+    }
 </script>
 
-@vite(['resources/js/menu.js'])
-@vite(['resources/js/funcionModal.js'])
+
 
 </html>

@@ -2,9 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.container{
-    background-color: aliceblue;
-}
+
 .account-settings .user-profile {
     margin: 0 0 1rem 0;
     padding-bottom: 1rem;

@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper"  style="background-color: aliceblue;">
     <h1 id="sorteo-titulo">SORTEO DE CASOS</h1>
 
     <div id="sorteo-contenedor">

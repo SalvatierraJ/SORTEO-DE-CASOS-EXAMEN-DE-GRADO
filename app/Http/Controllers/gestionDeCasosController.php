@@ -65,6 +65,14 @@ class gestionDeCasosController extends Controller
         return redirect()->back();
     }
 
+    public function buscarCaso($id){
+        $caso = CasosDeEstudio::with('area')
+            ->select('id_casoEstudio', 'descripcion_caso', 'estado', 'id_area')
+            ->where('id_casoEstudio', $id)
+            ->first();
+        return response()->json($caso);
+    }
+
 
     public function borrarArchivo($id)
     {
@@ -79,7 +87,7 @@ class gestionDeCasosController extends Controller
         if (Storage::exists($ruta)) {
             Storage::delete($ruta);
         }
-        $tribunal->delete();
+       
 
         session()->flash('success', 'Caso eliminado Exitosamente');
         return redirect()->back();
