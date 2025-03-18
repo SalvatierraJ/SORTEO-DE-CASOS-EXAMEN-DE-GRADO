@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -65,22 +66,114 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-=======
-# SistemaSorteoDeCasos
-Este proyecto implementa un sistema automatizado para la asignación y sorteo de casos de estudio entre estudiantes, con criterios personalizados para cada carrera y área de especialización. Diseñado para ser utilizado en facultades como Ciencias y Tecnología, Ciencias Empresariales, y Ciencias Jurídicas, Sociales y Humanísticas, el sistema garantiza que los casos asignados a los estudiantes no repitan áreas específicas de especialización dentro de sus carreras.
+==============================================================================
 
-Funcionalidades Principales:
-Asignación Automática de Casos: Los casos de estudio se asignan de manera equitativa a los estudiantes en función de su carrera y las áreas correspondientes, asegurando que no reciban casos repetidos.
-Gestión de Informes: Los administradores pueden generar informes detallados por carrera y subir los resultados de las defensas de los estudiantes.
-Roles de Usuario: Solo el administrador tiene acceso completo a todas las funcionalidades del sistema, asegurando el control y la gestión eficiente.
-Sorteo Personalizado por Carrera: Cada carrera tiene un conjunto de áreas predefinidas para los casos de estudio, como bases de datos, redes e IA en Ingeniería de Sistemas, y otras áreas para carreras como derecho y ciencias empresariales.
-Requisitos del Sistema:
-Interfaz Administrativa: Permite al administrador gestionar la asignación de casos, generar informes y subir los resultados de defensa.
-Configuración por Carrera: Diferentes áreas de especialización para cada carrera y facultad, con reglas específicas para el sorteo de casos.
-Seguridad de Datos: Solo el administrador tiene permisos para modificar la asignación y los informes.
-Tecnologías Utilizadas:
-Framework: Laravel 11 para la gestión de la lógica del sorteo y desarrollo del backend.
-Base de Datos: MySQL para el almacenamiento de datos estructurados.
-Frontend: HTML, CSS y JavaScript para la interfaz del usuario.
-Backend: Laravel 11 proporciona las funcionalidades y servicios requeridos para el manejo de la lógica de negocio.
->>>>>>> 01af1094b09779f8e895fe14fe37e48d0d615a1b
+
+# Sistema Sorteo de Casos
+
+## Descripción
+
+El **Sistema Sorteo de Casos** es una plataforma automatizada para la asignación de casos de estudio a los estudiantes, garantizando criterios personalizados según cada carrera y área de especialización. Además, gestiona los jurados, el registro de notas y las notificaciones a los estudiantes a través de **correo electrónico** y  **WhatsApp** .
+
+Este sistema está diseñado para su uso en facultades como:
+
+* **Ciencias y Tecnología**
+* **Ciencias Empresariales**
+* **Ciencias Jurídicas, Sociales y Humanísticas**
+
+Asegura que los estudiantes no reciban casos repetidos dentro de su área de especialización, optimizando la asignación y gestión de casos de estudio.
+
+## Funcionalidades Principales
+
+* **Asignación Automática de Casos:**
+  * Distribución equitativa de los casos según la carrera y área de especialización.
+  * Prevención de asignaciones repetidas dentro de la misma especialización.
+* **Gestión de Jurados y Notas:**
+  * Registro de jurados asignados a cada caso.
+  * Administración y almacenamiento de calificaciones de los estudiantes.
+* **Generación de Informes:**
+  * Reportes detallados por carrera.
+  * Resultados de las defensas.
+* **Notificaciones Automáticas:**
+  * Envío de notificaciones a los estudiantes por **correo electrónico** y  **WhatsApp** .
+* **Roles de Usuario:**
+  * Solo los administradores tienen acceso a todas las funcionalidades para un mejor control.
+* **Sorteo Personalizado por Carrera:**
+  * Definición de áreas específicas para cada carrera (Ejemplo: Bases de Datos, Redes e IA en Ingeniería de Sistemas, y otras áreas en Derecho y Ciencias Empresariales).
+
+## Requisitos del Sistema
+
+### Interfaz Administrativa
+
+* Gestión de asignaciones de casos de estudio.
+* Generación de informes.
+* Registro de resultados de defensa.
+
+### Configuración por Carrera
+
+* Definición de áreas de especialización específicas para cada carrera y facultad.
+* Aplicación de reglas personalizadas para el sorteo de casos.
+
+### Seguridad de Datos
+
+* Solo el **administrador** puede modificar asignaciones y generar informes.
+* Protección de la información de estudiantes y jurados.
+
+## Tecnologías Utilizadas
+
+* **Framework:** Laravel 11 para la gestión de la lógica del sorteo y el backend.
+* **Base de Datos:** MySQL para el almacenamiento de información estructurada.
+* **Frontend:** HTML, CSS y JavaScript para la interfaz de usuario.
+* **Backend:** Laravel 11 proporciona las funcionalidades necesarias para manejar la lógica de negocio.
+* **Notificaciones:** Integración con WhatsApp y correo electrónico.
+
+## Instalación y Configuración
+
+### 1. Clonar el repositorio
+
+```sh
+git clone git@github.com:SalvatierraJ/SistemaSorteoDeCasos.git
+cd SistemaSorteoDeCasos
+```
+
+### 2. Instalar dependencias
+
+```sh
+composer install
+npm install
+```
+
+### 3. Configurar la base de datos
+
+Modificar el archivo **.env** con los datos de la base de datos:
+
+```ini
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=sorteo_casos
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Ejecutar las migraciones:
+
+```sh
+php artisan migrate
+```
+
+### 4. Iniciar el servidor
+
+```sh
+php artisan serve
+```
+
+La aplicación estará disponible en: **[http://127.0.0.1:8000](http://127.0.0.1:8000/)**
+
+## Contribución
+
+Si deseas contribuir al proyecto, crea un **fork** y abre un **pull request** con tus mejoras.
+
+## Licencia
+
+Este proyecto está bajo la  **licencia MIT** .

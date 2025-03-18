@@ -18,8 +18,6 @@
         </x-menulateral>
 
         <section class="contenido-estudiantes">
-
-
             <div class="posicion">
                 @if (session('success'))
                     <x-alert type="success" :message="session('success')" />
@@ -29,127 +27,136 @@
                     <x-alert type="error" :message="$errors->all()" />
                 @endif
 
-
-
+                <!-- 🔹 FILTROS DINÁMICOS -->
                 <div class="Elecciones">
-                    <div class="Elecciones-div">
-                        <p> Filtro </p>
-                        <select name="carreras" id="carreras">
-                            <option value="Sistemas">sistemas</option>
-                            <option value="Redes">redes</option>
-                            <option value="Derecho">Derecho</option>
-                            <option value="Psicologia">Psicologia</option>
+                    <form method="GET" action="{{ route('gestion.estudiante') }}" class="Elecciones-div flex gap-4">
+                        <!-- 🔹 FILTRO POR CARRERA -->
+                        <select name="carrera" id="carreras" class="p-2 border rounded">
+                            <option value="">Todas las Carreras</option>
+                            @foreach ($carreras as $carrera)
+                                <option value="{{ $carrera->id_carrera }}"
+                                    {{ request('carrera') == $carrera->id_carrera ? 'selected' : '' }}>
+                                    {{ $carrera->nombre_carrera }}
+                                </option>
+                            @endforeach
                         </select>
-                        <select name="estado" id="estado">
-                            <option value="Espera">Espera</option>
-                            <option value="Defendido">Defendido</option>
-                            <option value="Asignado">Asignado</option>
+
+                        <!-- 🔹 FILTRO POR ESTADO DE DEFENSA INTERNA -->
+                        <select name="estado_interna" id="estado_interna" class="p-2 border rounded">
+                            <option value="">Estado Defensa Interna</option>
+                            <option value="Pendiente" {{ request('estado_interna') == 'Pendiente' ? 'selected' : '' }}>
+                                Pendiente</option>
+                            <option value="Asignada" {{ request('estado_interna') == 'Asignada' ? 'selected' : '' }}>
+                                Asignada</option>
+                            <option value="Aprobada" {{ request('estado_interna') == 'Aprobada' ? 'selected' : '' }}>
+                                Aprobada</option>
                         </select>
-                        <a href="#">
-                            <img src={{ asset('img/impresora.png') }} class="impresora">
-                        </a>
-                    </div>
+
+                        <!-- 🔹 FILTRO POR ESTADO DE DEFENSA EXTERNA -->
+                        <select name="estado_externa" id="estado_externa" class="p-2 border rounded">
+                            <option value="">Estado Defensa Externa</option>
+                            <option value="Pendiente" {{ request('estado_externa') == 'Pendiente' ? 'selected' : '' }}>
+                                Pendiente</option>
+                            <option value="Asignada" {{ request('estado_externa') == 'Asignada' ? 'selected' : '' }}>
+                                Asignada</option>
+                            <option value="Aprobada" {{ request('estado_externa') == 'Aprobada' ? 'selected' : '' }}>
+                                Aprobada</option>
+                        </select>
+
+                        <button type="submit"
+                            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Filtrar</button>
+                    </form>
                 </div>
-                <div class="agregar">
+
+                <!-- 🔹 BOTÓN DE AGREGAR -->
+                <div class="agregar flex justify-between items-center">
                     <div class="div-agregar" data-modal-target="static-modal" data-modal-toggle="static-modal">
                         <img src="{{ asset('img/agregar_usuario.jpg') }}" class="image-agregar">
                     </div>
                     <div class="Gestion-h3">
-
                         <h3 class="gestion-h3">Gestión de Estudiantes</h3>
-
                     </div>
                 </div>
-                <div class="shadow-md sm:rounded-lg p-4 overflow-auto max-h-[500px]">
-                    <div class="overflow-auto">
-                        <table class="w-full text-sm text-left text-gray-700">
+
+                <!-- 🔹 TABLA DE ESTUDIANTES -->
+                <div class="shadow-md sm:rounded-lg p-4">
+                    <div>
+                        <table class="w-full text-sm text-left text-gray-700 border">
                             <thead class="text-xs text-white uppercase bg-[#3F5675]">
                                 <tr>
-                                    <th scope="col" class="px-4 py-2">CODIGO DE REGISTRO</th>
-                                    <th scope="col" class="px-4 py-2">NOMBRE COMPLETO</th>
-                                    <th scope="col" class="px-4 py-2">CORREO</th>
-                                    <th scope="col" class="px-4 py-2">CELULAR</th>
-                                    <th scope="col" class="px-4 py-2">FACULTAD</th>
-                                    <th scope="col" class="px-4 py-2">CARRERA</th>
-                                    <th scope="col" class="px-4 py-2">ESTADO DEFENSA INTERNA</th>
-                                    <th scope="col" class="px-4 py-2">ESTADO DEFENSA EXTERNA</th>
-                                    <th scope="col" class="px-4 py-2">EDITAR</th>
+                                    <th class="px-4 py-2">CÓDIGO</th>
+                                    <th class="px-4 py-2">NOMBRE COMPLETO</th>
+                                    <th class="px-4 py-2">CORREO</th>
+                                    <th class="px-4 py-2">CELULAR</th>
+                                    <th class="px-4 py-2">FACULTAD</th>
+                                    <th class="px-4 py-2">CARRERA</th>
+                                    <th class="px-4 py-2">DEFENSA INTERNA</th>
+                                    <th class="px-4 py-2">DEFENSA EXTERNA</th>
+                                    <th class="px-4 py-2">EDITAR</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Datos dinámicos -->
-                                @foreach ($estudiantes as $estudiante)
-                                <tr class="@if($loop->even) bg-[#F2F2F2] @else bg-white @endif border-b hover:bg-gray-100">
-                                    <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">
-                                        {{ $estudiante['registro'] }}
-                                    </td>
-                                    <td class="px-4 py-2">
-                                        {{ $estudiante['nombre_completo'] }}
-                                    </td>
-                                    <td class="px-4 py-2">
-                                        {{ $estudiante['correo'] }}
-                                    </td>
-                                    <td class="px-4 py-2">
-                                        {{ $estudiante['telefono'] }}
-                                    </td>
-                                    <td class="px-4 py-2">
-                                        {{ $estudiante['facultad'] }}
-                                    </td>
-                                    <td class="px-4 py-2">
-                                        {{ $estudiante['carrera'] }}
-                                    </td>
-                                    <!-- Estado Defensa Interna -->
-                                    <td class="px-4 py-2 ">
-                                        @if ($estudiante['estado_defensa_interna'] == 'Defensa Interna Asignada')
-                                        <svg width="11" height="11" class="mr-1">
-                                            <circle cx="5" cy="5" r="5" fill="green" />
-                                        </svg>
-                                        @elseif($estudiante['estado_defensa_interna'] == 'Pendiente')
-                                        <svg width="11" height="11" class="mr-1">
-                                            <circle cx="5" cy="5" r="5" fill="yellow" />
-                                        </svg>
-                                        @elseif($estudiante['estado_defensa_interna'] == 'Defensa Interna Aprobada')
-                                        <svg width="11" height="11" class="mr-1">
-                                            <circle cx="5" cy="5" r="5" fill="red" />
-                                        </svg>
-                                        @endif
-                                        {{ $estudiante['estado_defensa_interna'] }}
-                                    </td>
-                                    
-                                    <!-- Estado Defensa Externa -->
-                                    <td class="px-4 py-2 ">
-                                        @if ($estudiante['estado_defensa_externa'] == 'Defensa Externa Asignada')
-                                        <svg width="11" height="11" class="mr-1">
-                                            <circle cx="5" cy="5" r="5" fill="green" />
-                                        </svg>
-                                        @elseif($estudiante['estado_defensa_externa'] == 'Pendiente')
-                                        <svg width="11" height="11" class="mr-1">
-                                            <circle cx="5" cy="5" r="5" fill="yellow" />
-                                        </svg>
-                                        @elseif($estudiante['estado_defensa_externa'] == 'Defensa Externa Aprobada')
-                                        <svg width="11" height="11" class="mr-1">
-                                            <circle cx="5" cy="5" r="5" fill="red" />
-                                        </svg>
-                                        @endif
-                                        {{ $estudiante['estado_defensa_externa'] }}
-                                    </td>
-                                    <!-- Editar -->
-                                    <td class="px-4 py-2 text-right">
-                                        <a href="#" class="font-medium text-blue-600 hover:underline">
-                                            <img class="editar-imagen w-6 h-6"
-                                                src="https://img.icons8.com/officel/80/create-new.png" alt="create-new" />
-                                        </a>
-                                    </td>
-                                </tr>
-                                @endforeach
+                                @forelse ($estudiantes as $estudiante)
+                                    <tr
+                                        class="@if ($loop->even) bg-[#F2F2F2] @else bg-white @endif border-b hover:bg-gray-100">
+                                        <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">
+                                            {{ $estudiante['registro'] }}
+                                        </td>
+                                        <td class="px-4 py-2">
+                                            {{ $estudiante['nombre_completo'] }}
+                                        </td>
+                                        <td class="px-4 py-2">
+                                            {{ $estudiante['correo'] }}
+                                        </td>
+                                        <td class="px-4 py-2">
+                                            {{ $estudiante['telefono'] }}
+                                        </td>
+                                        <td class="px-4 py-2">
+                                            {{ $estudiante['facultad'] }}
+                                        </td>
+                                        <td class="px-4 py-2">
+                                            {{ $estudiante['carrera'] }}
+                                        </td>
+                                        <!-- 🔹 Estado Defensa Interna -->
+                                        <td class="px-4 py-2">
+                                            <span
+                                                class="px-2 py-1 rounded text-white text-xs font-bold {{ $estudiante['estado_defensa_interna'] == 'Defensa Interna Aprobada' ? 'bg-green-500' : ($estudiante['estado_defensa_interna'] == 'Defensa Interna Asignada' ? 'bg-yellow-500' : 'bg-red-500') }}">
+                                                {{ $estudiante['estado_defensa_interna'] }}
+                                            </span>
+                                        </td>
+                                        <!-- 🔹 Estado Defensa Externa -->
+                                        <td class="px-4 py-2">
+                                            <span
+                                                class="px-2 py-1 rounded text-white text-xs font-bold {{ $estudiante['estado_defensa_externa'] == 'Defensa Externa Aprobada' ? 'bg-green-500' : ($estudiante['estado_defensa_externa'] == 'Defensa Externa Asignada' ? 'bg-yellow-500' : 'bg-red-500') }}">
+                                                {{ $estudiante['estado_defensa_externa'] }}
+                                            </span>
+                                        </td>
+                                        <!-- 🔹 Botón de Editar -->
+                                        <td class="px-4 py-2 text-right">
+                                            <a href="#" class="font-medium text-blue-600 hover:underline">
+                                                <img class="editar-imagen w-6 h-6"
+                                                    src="https://img.icons8.com/officel/80/create-new.png"
+                                                    alt="Editar" />
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="9" class="px-4 py-2 text-center text-gray-500">
+                                            No se encontraron estudiantes.
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
                 </div>
-                
 
+                <!-- 🔹 PAGINACIÓN -->
+                
             </div>
         </section>
+
     </div>
 
 
@@ -169,8 +176,8 @@
                         data-modal-hide="static-modal">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                         </svg>
                         <span class="sr-only">Close modal</span>
                     </button>

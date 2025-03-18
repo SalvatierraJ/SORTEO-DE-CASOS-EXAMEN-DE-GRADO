@@ -2,33 +2,55 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Models\Carrera;
 use App\Models\Models\Estudiante;
-
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Http\Request;
 
 class GestionEstudianteController extends Controller
 {
-    public function vistaEstudiante()
+    public function vistaEstudiante(Request $request)
     {
-        $carreras = Carrera::all();
+        if (Auth::check()) {
+            $idAdministrador = Auth::user()->id_administrador;
+            $carreras = Carrera::whereHas('usuariosCarrera', function ($query) use ($idAdministrador) {
+                $query->where('id_administrador', $idAdministrador);
+            })->get();
 
-        $estudiantes = Estudiante::with(['carrera.facultad', 'defensa'])
-            ->orderBy('id_estudiante', 'desc') // Ordenar por ID descendente
-            ->take(10) // Tomar los 10 últimos
-            ->select('id_estudiante', 'nombre', 'apellido', 'telefono', 'correo', 'nroRegistro', 'id_carrera')
-            ->get()
-            ->map(function ($estudiante) {
 
-                // Concatenar nombre y apellido en el formato "Apellido, Nombre"
+            $carreraIds = $carreras->pluck('id_carrera')->toArray();
+
+            if (empty($carreraIds)) {
+                return view('gestiondeestudiantes', compact('carreras'))
+                    ->withErrors('No hay carreras asignadas al administrador.');
+            }
+
+
+            $query = Estudiante::whereIn('id_carrera', $carreraIds);
+
+
+            if ($request->filled('carrera')) {
+                $query->where('id_carrera', $request->carrera);
+            }
+
+
+            if ($request->filled('estado_interna')) {
+                $query->where('estado_defensa_interna', $request->estado_interna);
+            }
+
+           
+            if ($request->filled('estado_externa')) {
+                $query->where('estado_defensa_externa', $request->estado_externa);
+            }
+
+            $estudiantes = $query->orderBy('id_estudiante', 'desc')->paginate(10)->appends($request->query());
+
+
+            $estudiantes->getCollection()->transform(function ($estudiante) {
                 $nombreCompleto = "{$estudiante->apellido}, {$estudiante->nombre}";
-
-                // Obtener facultad y carrera
                 $facultad = $estudiante->carrera ? $estudiante->carrera->facultad->nombre_facultad ?? 'Sin Facultad' : 'Sin Facultad';
                 $carrera = $estudiante->carrera ? $estudiante->carrera->nombre_carrera : 'Sin Carrera';
-
-                // Definir los estados de defensa
                 $estadoDefensaInterna = 'Pendiente';
                 $estadoDefensaExterna = 'Pendiente';
 
@@ -60,14 +82,21 @@ class GestionEstudianteController extends Controller
                 ];
             });
 
-        return view('gestiondeestudiantes', compact('carreras', 'estudiantes'));
+            return view('gestiondeestudiantes', compact('carreras', 'estudiantes'));
+        }
+
+        return redirect()->route('login');
     }
+
+
 
 
     public function cargarEstudiantes(Request $request)
     {
         $carreras = Carrera::all();
         $carrerasMap = $carreras->pluck('id_carrera', 'nombre_carrera')->toArray();
+
+        $carrerasMap = array_change_key_case($carrerasMap, CASE_LOWER);
 
 
 
@@ -88,7 +117,7 @@ class GestionEstudianteController extends Controller
             'archivoEstudiantes.max' => 'El archivo no puede superar los 2MB de tamaño.',
             'Telefono.min' => 'El campo Teléfono debe tener al menos 8 caracteres.',
         ]);
-       
+
 
         if ($request->hasFile('archivoEstudiantes')) {
             try {
@@ -102,8 +131,10 @@ class GestionEstudianteController extends Controller
                     if ($index === 1 || empty($row['A']) || empty($row['B']) || empty($row['C'])) {
                         continue; // Saltar encabezados o filas incompletas
                     }
+                    $nombreCarrera = strtolower(trim($row['D']));
 
-                    $idCarrera = $carrerasMap[$row['D']] ?? null;
+                    $idCarrera = $carrerasMap[$nombreCarrera] ?? null;
+
                     $estudiantes[] = [
                         'nroRegistro' => $row['A'],
                         'nombre' => $row['B'],
@@ -138,6 +169,4 @@ class GestionEstudianteController extends Controller
             return redirect()->back();
         }
     }
-    
-    
 }

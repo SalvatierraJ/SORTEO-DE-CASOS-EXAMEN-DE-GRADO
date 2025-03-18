@@ -97,6 +97,7 @@
                 </div>
                 <form id="editJuradoForm" action="{{route('editar.Tribunal')}}" method="POST" class="modal-body">
                     @csrf
+                    
                     <!-- Campos del formulario -->
                     <div class="form-group">
                         <label for="editRegistro">Registro:</label>

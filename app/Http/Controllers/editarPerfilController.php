@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Container\Attributes\Auth;
+use App\Models\Models\Carrera;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class editarPerfilController extends Controller
 {
     public function vistaEditarPerfil(){
-       
-        return view('layouts.editarPerfil');
+        if (Auth::check()) {
+            $idAdministrador = Auth::user()->id_administrador;
+            $carreras = Carrera::whereHas('usuariosCarrera', function ($query) use ($idAdministrador) {
+                $query->where('id_administrador', $idAdministrador);
+            })->get();
+        }
+
+        return view('layouts.editarPerfil',compact('carreras'));
     }
 }

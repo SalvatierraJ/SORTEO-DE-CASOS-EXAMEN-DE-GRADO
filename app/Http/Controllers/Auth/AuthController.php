@@ -44,18 +44,5 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->route('login')->with('success', 'sesion cerrada correctamente');
     }
-    public function crearUsuarioAdmin()
-    {
-        Usuario::create([
-            'nombre' => 'Javier',
-            'apellido' => 'Salvatierra',
-            'usuario' => 'javi',
-            'password' => Hash::make('12345678'), // Encripta la contraseña
-            'correo' => 'javi@example.com',
-            'telefono' => '123456789',
-            'estado' => 'activo',  // Puedes ajustar este valor según tu lógica de negocio
-        ]);
 
-        return "Usuario administrador creado correctamente.";
-    }
 }

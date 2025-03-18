@@ -16,8 +16,17 @@ class Area extends Model
         'id_carrera',
     ];
     public $timestamps = false;
+    public function carrera()
+    {
+        return $this->belongsTo(Carrera::class, 'id_carrera', 'id_carrera');
+    }
 
-    public function CasosDeEstudio(){
-        return $this->hasOne(CasosDeEstudio::class,'id_area');
+    // public function CasosDeEstudio(){
+    //     return $this->hasOne(CasosDeEstudio::class,'id_area');
+    // }
+    public function casosDeEstudio()
+    {
+        return $this->hasMany(CasosDeEstudio::class, 'id_area', 'id_area');
     }
 }
+

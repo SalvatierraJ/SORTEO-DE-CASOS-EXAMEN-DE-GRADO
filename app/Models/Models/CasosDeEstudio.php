@@ -19,12 +19,22 @@ class CasosDeEstudio extends Model
     ];
     public $timestamps = false;
 
-    public function area(){
-        return $this->belongsTo(Area::class,'id_area');
+    public function area()
+    {
+        return $this->belongsTo(Area::class, 'id_area');
     }
-    
+
     public static function getRandomCaseByArea($areaId)
     {
         return self::where('id_area', $areaId)->inRandomOrder()->first();
+    }
+    public function defensas()
+    {
+        return $this->hasMany(Defensa::class, 'id_casoEstudio', 'id_casoEstudio');
+    }
+
+    public function bitacoras()
+    {
+        return $this->hasMany(BitacoraCaso::class, 'id_casoEstudio', 'id_casoEstudio');
     }
 }

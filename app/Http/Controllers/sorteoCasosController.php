@@ -155,6 +155,7 @@ class sorteoCasosController extends Controller
             return response()->json(['message' => 'Estudiante no encontrado.'], 404);
         }
 
+
         // Verificar si ya tiene una defensa del mismo tipo con nota asignada
         $defensaAsignada = Defensa::where('id_estudiante', $id)
             ->first();
@@ -167,7 +168,7 @@ class sorteoCasosController extends Controller
         }
 
         // Obtener área y caso de estudio
-        $area = DB::select('CALL ObtenerAreaAleatoria()');
+        $area = DB::select("CALL ObtenerAreaAleatoria({$estudiante->id_carrera})");
         if (empty($area)) {
             return response()->json(['message' => 'No se encontraron áreas disponibles.'], 400);
         }
@@ -202,6 +203,7 @@ class sorteoCasosController extends Controller
         ]);
         $idUltimaDefensa = $defensa->id_defensa;
         $nombreCompleto = $estudiante->nombre . ' ,' . $estudiante->apellido;
+
         return response()->json([
             'id_defensa' => $idUltimaDefensa,
             'id_estudiante' => $estudiante->id_estudiante,
@@ -272,12 +274,12 @@ class sorteoCasosController extends Controller
     }
 
     public function editarEstadoCaso($id_caso,$estado){
-        
+
         $caso = CasosDeEstudio::find($id_caso);
 
-        
+
         $caso->estado = $estado;
-        
+
 
         $caso->save();
         return redirect()->back()->with('success', 'Estado Actualizado');

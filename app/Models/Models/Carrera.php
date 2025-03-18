@@ -19,6 +19,14 @@ class Carrera extends Model
 
     public function estudiante()
     {
-        return $this->hasMany(Estudiante::class, 'id_carrera','id_carrera');
+        return $this->hasMany(Estudiante::class, 'id_carrera', 'id_carrera');
+    }
+    public function areas()
+    {
+        return $this->hasMany(Area::class, 'id_carrera', 'id_carrera');
+    }
+    public function usuariosCarrera()
+    {
+        return $this->hasMany(UsuarioCarrera::class, 'id_carrera', 'id_carrera');
     }
 }

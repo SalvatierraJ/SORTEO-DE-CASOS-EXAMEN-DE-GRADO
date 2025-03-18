@@ -38,8 +38,9 @@
                                     src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
                             </div>
                             @if (Auth::check())
-                                <h5 class="text-lg font-semibold text-gray-800">Ing.{{ Auth::user()->nombre }} {{ Auth::user()->apellido }}  </h5>
-                                <h6 class="text-sm text-gray-600">{{Auth::user()->correo}}</h6>
+                                <h5 class="text-lg font-semibold text-gray-800">Ing.{{ Auth::user()->nombre }}
+                                    {{ Auth::user()->apellido }} </h5>
+                                <h6 class="text-sm text-gray-600">{{ Auth::user()->correo }}</h6>
                             @endif
 
                         </div>
@@ -57,25 +58,29 @@
                         <!-- nombres -->
                         <div class="form-group">
                             <label for="fullName" class="block text-sm font-medium text-gray-700">Nombres</label>
-                            <input type="text" id="fullName" placeholder="Introduzca sus nombres" value="{{Auth::user()->nombre}}"
+                            <input type="text" id="fullName" placeholder="Introduzca sus nombres"
+                                value="{{ Auth::user()->nombre }}"
                                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                         </div>
                         <!-- apellidos -->
                         <div class="form-group">
                             <label for="Apellidos" class="block text-sm font-medium text-gray-700">Apellidos</label>
-                            <input type="text" id="Apellidos" placeholder="Introduzca sus Apellidos" value="{{Auth::user()->apellido}}"
+                            <input type="text" id="Apellidos" placeholder="Introduzca sus Apellidos"
+                                value="{{ Auth::user()->apellido }}"
                                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                         </div>
                         <!-- Phone -->
                         <div class="form-group">
                             <label for="phone" class="block text-sm font-medium text-gray-700">Telefono</label>
-                            <input type="text" id="Telefono" placeholder="Numero de telefono" value="{{Auth::user()->telefono}}"
+                            <input type="text" id="Telefono" placeholder="Numero de telefono"
+                                value="{{ Auth::user()->telefono }}"
                                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                         </div>
                         <!-- Email -->
                         <div class="form-group">
                             <label for="eMail" class="block text-sm font-medium text-gray-700">Email</label>
-                            <input type="email" id="eMail" placeholder="Introduzca su correo" value="{{Auth::user()->correo}}"
+                            <input type="email" id="eMail" placeholder="Introduzca su correo"
+                                value="{{ Auth::user()->correo }}"
                                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                         </div>
 
@@ -87,34 +92,17 @@
                         <div class="container bg-white mx-auto p-6">
                             <div class="flex flex-wrap gap-6 border-2 border-gray-300 p-6 rounded-lg shadow-lg"
                                 style="    justify-content: center;">
-                                <!-- Carrera 1 -->
-                                <div
-                                    class="relative bg-white border border-gray-300 p-4 w-32 h-16 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
-                                    <span
-                                        class="absolute top-2 right-2 text-xl text-red-500 cursor-pointer hover:text-red-700">×</span>
-                                    <p class="text-center text-lg font-semibold text-gray-800">Sistemas</p>
+                                @foreach ($carreras as $carrera)
+                                <div class="relative bg-white border border-gray-300 p-4 w-32 h-auto rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
+                                    <span class="absolute top-2 right-2 text-xl text-red-500 cursor-pointer hover:text-red-700">×</span>
+                                    <p class="text-center text-lg font-semibold text-gray-800 break-words">
+                                        {{$carrera->nombre_carrera}}
+                                    </p>
                                 </div>
-                                <!-- Carrera 2 -->
-                                <div
-                                    class="relative bg-white border border-gray-300 p-4  w-32 h-16 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
-                                    <span
-                                        class="absolute top-2 right-2 text-xl text-red-500 cursor-pointer hover:text-red-700">×</span>
-                                    <p class="text-center text-lg font-semibold text-gray-800">Redes</p>
-                                </div>
-                                <!-- Carrera 3 -->
-                                <div
-                                    class="relative bg-white border border-gray-300 p-4  w-32 h-16 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
-                                    <span
-                                        class="absolute top-2 right-2 text-xl text-red-500 cursor-pointer hover:text-red-700">×</span>
-                                    <p class="text-center text-lg font-semibold text-gray-800">Medicina</p>
-                                </div>
-                                <!-- Carrera 3 -->
-                                <div
-                                    class="relative bg-white border border-gray-300 p-4  w-32 h-16 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
-                                    <span
-                                        class="absolute top-2 right-2 text-xl text-red-500 cursor-pointer hover:text-red-700">×</span>
-                                    <p class="text-center text-lg font-semibold text-gray-800">Medicina</p>
-                                </div>
+                            @endforeach
+
+
+
                             </div>
                         </div>
 

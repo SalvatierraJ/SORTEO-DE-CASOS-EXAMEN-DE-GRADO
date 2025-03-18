@@ -213,7 +213,7 @@
     };
     inputEstudiante.addEventListener('keyup', onChange);
 
-    // logica para el modal de carga 
+    // logica para el modal de carga
     const showModal = (mensaje) => {
         const modal = document.getElementById('loadingModal');
         const contenedorMensaje = document.getElementById('mensajeSorteo');
@@ -262,7 +262,7 @@
             const url =
                 `{{ route('crear.Defesna', ['id' => '__ID__', 'tipo_defensa' => '__TIPO_DEFENSA__']) }}`
                 .replace('__ID__', id).replace('__TIPO_DEFENSA__', tipoDefensa);
-
+                console.log(url);
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {

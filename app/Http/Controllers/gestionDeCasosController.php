@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Models\Area;
 use App\Models\Models\CasosDeEstudio;
 use Illuminate\Support\Facades\Storage;
@@ -12,7 +13,14 @@ class gestionDeCasosController extends Controller
 {
     public function vistaGestionCasos()
     {
-        $areas = Area::all();
+        if (Auth::check()) {
+            $idAdministrador = Auth::user()->id_administrador;
+            $areas = Area::whereHas('carrera', function ($query) use ($idAdministrador) {
+                $query->whereHas('usuariosCarrera', function ($subQuery) use ($idAdministrador) {
+                    $subQuery->where('id_administrador', $idAdministrador);
+                });
+            })->get();
+        }
         $casos = CasosDeEstudio::with('area')
             ->select('id_casoEstudio', 'descripcion_caso', 'estado', 'id_area')
             ->get();
@@ -23,10 +31,10 @@ class gestionDeCasosController extends Controller
     }
     public function agregarCaso(Request $request)
     {
-       
+
         $request->validate([
-            'casoEstudioArchivo' => 'required|array', 
-            'casoEstudioArchivo.*' => 'file|mimes:pdf,docx|max:10240', 
+            'casoEstudioArchivo' => 'required|array',
+            'casoEstudioArchivo.*' => 'file|mimes:pdf,docx|max:10240',
             'categoria' => 'nullable|integer|not_in:0',
         ], [
             'casoEstudioArchivo.required' => 'Por favor, sube al menos un archivo para el caso de estudio.',
@@ -38,13 +46,13 @@ class gestionDeCasosController extends Controller
             'categoria.not_in' => 'Por favor, elige una categoría.',
         ]);
 
-       
+
         if ($request->hasFile('casoEstudioArchivo')) {
             foreach ($request->file('casoEstudioArchivo') as $archivo) {
                 $nombreOriginal = $archivo->getClientOriginalName();
                 $nombreSinExtension = pathinfo($nombreOriginal, PATHINFO_FILENAME);
 
-              
+
                 $path = $archivo->store('private');
                 $nombreArchivo = basename($path);
 
@@ -87,7 +95,7 @@ class gestionDeCasosController extends Controller
         if (Storage::exists($ruta)) {
             Storage::delete($ruta);
         }
-       
+
 
         session()->flash('success', 'Caso eliminado Exitosamente');
         return redirect()->back();

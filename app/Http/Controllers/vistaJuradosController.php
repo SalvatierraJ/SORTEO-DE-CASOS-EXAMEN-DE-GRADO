@@ -58,11 +58,12 @@ class vistaJuradosController extends Controller
     public function editarTribunal(Request $request)
     {
 
+
         $validatedData = $request->validate([
             'registro' => 'required|string|max:255',
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
-            'telefono' => 'required|digits:8',
+            'telefono' => 'required',
             'correo' => 'required|email',
             'estado' => 'required|in:Activo,Inactivo',
         ]);
@@ -73,7 +74,6 @@ class vistaJuradosController extends Controller
         if (!$tribunal) {
             return redirect()->back()->with('error', 'Tribunal no encontrado');
         }
-
 
         $tribunal->registro = $validatedData['registro'];
         $tribunal->nombre = $validatedData['nombre'];
